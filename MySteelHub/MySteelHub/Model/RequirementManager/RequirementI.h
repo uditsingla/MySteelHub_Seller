@@ -34,6 +34,11 @@
 @property(assign,nonatomic) BOOL isBestPrice;
 @property(assign,nonatomic) BOOL isSellerRead;
 @property(assign,nonatomic) BOOL isSellerReadBargain;
+@property(assign,nonatomic) BOOL isAccepted;
+@property(assign,nonatomic) BOOL isDeleted;
+@property(assign,nonatomic) BOOL isBargainRequired;
+
+
 
 
 -(void)postQuotation:(void(^)(NSDictionary *json, NSError *error))completionBlock;

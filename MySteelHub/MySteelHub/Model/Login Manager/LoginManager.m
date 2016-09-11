@@ -40,6 +40,9 @@
                 
                 [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%i",[[json objectForKey:@"user_id"] intValue]] forKey:@"userID"];
                 
+                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",[json objectForKey:@"email"]] forKey:@"email"];
+
+                
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"isAutoLogin"];
                 
                 

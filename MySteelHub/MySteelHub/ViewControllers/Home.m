@@ -371,6 +371,12 @@
                 
             }];
         }
+        
+        if(_selectedRequirement.initialAmount.intValue>0)
+        {
+            txtFieldQuotation.text = [NSString stringWithFormat:@"Quotation Amount : %@", _selectedRequirement.initialAmount];
+            txtFieldQuotation.userInteractionEnabled = NO;
+        }
     }
 }
 
@@ -887,6 +893,7 @@
                 if(!error)
                 {
                     [SVProgressHUD dismiss];
+                    txtFieldQuotation.userInteractionEnabled = NO;
                     [self showAlert:@"Quotation posted successfully"];
                 }
             }];
