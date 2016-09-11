@@ -1,0 +1,34 @@
+//
+//  MySteelHub-Prefix.pch
+//  MySteelHub
+//
+//  Created by Abhishek Singla on 13/03/16.
+//  Copyright © 2016 MySteelHub. All rights reserved.
+//
+
+#ifndef MySteelHub_Prefix_pch
+#define MySteelHub_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+
+
+#import "ModelManager.h"
+#import "BaseViewController.h"
+#import "MFSideMenu.h"
+
+#import "LabeledActivityIndicatorView.h"
+#import "Constants.h"
+#import "AppDelegate.h"
+
+
+#define appdelegate ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+
+#define model_manager ((ModelManager *)[ModelManager modelManager])
+
+#define mainstoryboard [UIStoryboard storyboardWithName:@"Main" bundle: nil]
+
+
+
+#endif /* MySteelHub_Prefix_pch */
