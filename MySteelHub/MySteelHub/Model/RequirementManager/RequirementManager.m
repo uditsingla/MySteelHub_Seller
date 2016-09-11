@@ -160,9 +160,20 @@
                 
                 requirement.initialAmount = [NSString stringWithFormat:@"%@",[[array objectAtIndex:i] valueForKey:@"initial_amt"]];
                 
+                requirement.bargainAmount = [NSString stringWithFormat:@"%@",[[array objectAtIndex:i] valueForKey:@"bargain_amt"]];
+
+                
                 requirement.isSellerRead = [[[array objectAtIndex:i] valueForKey:@"is_seller_read"] boolValue];
 
                 requirement.isSellerReadBargain = [[[array objectAtIndex:i] valueForKey:@"is_seller_read_bargain"] boolValue];
+
+                requirement.isBestPrice = [[[array objectAtIndex:i] valueForKey:@"is_best_price"] boolValue];
+
+                requirement.isAccepted = [[[array objectAtIndex:i] valueForKey:@"is_accepted"] boolValue];
+
+                requirement.isDeleted = [[[array objectAtIndex:i] valueForKey:@"is_seller_deleted"] boolValue];
+
+                requirement.isBargainRequired = [[[array objectAtIndex:i] valueForKey:@"req_for_bargain"] boolValue];
 
                 
                 [arrayPostedRequirements addObject:requirement];
