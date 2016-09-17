@@ -1087,6 +1087,9 @@
                 }
             }];
         }
+        else
+            [self showAlert:@"Quotation posted successfully"];
+
     }
     
     if(switchBargain.isOn)
