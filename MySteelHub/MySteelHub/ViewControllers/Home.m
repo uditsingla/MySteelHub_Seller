@@ -140,7 +140,7 @@
     viewQuotation.hidden = NO;
     viewBargain.hidden = YES;
     
-    btnSubmit.hidden = YES;
+    btnSubmit.hidden = NO;
     
     if(_selectedRequirement.isBargainRequired)
     {
@@ -392,13 +392,20 @@
         {
             txtFieldQuotation.text = [NSString stringWithFormat:@"Quotation Amount : %@", _selectedRequirement.initialAmount];
             txtFieldQuotation.userInteractionEnabled = NO;
+            btnSubmit.hidden = YES;
         }
         
         if(_selectedRequirement.bargainAmount.intValue>0)
         {
             txtFieldBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount : %@", _selectedRequirement.bargainAmount];
             txtFieldBargainAmount.userInteractionEnabled = NO;
-            
+            switchBargain.userInteractionEnabled = NO;
+            btnSubmit.hidden = YES;
+        }
+        else if(_selectedRequirement.isBestPrice)
+        {
+            txtFieldBargainAmount.userInteractionEnabled = NO;
+            switchBargain.userInteractionEnabled = NO;
             btnSubmit.hidden = YES;
         }
         
@@ -909,20 +916,7 @@
     
     else if (textField == txtFieldQuotation)
     {
-        if(txtFieldQuotation.text.length > 0)
-        {
-            
-            [SVProgressHUD show];
-            _selectedRequirement.initialAmount = txtFieldQuotation.text;
-            [_selectedRequirement postQuotation:^(NSDictionary *json, NSError *error) {
-                if(!error)
-                {
-                    [SVProgressHUD dismiss];
-                    txtFieldQuotation.userInteractionEnabled = NO;
-                    [self showAlert:@"Quotation posted successfully"];
-                }
-            }];
-        }
+        
     }
 }
 
@@ -1077,75 +1071,69 @@
 
 - (IBAction)submitBtnAction:(UIButton *)sender {
     
-    if(arrayTblDict.count==1)
+    if(viewBargain.hidden)
     {
-        if([[[[arrayTblDict objectAtIndex:0] valueForKey:@"size"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
+        if(txtFieldQuotation.text.length > 0)
         {
-            [self showAlert:@"Please enter diameter size"];
-            return;
-        }
-        
-        else if([[[[arrayTblDict objectAtIndex:0] valueForKey:@"quantity"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
-        {
-            [self showAlert:@"Please enter quantity"];
-            return;
+            
+            [SVProgressHUD show];
+            _selectedRequirement.initialAmount = txtFieldQuotation.text;
+            [_selectedRequirement postQuotation:^(NSDictionary *json, NSError *error) {
+                if(!error)
+                {
+                    [SVProgressHUD dismiss];
+                    txtFieldQuotation.userInteractionEnabled = NO;
+                    [self showAlert:@"Quotation posted successfully"];
+                }
+            }];
         }
     }
     
-    if(arrayTblDict.count==0)
+    if(switchBargain.isOn)
     {
-        [self showAlert:@"Please enter specification"];
-    }
-    else if(selectedGradeRequired.length==0)
-    {
-        [self showAlert:@"Please select grade"];
-    }
-    else if([[txtFieldCity.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter city"];
-    }
-    else if([[txtFieldState.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter state"];
-    }
-    else if([[txtFieldBudget.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter budget"];
-    }
-    else if([[selectedDate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter required by date"];
+        if([[txtFieldBargainAmount.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+        {
+            [self showAlert:@"Please enter bargain amount"];
+        }
+        
+        else
+        {
+            [SVProgressHUD show];
+            
+            _selectedRequirement.bargainAmount = txtFieldBargainAmount.text;
+            _selectedRequirement.isBestPrice = !switchBargain.isOn;
+            [_selectedRequirement acceptRejectBargain:^(NSDictionary *json, NSError *error) {
+                [SVProgressHUD dismiss];
+                if(json)
+                {
+                    btnSubmit.hidden = YES;
+                    //[self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [self showAlert:@"Some error occured. Please try again"];
+                }
+            }];
+        }
     }
     else
     {
-        RequirementI *newRequirement = [RequirementI new];
-        newRequirement.userID = [[NSUserDefaults standardUserDefaults] valueForKey:@"userID"];
-        newRequirement.arraySpecifications = arrayTblDict;
-        newRequirement.isChemical = switchChemical.isOn;
-        newRequirement.isPhysical = switchPhysical.isOn;
-        newRequirement.isTestCertificateRequired = switchCertReq.isOn;
-        newRequirement.length = [NSString stringWithFormat:@"%li", (long)sgmtControlLenghtRequired.selectedSegmentIndex];
-        newRequirement.type = [NSString stringWithFormat:@"%li", (long)sgmtControlTypeRequired.selectedSegmentIndex];
-        newRequirement.arrayPreferedBrands = arraySelectedPreferredBrands;
-        newRequirement.gradeRequired = selectedGradeRequired;
-        newRequirement.budget = txtFieldBudget.text;
-        newRequirement.city = txtFieldCity.text;
-        newRequirement.state = txtFieldState.text;
-        newRequirement.requiredByDate = selectedDate;
-        
         [SVProgressHUD show];
         
-        [model_manager.requirementManager postRequirement:newRequirement completion:^(NSDictionary *json, NSError *error) {
+        _selectedRequirement.isBestPrice = !switchBargain.isOn;
+        [_selectedRequirement acceptRejectBargain:^(NSDictionary *json, NSError *error) {
             [SVProgressHUD dismiss];
             if(json)
             {
-                [self.navigationController popViewControllerAnimated:YES];
+                btnSubmit.hidden = YES;
+                //[self.navigationController popViewControllerAnimated:YES];
             }
             else
             {
                 [self showAlert:@"Some error occured. Please try again"];
             }
         }];
+
     }
 }
 
