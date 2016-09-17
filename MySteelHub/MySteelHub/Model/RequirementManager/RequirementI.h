@@ -23,6 +23,7 @@
 @property(strong,nonatomic) NSString *requiredByDate;
 @property(strong,nonatomic) NSDate *createdDate;
 @property(strong,nonatomic) NSDate *modifiedDate;
+@property(strong,nonatomic) NSString *taxType;
 
 
 @property(strong,nonatomic) NSMutableArray *arraySpecifications;

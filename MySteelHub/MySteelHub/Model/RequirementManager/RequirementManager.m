@@ -152,6 +152,9 @@
                 
                 requirement.requiredByDate = [NSString stringWithFormat:@"%@",[[array objectAtIndex:i] valueForKey:@"required_by_date"]];
                 
+                requirement.taxType = [[array objectAtIndex:i] valueForKey:@"tax_type"];
+
+                
                 requirement.arraySpecifications = [[array objectAtIndex:i] valueForKey:@"quantity"];
                 
                 requirement.gradeRequired = [NSString stringWithFormat:@"%i",[[[array objectAtIndex:i] valueForKey:@"grade_required"] intValue]];

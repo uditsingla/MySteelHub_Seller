@@ -142,6 +142,13 @@
     
     btnSubmit.hidden = YES;
     
+    if(_selectedRequirement.isBargainRequired)
+    {
+        viewBargain.hidden = NO;
+        
+        btnSubmit.hidden = NO;
+    }
+    
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hideKeyboard:) name:UIKeyboardDidHideNotification object:nil ];
     
@@ -365,9 +372,18 @@
         
         [btnRequiredByDate setTitle:[NSString stringWithFormat:@"Required by Date : %@",_selectedRequirement.requiredByDate] forState:UIControlStateNormal];
         
+        [btnPreferedTax setTitle:[NSString stringWithFormat:@"Prefered Tax : %@",_selectedRequirement.taxType] forState:UIControlStateNormal];
+
+        
         if(!_selectedRequirement.isSellerRead)
         {
             [_selectedRequirement updateSellerReadStatus:^(NSDictionary *json, NSError *error) {
+                
+            }];
+        }
+        else if(!_selectedRequirement.isSellerReadBargain && _selectedRequirement.isBargainRequired)
+        {
+            [_selectedRequirement updateSellerReadBargainStatus:^(NSDictionary *json, NSError *error) {
                 
             }];
         }
@@ -377,6 +393,15 @@
             txtFieldQuotation.text = [NSString stringWithFormat:@"Quotation Amount : %@", _selectedRequirement.initialAmount];
             txtFieldQuotation.userInteractionEnabled = NO;
         }
+        
+        if(_selectedRequirement.bargainAmount.intValue>0)
+        {
+            txtFieldBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount : %@", _selectedRequirement.bargainAmount];
+            txtFieldBargainAmount.userInteractionEnabled = NO;
+            
+            btnSubmit.hidden = YES;
+        }
+        
     }
 }
 
