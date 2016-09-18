@@ -355,7 +355,12 @@
         [self disableUIElements];
         [arrayTblDict removeAllObjects];
         arrayTblDict = _selectedRequirement.arraySpecifications;
+        tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
+        scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
         [tblViewSizes reloadData];
+        
+        lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,contentView.frame.size.height-50);
+
         
         switchPhysical.on = _selectedRequirement.isPhysical;
         switchChemical.on = _selectedRequirement.isChemical;
@@ -395,6 +400,11 @@
             btnSubmit.hidden = YES;
         }
         
+        if(_selectedRequirement.isBargainRequired)
+        {
+            btnSubmit.hidden = NO;
+        }
+        
         if(_selectedRequirement.bargainAmount.intValue>0)
         {
             txtFieldBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount : %@", _selectedRequirement.bargainAmount];
@@ -409,6 +419,13 @@
             btnSubmit.hidden = YES;
         }
         
+        
+        if(_selectedRequirement.isAccepted)
+        {
+            txtFieldBargainAmount.userInteractionEnabled = NO;
+            switchBargain.userInteractionEnabled = NO;
+            btnSubmit.hidden = YES;
+        }
     }
 }
 
@@ -723,9 +740,13 @@
             cell.txtFieldDiameter.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"size"];
             cell.txtFieldQuantity.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"quantity"];
             
-            
-            
         }
+        
+        if(_selectedRequirement)
+        {
+            cell.btnAdd.hidden = YES;
+        }
+        
         return cell;
     }
     
@@ -761,6 +782,8 @@
     [arrayTblDict addObject:dict];
     
     tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44 + 5;
+    scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
+
     [tblViewSizes reloadData];
     
     lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,contentView.frame.size.height-65);
@@ -916,7 +939,9 @@
     
     else if (textField == txtFieldQuotation)
     {
-        
+        if(txtFieldQuotation.text.length == 0)
+            txtFieldQuotation.text = @"   Quotation Amount (Rs) ";
+            
     }
 }
 
@@ -1082,6 +1107,7 @@
                 if(!error)
                 {
                     [SVProgressHUD dismiss];
+                    btnSubmit.hidden = YES;
                     txtFieldQuotation.userInteractionEnabled = NO;
                     [self showAlert:@"Quotation posted successfully"];
                 }
@@ -1092,7 +1118,7 @@
 
     }
     
-    if(switchBargain.isOn)
+    else if(switchBargain.isOn)
     {
         if([[txtFieldBargainAmount.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
         {

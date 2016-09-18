@@ -157,10 +157,15 @@
     UIImageView *imgViewStatus=(UIImageView*)[view viewWithTag:777];
     imgViewStatus.backgroundColor = [UIColor clearColor];
     
-    if(!requirement.isSellerRead)
+    if(requirement.isAccepted)
+        imgViewStatus.backgroundColor = GreenColor
+    else if(!requirement.isSellerRead)
+        imgViewStatus.backgroundColor = RedColor
+    else if(!requirement.isSellerReadBargain && requirement.isBargainRequired)
+        imgViewStatus.backgroundColor = OrangeColor
+    else
         imgViewStatus.backgroundColor = kBlueColor
-    else if(!requirement.isSellerReadBargain)
-        imgViewStatus.backgroundColor = LightGreyColor
+
         
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
