@@ -375,7 +375,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-Wu-urZ" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="40" width="320" height="700"/>
+                                        <rect key="frame" x="0.0" y="40" width="320" height="775"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uST-c4-0Wc">
                                                 <rect key="frame" x="37" y="30" width="136" height="21"/>
@@ -796,7 +796,7 @@
                                             <constraint firstAttribute="trailing" secondItem="MO7-ud-7Au" secondAttribute="trailing" id="hvB-8t-8ku"/>
                                             <constraint firstItem="SQj-cG-ZsR" firstAttribute="top" secondItem="yUp-W4-aNe" secondAttribute="bottom" id="lgP-24-lxE"/>
                                             <constraint firstItem="MO7-ud-7Au" firstAttribute="leading" secondItem="x5V-Wu-urZ" secondAttribute="leading" id="mwT-eW-W18"/>
-                                            <constraint firstAttribute="bottom" secondItem="SQj-cG-ZsR" secondAttribute="bottom" constant="92" id="nvZ-EU-mNk"/>
+                                            <constraint firstAttribute="bottom" secondItem="SQj-cG-ZsR" secondAttribute="bottom" constant="167" id="nvZ-EU-mNk"/>
                                             <constraint firstItem="uST-c4-0Wc" firstAttribute="top" secondItem="x5V-Wu-urZ" secondAttribute="top" constant="30" id="pt4-Th-0kw"/>
                                         </constraints>
                                     </view>
@@ -825,7 +825,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x5V-Wu-urZ" firstAttribute="height" secondItem="fak-CN-mwW" secondAttribute="height" priority="250" constant="132" id="3AC-s2-jo4"/>
+                            <constraint firstItem="x5V-Wu-urZ" firstAttribute="height" secondItem="fak-CN-mwW" secondAttribute="height" priority="250" constant="207" id="3AC-s2-jo4"/>
                             <constraint firstItem="Exc-Wa-j9O" firstAttribute="leading" secondItem="fak-CN-mwW" secondAttribute="leading" id="90z-gF-r5j"/>
                             <constraint firstAttribute="trailing" secondItem="qtx-Yn-yvn" secondAttribute="trailing" id="H7g-pP-U06"/>
                             <constraint firstItem="Exc-Wa-j9O" firstAttribute="top" secondItem="fak-CN-mwW" secondAttribute="top" id="LDz-me-U9S"/>

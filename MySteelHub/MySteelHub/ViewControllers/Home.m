@@ -140,7 +140,14 @@
     viewQuotation.hidden = NO;
     viewBargain.hidden = YES;
     
-    btnSubmit.hidden = YES;
+    btnSubmit.hidden = NO;
+    
+    if(_selectedRequirement.isBargainRequired)
+    {
+        viewBargain.hidden = NO;
+        
+        btnSubmit.hidden = NO;
+    }
     
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hideKeyboard:) name:UIKeyboardDidHideNotification object:nil ];
@@ -348,7 +355,12 @@
         [self disableUIElements];
         [arrayTblDict removeAllObjects];
         arrayTblDict = _selectedRequirement.arraySpecifications;
+        tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
+        scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
         [tblViewSizes reloadData];
+        
+        lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,contentView.frame.size.height-50);
+
         
         switchPhysical.on = _selectedRequirement.isPhysical;
         switchChemical.on = _selectedRequirement.isChemical;
@@ -365,9 +377,18 @@
         
         [btnRequiredByDate setTitle:[NSString stringWithFormat:@"Required by Date : %@",_selectedRequirement.requiredByDate] forState:UIControlStateNormal];
         
+        [btnPreferedTax setTitle:[NSString stringWithFormat:@"Prefered Tax : %@",_selectedRequirement.taxType] forState:UIControlStateNormal];
+
+        
         if(!_selectedRequirement.isSellerRead)
         {
             [_selectedRequirement updateSellerReadStatus:^(NSDictionary *json, NSError *error) {
+                
+            }];
+        }
+        else if(!_selectedRequirement.isSellerReadBargain && _selectedRequirement.isBargainRequired)
+        {
+            [_selectedRequirement updateSellerReadBargainStatus:^(NSDictionary *json, NSError *error) {
                 
             }];
         }
@@ -376,6 +397,34 @@
         {
             txtFieldQuotation.text = [NSString stringWithFormat:@"Quotation Amount : %@", _selectedRequirement.initialAmount];
             txtFieldQuotation.userInteractionEnabled = NO;
+            btnSubmit.hidden = YES;
+        }
+        
+        if(_selectedRequirement.isBargainRequired)
+        {
+            btnSubmit.hidden = NO;
+        }
+        
+        if(_selectedRequirement.bargainAmount.intValue>0)
+        {
+            txtFieldBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount : %@", _selectedRequirement.bargainAmount];
+            txtFieldBargainAmount.userInteractionEnabled = NO;
+            switchBargain.userInteractionEnabled = NO;
+            btnSubmit.hidden = YES;
+        }
+        else if(_selectedRequirement.isBestPrice)
+        {
+            txtFieldBargainAmount.userInteractionEnabled = NO;
+            switchBargain.userInteractionEnabled = NO;
+            btnSubmit.hidden = YES;
+        }
+        
+        
+        if(_selectedRequirement.isAccepted)
+        {
+            txtFieldBargainAmount.userInteractionEnabled = NO;
+            switchBargain.userInteractionEnabled = NO;
+            btnSubmit.hidden = YES;
         }
     }
 }
@@ -691,9 +740,13 @@
             cell.txtFieldDiameter.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"size"];
             cell.txtFieldQuantity.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"quantity"];
             
-            
-            
         }
+        
+        if(_selectedRequirement)
+        {
+            cell.btnAdd.hidden = YES;
+        }
+        
         return cell;
     }
     
@@ -729,6 +782,8 @@
     [arrayTblDict addObject:dict];
     
     tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44 + 5;
+    scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
+
     [tblViewSizes reloadData];
     
     lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,contentView.frame.size.height-65);
@@ -884,20 +939,9 @@
     
     else if (textField == txtFieldQuotation)
     {
-        if(txtFieldQuotation.text.length > 0)
-        {
+        if(txtFieldQuotation.text.length == 0)
+            txtFieldQuotation.text = @"   Quotation Amount (Rs) ";
             
-            [SVProgressHUD show];
-            _selectedRequirement.initialAmount = txtFieldQuotation.text;
-            [_selectedRequirement postQuotation:^(NSDictionary *json, NSError *error) {
-                if(!error)
-                {
-                    [SVProgressHUD dismiss];
-                    txtFieldQuotation.userInteractionEnabled = NO;
-                    [self showAlert:@"Quotation posted successfully"];
-                }
-            }];
-        }
     }
 }
 
@@ -1052,75 +1096,73 @@
 
 - (IBAction)submitBtnAction:(UIButton *)sender {
     
-    if(arrayTblDict.count==1)
+    if(viewBargain.hidden)
     {
-        if([[[[arrayTblDict objectAtIndex:0] valueForKey:@"size"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
+        if(txtFieldQuotation.text.length > 0)
         {
-            [self showAlert:@"Please enter diameter size"];
-            return;
+            
+            [SVProgressHUD show];
+            _selectedRequirement.initialAmount = txtFieldQuotation.text;
+            [_selectedRequirement postQuotation:^(NSDictionary *json, NSError *error) {
+                if(!error)
+                {
+                    [SVProgressHUD dismiss];
+                    btnSubmit.hidden = YES;
+                    txtFieldQuotation.userInteractionEnabled = NO;
+                    [self showAlert:@"Quotation posted successfully"];
+                }
+            }];
         }
-        
-        else if([[[[arrayTblDict objectAtIndex:0] valueForKey:@"quantity"] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length] == 0)
-        {
-            [self showAlert:@"Please enter quantity"];
-            return;
-        }
+        else
+            [self showAlert:@"Quotation posted successfully"];
+
     }
     
-    if(arrayTblDict.count==0)
+    else if(switchBargain.isOn)
     {
-        [self showAlert:@"Please enter specification"];
-    }
-    else if(selectedGradeRequired.length==0)
-    {
-        [self showAlert:@"Please select grade"];
-    }
-    else if([[txtFieldCity.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter city"];
-    }
-    else if([[txtFieldState.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter state"];
-    }
-    else if([[txtFieldBudget.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter budget"];
-    }
-    else if([[selectedDate stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
-    {
-        [self showAlert:@"Please enter required by date"];
+        if([[txtFieldBargainAmount.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+        {
+            [self showAlert:@"Please enter bargain amount"];
+        }
+        
+        else
+        {
+            [SVProgressHUD show];
+            
+            _selectedRequirement.bargainAmount = txtFieldBargainAmount.text;
+            _selectedRequirement.isBestPrice = !switchBargain.isOn;
+            [_selectedRequirement acceptRejectBargain:^(NSDictionary *json, NSError *error) {
+                [SVProgressHUD dismiss];
+                if(json)
+                {
+                    btnSubmit.hidden = YES;
+                    //[self.navigationController popViewControllerAnimated:YES];
+                }
+                else
+                {
+                    [self showAlert:@"Some error occured. Please try again"];
+                }
+            }];
+        }
     }
     else
     {
-        RequirementI *newRequirement = [RequirementI new];
-        newRequirement.userID = [[NSUserDefaults standardUserDefaults] valueForKey:@"userID"];
-        newRequirement.arraySpecifications = arrayTblDict;
-        newRequirement.isChemical = switchChemical.isOn;
-        newRequirement.isPhysical = switchPhysical.isOn;
-        newRequirement.isTestCertificateRequired = switchCertReq.isOn;
-        newRequirement.length = [NSString stringWithFormat:@"%li", (long)sgmtControlLenghtRequired.selectedSegmentIndex];
-        newRequirement.type = [NSString stringWithFormat:@"%li", (long)sgmtControlTypeRequired.selectedSegmentIndex];
-        newRequirement.arrayPreferedBrands = arraySelectedPreferredBrands;
-        newRequirement.gradeRequired = selectedGradeRequired;
-        newRequirement.budget = txtFieldBudget.text;
-        newRequirement.city = txtFieldCity.text;
-        newRequirement.state = txtFieldState.text;
-        newRequirement.requiredByDate = selectedDate;
-        
         [SVProgressHUD show];
         
-        [model_manager.requirementManager postRequirement:newRequirement completion:^(NSDictionary *json, NSError *error) {
+        _selectedRequirement.isBestPrice = !switchBargain.isOn;
+        [_selectedRequirement acceptRejectBargain:^(NSDictionary *json, NSError *error) {
             [SVProgressHUD dismiss];
             if(json)
             {
-                [self.navigationController popViewControllerAnimated:YES];
+                btnSubmit.hidden = YES;
+                //[self.navigationController popViewControllerAnimated:YES];
             }
             else
             {
                 [self showAlert:@"Some error occured. Please try again"];
             }
         }];
+
     }
 }
 
