@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
@@ -15,7 +15,40 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash.png" translatesAutoresizingMaskIntoConstraints="NO" id="daQ-S7-JY4">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="daQ-S7-JY4" secondAttribute="trailing" id="2Ja-oh-dmp"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="daQ-S7-JY4" secondAttribute="bottom" id="49T-Q5-MY1"/>
+                            <constraint firstItem="daQ-S7-JY4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="8bL-5M-uZT"/>
+                            <constraint firstItem="daQ-S7-JY4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="nop-hB-diA"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="daQ-S7-JY4"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="2Ja-oh-dmp"/>
+                                <exclude reference="8bL-5M-uZT"/>
+                                <exclude reference="nop-hB-diA"/>
+                                <exclude reference="49T-Q5-MY1"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="daQ-S7-JY4"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="2Ja-oh-dmp"/>
+                                <include reference="8bL-5M-uZT"/>
+                                <include reference="nop-hB-diA"/>
+                                <include reference="49T-Q5-MY1"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,4 +56,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="splash.png" width="540" height="960"/>
+    </resources>
 </document>
