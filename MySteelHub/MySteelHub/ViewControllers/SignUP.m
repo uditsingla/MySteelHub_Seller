@@ -11,6 +11,11 @@
 @interface SignUP ()
 {
     NSString *errorType;
+    
+    UIView *pickerViewState;
+    NSMutableArray *arrayStates;
+    NSString *selectedState;
+
 }
 
 @end
@@ -36,6 +41,23 @@
     
     [self setupTextFields];
     
+    //initialize picker for states
+    pickerViewState = [[UIView alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-216, self.view.frame.size.width,216)];
+    [pickerViewState setBackgroundColor:[UIColor whiteColor]];
+    [self createPickerWithTag:777 inView:pickerViewState];
+    [self.view addSubview:pickerViewState];
+    pickerViewState.hidden = YES;
+    
+    arrayStates = [NSMutableArray arrayWithArray:model_manager.requirementManager.arrayStates];
+    
+    [model_manager.requirementManager getStates:^(NSDictionary *json, NSError *error) {
+        if(model_manager.requirementManager.arrayStates.count>0)
+        {
+            arrayStates = [NSMutableArray arrayWithArray:model_manager.requirementManager.arrayStates];
+            UIPickerView *pickerView = [pickerViewState viewWithTag:777];
+            [pickerView reloadAllComponents];
+        }
+    }];
     
     
 }
@@ -119,6 +141,32 @@
     [textField resignFirstResponder];
     
     return YES;
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    
+    if(textField == _txtFieldState)
+    {
+        [textField resignFirstResponder];
+        
+        pickerViewState.hidden = NO;
+        [self.view bringSubviewToFront:pickerViewState];
+        
+        if(arrayStates.count>0)
+            selectedState = [NSString stringWithFormat:@"%@",[[arrayStates objectAtIndex: 0] valueForKey:@"code"]];
+        
+        UIPickerView *pickerView = [pickerViewState viewWithTag:777];
+        
+        [pickerView selectRow:0 inComponent:0 animated:NO];
+        
+        [self performSelector:@selector(hideKeyboard) withObject:nil afterDelay:0.1];
+    }
+}
+
+-(void)hideKeyboard
+{
+    [self.view endEditing:YES];
 }
 
 - (IBAction)btnSubmit:(id)sender {
@@ -279,7 +327,83 @@
     
 }
 
+-(void)createPickerWithTag:(int)tag inView:(UIView*)parentview
+{
+    UIPickerView *pickerView=[[UIPickerView alloc]init];
+    pickerView.frame=CGRectMake(0,0,self.view.frame.size.width, 216);
+    pickerView.showsSelectionIndicator = YES;
+    [pickerView setDataSource: self];
+    [pickerView setDelegate: self];
+    pickerView.tag = tag;
+    pickerView.backgroundColor = [UIColor whiteColor];
+    
+    
+    [parentview addSubview:pickerView];
+    
+    
+    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    pickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    [pickerToolbar sizeToFit];
+    
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pickerDoneButtonPressed)];
+    
+    
+    [pickerToolbar setItems:@[flexSpace, doneBtn] animated:YES];
+    
+    [parentview addSubview:pickerToolbar];
+}
 
+#pragma mark - UIPickerView delgates
+
+// Number of components.
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+// Total rows in our component.
+-(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    if(pickerView.tag==777)
+        return [arrayStates count];
+    else
+        return 0;
+    
+}
+
+// Display each row's data.
+-(NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    if(pickerView.tag==777)
+        return [NSString stringWithFormat:@"%@ (%@)",[[arrayStates objectAtIndex: row] valueForKey:@"name"],[[arrayStates objectAtIndex: row] valueForKey:@"code"]];
+    
+    else
+        return @"";
+}
+
+// Do something with the selected row.
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if(pickerView.tag==777)
+    {
+        NSLog(@"You selected this: %@", [[arrayStates objectAtIndex: row] valueForKey:@"name"]);
+        selectedState = [[arrayStates objectAtIndex: row] valueForKey:@"code"];
+    }
+    
+}
+
+-(void)pickerDoneButtonPressed
+{
+    
+    pickerViewState.hidden = YES;
+    if(selectedState.length>0)
+    {
+        _txtFieldState.text = [selectedState uppercaseString];
+    }
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(20,0, 0, 0);
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+    
+}
 
 
 - (void)didReceiveMemoryWarning {
