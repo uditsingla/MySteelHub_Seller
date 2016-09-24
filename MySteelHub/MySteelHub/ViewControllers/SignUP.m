@@ -140,6 +140,41 @@
 {
     [textField resignFirstResponder];
     
+    if(textField == _txtFieldUsername)
+        [_txtFieldPassword becomeFirstResponder];
+    else if(textField == _txtFieldPassword)
+        [_txtFieldConfirmPass becomeFirstResponder];
+    else if(textField == _txtFieldConfirmPass)
+        [_txtFieldCompanyName becomeFirstResponder];
+    else if(textField == _txtFieldCompanyName)
+        [_txtFieldEmail becomeFirstResponder];
+    else if(textField == _txtFieldEmail)
+        [_txtFieldAddress becomeFirstResponder];
+    else if(textField == _txtFieldAddress)
+        [_txtFieldCity becomeFirstResponder];
+    else if(textField == _txtFieldCity)
+    {
+        pickerViewState.hidden = NO;
+        [self.view bringSubviewToFront:pickerViewState];
+        
+        if(arrayStates.count>0)
+            selectedState = [NSString stringWithFormat:@"%@",[[arrayStates objectAtIndex: 0] valueForKey:@"code"]];
+        
+        UIPickerView *pickerView = [pickerViewState viewWithTag:777];
+        
+        [pickerView selectRow:0 inComponent:0 animated:NO];
+        
+    }
+    else if(textField == _txtFieldZipCode)
+        [_txtFieldContact becomeFirstResponder];
+    else if(textField == _txtFieldContact)
+        [_txtFieldTin becomeFirstResponder];
+    else if(textField == _txtFieldTin)
+        [_txtFieldPan becomeFirstResponder];
+    else if(textField == _txtFieldPan)
+        [_txtFieldExpected becomeFirstResponder];
+
+    
     return YES;
 }
 
@@ -149,6 +184,14 @@
     if(textField == _txtFieldState)
     {
         [textField resignFirstResponder];
+    }
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField
+{
+    if(textField==_txtFieldState)
+    {
+        [self.view endEditing:YES];
         
         pickerViewState.hidden = NO;
         [self.view bringSubviewToFront:pickerViewState];
@@ -160,14 +203,15 @@
         
         [pickerView selectRow:0 inComponent:0 animated:NO];
         
-        [self performSelector:@selector(hideKeyboard) withObject:nil afterDelay:0.1];
     }
+    else
+    {
+        pickerViewState.hidden = YES;
+    }
+    
+    return YES;
 }
 
--(void)hideKeyboard
-{
-    [self.view endEditing:YES];
-}
 
 - (IBAction)btnSubmit:(id)sender {
     
