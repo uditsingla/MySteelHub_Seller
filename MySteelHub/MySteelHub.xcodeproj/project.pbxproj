@@ -222,6 +222,7 @@
 		469942941D3BFBFD00378968 /* Raleway-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		469942951D3BFBFD00378968 /* Raleway-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Thin.ttf"; sourceTree = "<group>"; };
 		469942961D3BFBFD00378968 /* Raleway-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-ThinItalic.ttf"; sourceTree = "<group>"; };
+		46BE99C21D959D7100A6FE4E /* MySteelHub.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MySteelHub.entitlements; sourceTree = "<group>"; };
 		46EBA7851D91B9ED00725819 /* splash@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "splash@2x.png"; sourceTree = "<group>"; };
 		46EF53A61D45D9C30052AB86 /* background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@2x.png"; sourceTree = "<group>"; };
 		46EF53A71D45D9C30052AB86 /* background@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "background@3x.png"; sourceTree = "<group>"; };
@@ -448,6 +449,7 @@
 		46F62CA51C908FDC00A61B47 /* MySteelHub */ = {
 			isa = PBXGroup;
 			children = (
+				46BE99C21D959D7100A6FE4E /* MySteelHub.entitlements */,
 				7CECA2521D4005EC005B3227 /* Graphics */,
 				1885051E1CDDE3BB00086EC8 /* Graphicss */,
 				46F62CEC1C90AC5000A61B47 /* 3rdPartyLib */,
@@ -667,6 +669,11 @@
 					46F62CA21C908FDC00A61B47 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = LC334ADL8X;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -990,6 +997,7 @@
 			baseConfigurationReference = EEEC3465D81B8334B07CED1D /* Pods-MySteelHub.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MySteelHub/MySteelHub.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -999,6 +1007,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.steelhub.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "aa85ed7e-9cf3-4e02-872c-fcc2f255af71";
+				PROVISIONING_PROFILE_SPECIFIER = sellerDevelopment;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1008,6 +1017,7 @@
 			baseConfigurationReference = 39E223B27012AF95266488E8 /* Pods-MySteelHub.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = MySteelHub/MySteelHub.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1017,6 +1027,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.steelhub.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "aa85ed7e-9cf3-4e02-872c-fcc2f255af71";
+				PROVISIONING_PROFILE_SPECIFIER = sellerDevelopment;
 				SDKROOT = iphoneos;
 			};
 			name = Release;

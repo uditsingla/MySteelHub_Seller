@@ -257,7 +257,7 @@
     NSString *strLat = [NSString stringWithFormat:@"%f",appdelegate.currentLocation.coordinate.latitude];
     NSString *strLong = [NSString stringWithFormat:@"%f",appdelegate.currentLocation.coordinate.longitude];
     
-    NSDictionary *dictSignupParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldPassword.text,@"password",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",_txtFieldExpected.text,@"quantity",strLat,@"latitude",strLong,@"longitude",[[NSUserDefaults standardUserDefaults] valueForKey:@"DeviceToken"],@"device_token",nil];
+    NSDictionary *dictSignupParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldPassword.text,@"password",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",_txtFieldExpected.text,@"quantity",strLat,@"latitude",strLong,@"longitude",@"ios",@"device_type",[[NSUserDefaults standardUserDefaults] valueForKey:@"DeviceToken"],@"device_token",nil];
     
     
     [model_manager.loginManager userSignUp:dictSignupParams completion:^(NSArray *addresses, NSError *error){
