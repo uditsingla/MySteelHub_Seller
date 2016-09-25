@@ -236,28 +236,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySteelHub/ViewControllers/Home.m"
-            timestampString = "496495942.661934"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "384"
-            endingLineNumber = "384"
-            landmarkName = "-viewDidLoad"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MySteelHub/ViewControllers/Home.m"
             timestampString = "496497202.465331"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1146"
             endingLineNumber = "1146"
-            landmarkName = "-submitBtnAction:"
+            landmarkName = "-gradeRequiredBtnAction:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -289,7 +273,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "425"
             endingLineNumber = "425"
-            landmarkName = "-viewDidLoad"
+            landmarkName = "-updateRequirementDetails"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
