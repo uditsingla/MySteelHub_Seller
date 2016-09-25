@@ -79,7 +79,7 @@
     NSMutableArray *arrayTaxes;
     NSString *selectedTax;
     
-    UILabel *lbCity,*lbState,*lbAmount;
+    UILabel *lbCity,*lbState,*lbAmount,*lbQuotationAmount,*lbBargainAmount;
     
     //for content view border
     UILabel *lbl;
@@ -202,6 +202,21 @@
     
     
     
+    lbQuotationAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 165, 15)];
+    lbQuotationAmount.textColor =  kPlaceHolderGrey;
+    lbQuotationAmount.font = font;
+    lbQuotationAmount.text = @"Quotation Amount (Rs) ";
+    [txtFieldQuotation setLeftView:lbQuotationAmount];
+    [txtFieldQuotation setLeftViewMode:UITextFieldViewModeAlways];
+    
+    lbBargainAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 155, 15)];
+    lbBargainAmount.textColor =  kPlaceHolderGrey;
+    lbBargainAmount.font = font;
+    lbBargainAmount.text = @"Bargain Amount (Rs) ";
+    [txtFieldBargainAmount setLeftView:lbBargainAmount];
+    [txtFieldBargainAmount setLeftViewMode:UITextFieldViewModeAlways];
+    
+    /*
     [txtFieldCity setValue:[UIColor lightGrayColor]
                 forKeyPath:@"_placeholderLabel.textColor"];
     [txtFieldState setValue:[UIColor lightGrayColor]
@@ -213,15 +228,11 @@
                      forKeyPath:@"_placeholderLabel.textColor"];
     [txtFieldBargainAmount setValue:[UIColor lightGrayColor]
                          forKeyPath:@"_placeholderLabel.textColor"];
-    
+    */
     
     //    btnGradeRequired.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
     //    btnPreferedBrands.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
     //    btnRequiredByDate.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
-    
-    
-    
-    
     
     arrayTblDict = [NSMutableArray new];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity", nil];
@@ -356,10 +367,21 @@
         [arrayTblDict removeAllObjects];
         arrayTblDict = _selectedRequirement.arraySpecifications;
         tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
+        
         scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
+        
         [tblViewSizes reloadData];
         
-        lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,contentView.frame.size.height-50);
+        lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,tblViewHeightConstraint.constant  + 470 );
+        
+        if(_selectedRequirement.isBargainRequired)
+        {
+                    lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,tblViewHeightConstraint.constant  + 530 );
+        }
+        
+        
+        
+
 
         
         switchPhysical.on = _selectedRequirement.isPhysical;
@@ -395,7 +417,12 @@
         
         if(_selectedRequirement.initialAmount.intValue>0)
         {
-            txtFieldQuotation.text = [NSString stringWithFormat:@"Quotation Amount : %@", _selectedRequirement.initialAmount];
+            lbQuotationAmount.text = @"Quotation Amount (Rs) :";
+            
+            
+            
+            
+            txtFieldQuotation.text = [NSString stringWithFormat:@"%@", _selectedRequirement.initialAmount];
             txtFieldQuotation.userInteractionEnabled = NO;
             btnSubmit.hidden = YES;
         }
@@ -407,7 +434,8 @@
         
         if(_selectedRequirement.bargainAmount.intValue>0)
         {
-            txtFieldBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount : %@", _selectedRequirement.bargainAmount];
+            lbBargainAmount.text = @"Bargain Amount (Rs) :";
+            txtFieldBargainAmount.text = [NSString stringWithFormat:@"%@", _selectedRequirement.bargainAmount];
             txtFieldBargainAmount.userInteractionEnabled = NO;
             switchBargain.userInteractionEnabled = NO;
             btnSubmit.hidden = YES;
@@ -940,8 +968,15 @@
     else if (textField == txtFieldQuotation)
     {
         if(txtFieldQuotation.text.length == 0)
-            txtFieldQuotation.text = @"   Quotation Amount (Rs) ";
+            lbQuotationAmount.text = @"Quotation Amount (Rs) ";
             
+    }
+    
+    else if (textField == txtFieldBargainAmount)
+    {
+        if(txtFieldBargainAmount.text.length == 0)
+            lbBargainAmount.text = @"Bargain Amount (Rs) ";
+        
     }
 }
 
@@ -982,6 +1017,18 @@
     else if (textField == txtFieldBudget)
     {
         lbAmount.text = @"   Budget Amount (Rs) :";
+        
+    }
+    
+    else if (textField == txtFieldQuotation)
+    {
+            lbQuotationAmount.text = @"Quotation Amount (Rs) :";
+        
+    }
+    
+    else if (textField == txtFieldBargainAmount)
+    {
+            lbBargainAmount.text = @"Bargain Amount (Rs) :";
         
     }
 }
