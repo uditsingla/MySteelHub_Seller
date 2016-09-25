@@ -9,7 +9,7 @@
 #import "Requirements.h"
 #import "Home.h"
 
-@interface Requirements ()<UITableViewDelegate,UITableViewDataSource>
+@interface Requirements ()<UITableViewDelegate,UITableViewDataSource,RequirementListingDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tblView;
 
@@ -41,6 +41,12 @@
     
     [SVProgressHUD show];
     
+    [model_manager.requirementManager getStates:^(NSDictionary *json, NSError *error) {
+        [_tblView reloadData];
+    }];
+    
+    model_manager.requirementManager.requirementListingDelegate = self;
+    
     //    self.navigationController.navigationBar.barTintColor=BlackBackground;
     //    self.navigationController.navigationBar.tintColor=[UIColor whiteColor];
     //    UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"]
@@ -65,6 +71,12 @@
     //    UIBarButtonItem *customLabel = [[UIBarButtonItem alloc] initWithCustomView:label];
     //    self.navigationItem.titleView = customLabel.customView;
 }
+
+-(void)newUpdateReceived
+{
+    [_tblView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -146,7 +158,16 @@
 
     
     UILabel *lblQuantity=(UILabel*)[view viewWithTag:222];
-    lblQuantity.text=[requirement.state capitalizedString];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(name == %@)", [requirement.state capitalizedString]];
+    NSArray *filteredArray = [model_manager.requirementManager.arrayStates filteredArrayUsingPredicate:predicate];
+    
+    if(filteredArray.count>0) {
+        NSLog(@"selected state....%@",[[filteredArray firstObject] valueForKey:@"code"]);
+        lblQuantity.text = [[filteredArray firstObject] valueForKey:@"code"];
+        
+    }
+    else
+        lblQuantity.text=[requirement.state capitalizedString];
     
     UILabel *lblDate=(UILabel*)[view viewWithTag:333];
     lblDate.text=[requirement.requiredByDate capitalizedString];

@@ -114,6 +114,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    model_manager.requirementManager.requirementDetailDelegate = self;
+
+    
     //La
     lbl = [[UILabel alloc]init];
     
@@ -352,82 +355,101 @@
     
     if(_selectedRequirement)
     {
-        [self disableUIElements];
-        [arrayTblDict removeAllObjects];
-        arrayTblDict = _selectedRequirement.arraySpecifications;
-        tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
-        scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
-        [tblViewSizes reloadData];
-        
-        lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,contentView.frame.size.height-50);
-
-        
-        switchPhysical.on = _selectedRequirement.isPhysical;
-        switchChemical.on = _selectedRequirement.isChemical;
-        switchCertReq.on = _selectedRequirement.isTestCertificateRequired;
-        sgmtControlLenghtRequired.selectedSegmentIndex = [_selectedRequirement.length intValue];
-        sgmtControlTypeRequired.selectedSegmentIndex = [_selectedRequirement.type intValue];
-        
-        [btnPreferedBrands setTitle:[NSString stringWithFormat:@"Prefered Brands : %@",[_selectedRequirement.arrayPreferedBrands componentsJoinedByString:@","]] forState:UIControlStateNormal];
-        
-        [btnGradeRequired setTitle:[NSString stringWithFormat:@"Grade Required : %@",_selectedRequirement.gradeRequired] forState:UIControlStateNormal];
-        txtFieldCity.text = _selectedRequirement.city;
-        txtFieldState.text = _selectedRequirement.state;
-        txtFieldBudget.text = _selectedRequirement.budget;
-        
-        [btnRequiredByDate setTitle:[NSString stringWithFormat:@"Required by Date : %@",_selectedRequirement.requiredByDate] forState:UIControlStateNormal];
-        
-        [btnPreferedTax setTitle:[NSString stringWithFormat:@"Prefered Tax : %@",_selectedRequirement.taxType] forState:UIControlStateNormal];
-
-        
-        if(!_selectedRequirement.isSellerRead)
-        {
-            [_selectedRequirement updateSellerReadStatus:^(NSDictionary *json, NSError *error) {
-                
-            }];
-        }
-        else if(!_selectedRequirement.isSellerReadBargain && _selectedRequirement.isBargainRequired)
-        {
-            [_selectedRequirement updateSellerReadBargainStatus:^(NSDictionary *json, NSError *error) {
-                
-            }];
-        }
-        
-        if(_selectedRequirement.initialAmount.intValue>0)
-        {
-            txtFieldQuotation.text = [NSString stringWithFormat:@"Quotation Amount : %@", _selectedRequirement.initialAmount];
-            txtFieldQuotation.userInteractionEnabled = NO;
-            btnSubmit.hidden = YES;
-        }
-        
-        if(_selectedRequirement.isBargainRequired)
-        {
-            btnSubmit.hidden = NO;
-        }
-        
-        if(_selectedRequirement.bargainAmount.intValue>0)
-        {
-            txtFieldBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount : %@", _selectedRequirement.bargainAmount];
-            txtFieldBargainAmount.userInteractionEnabled = NO;
-            switchBargain.userInteractionEnabled = NO;
-            btnSubmit.hidden = YES;
-        }
-        else if(_selectedRequirement.isBestPrice)
-        {
-            txtFieldBargainAmount.userInteractionEnabled = NO;
-            switchBargain.userInteractionEnabled = NO;
-            btnSubmit.hidden = YES;
-        }
-        
-        
-        if(_selectedRequirement.isAccepted)
-        {
-            txtFieldBargainAmount.userInteractionEnabled = NO;
-            switchBargain.userInteractionEnabled = NO;
-            btnSubmit.hidden = YES;
-        }
+        [self updateRequirementDetails];
     }
 }
+
+-(void)updateRequirementDetails
+{
+    [self disableUIElements];
+    [arrayTblDict removeAllObjects];
+    arrayTblDict = _selectedRequirement.arraySpecifications;
+    tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
+    scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
+    [tblViewSizes reloadData];
+    
+    lbl.frame = CGRectMake(10,20,self.view.frame.size.width-20,contentView.frame.size.height-50);
+    
+    
+    switchPhysical.on = _selectedRequirement.isPhysical;
+    switchChemical.on = _selectedRequirement.isChemical;
+    switchCertReq.on = _selectedRequirement.isTestCertificateRequired;
+    sgmtControlLenghtRequired.selectedSegmentIndex = [_selectedRequirement.length intValue];
+    sgmtControlTypeRequired.selectedSegmentIndex = [_selectedRequirement.type intValue];
+    
+    [btnPreferedBrands setTitle:[NSString stringWithFormat:@"Prefered Brands : %@",[_selectedRequirement.arrayPreferedBrands componentsJoinedByString:@","]] forState:UIControlStateNormal];
+    
+    [btnGradeRequired setTitle:[NSString stringWithFormat:@"Grade Required : %@",_selectedRequirement.gradeRequired] forState:UIControlStateNormal];
+    txtFieldCity.text = _selectedRequirement.city;
+    txtFieldState.text = _selectedRequirement.state;
+    txtFieldBudget.text = _selectedRequirement.budget;
+    
+    [btnRequiredByDate setTitle:[NSString stringWithFormat:@"Required by Date : %@",_selectedRequirement.requiredByDate] forState:UIControlStateNormal];
+    
+    [btnPreferedTax setTitle:[NSString stringWithFormat:@"Prefered Tax : %@",_selectedRequirement.taxType] forState:UIControlStateNormal];
+    
+    
+    if(!_selectedRequirement.isSellerRead)
+    {
+        [_selectedRequirement updateSellerReadStatus:^(NSDictionary *json, NSError *error) {
+            
+        }];
+    }
+    else if(!_selectedRequirement.isSellerReadBargain && _selectedRequirement.isBargainRequired)
+    {
+        [_selectedRequirement updateSellerReadBargainStatus:^(NSDictionary *json, NSError *error) {
+            
+        }];
+    }
+    
+    if(_selectedRequirement.initialAmount.intValue>0)
+    {
+        txtFieldQuotation.text = [NSString stringWithFormat:@"Quotation Amount : %@", _selectedRequirement.initialAmount];
+        txtFieldQuotation.userInteractionEnabled = NO;
+        btnSubmit.hidden = YES;
+    }
+    
+    if(_selectedRequirement.isBargainRequired)
+    {
+        btnSubmit.hidden = NO;
+    }
+    
+    if(_selectedRequirement.bargainAmount.intValue>0)
+    {
+        txtFieldBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount : %@", _selectedRequirement.bargainAmount];
+        txtFieldBargainAmount.userInteractionEnabled = NO;
+        switchBargain.userInteractionEnabled = NO;
+        btnSubmit.hidden = YES;
+    }
+    else if(_selectedRequirement.isBestPrice)
+    {
+        txtFieldBargainAmount.userInteractionEnabled = NO;
+        switchBargain.userInteractionEnabled = NO;
+        btnSubmit.hidden = YES;
+    }
+    
+    
+    if(_selectedRequirement.isAccepted)
+    {
+        txtFieldBargainAmount.userInteractionEnabled = NO;
+        switchBargain.userInteractionEnabled = NO;
+        btnSubmit.hidden = YES;
+    }
+}
+
+-(void)newUpdateReceived
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"requirementID == %@", _selectedRequirement.requirementID];
+    NSArray *filteredArray = [model_manager.requirementManager.arrayPostedRequirements filteredArrayUsingPredicate:predicate];
+    
+    if(filteredArray.count>0) {
+        _selectedRequirement = [filteredArray firstObject];
+        
+        [self updateRequirementDetails];
+    }
+}
+
+
 
 - (void)doneClicked:(id)sender
 {

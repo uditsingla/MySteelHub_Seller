@@ -9,6 +9,21 @@
 #import <Foundation/Foundation.h>
 #import "RequirementI.h"
 
+//protocol to notify listing view controller
+@protocol RequirementListingDelegate <NSObject>
+
+-(void)newUpdateReceived;
+
+@end
+
+//protocol to notify detail view controller
+@protocol RequirementDetailDelegate <NSObject>
+
+-(void)newUpdateReceived;
+
+@end
+
+
 @interface RequirementManager : NSObject
 
 @property(strong,nonatomic) NSMutableArray *arrayPostedRequirements;
@@ -16,6 +31,10 @@
 @property(strong,nonatomic) NSMutableArray *arraySteelSizes;
 @property(strong,nonatomic) NSMutableArray *arraySteelGrades;
 @property(strong,nonatomic) NSMutableArray *arrayStates;
+
+@property(weak,nonatomic) id<RequirementListingDelegate> requirementListingDelegate;
+
+@property(weak,nonatomic) id<RequirementDetailDelegate> requirementDetailDelegate;
 
 
 

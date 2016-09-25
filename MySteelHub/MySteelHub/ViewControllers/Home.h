@@ -10,7 +10,7 @@
 @import CoreLocation;
 
 
-@interface Home : BaseViewController <UITextFieldDelegate,CLLocationManagerDelegate>
+@interface Home : BaseViewController <UITextFieldDelegate,CLLocationManagerDelegate,RequirementDetailDelegate>
 
 @property(nonatomic,strong) RequirementI *selectedRequirement;
 @end
