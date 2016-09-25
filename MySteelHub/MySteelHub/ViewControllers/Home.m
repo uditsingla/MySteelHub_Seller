@@ -1178,7 +1178,7 @@
             }];
         }
         else
-            [self showAlert:@"Quotation posted successfully"];
+            [self showAlert:@"Please enter quotation amount"];
 
     }
     
