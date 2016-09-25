@@ -373,7 +373,7 @@
 -(void)updateRequirementDetails
 {
     [self disableUIElements];
-    [arrayTblDict removeAllObjects];
+    arrayTblDict = nil;
     arrayTblDict = _selectedRequirement.arraySpecifications;
     tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
     scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
