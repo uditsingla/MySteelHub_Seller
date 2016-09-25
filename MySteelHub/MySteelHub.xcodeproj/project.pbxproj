@@ -102,6 +102,7 @@
 		7C183AF51D284B86003159F9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7C183AEE1D284B86003159F9 /* SVProgressHUD.bundle */; };
 		7C183AF61D284B86003159F9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C183AF01D284B86003159F9 /* SVProgressHUD.m */; };
 		7C183AF71D284B86003159F9 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C183AF21D284B86003159F9 /* SVRadialGradientLayer.m */; };
+		7C4CDAAF1D96F30400B886EC /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4CDAAE1D96F30400B886EC /* UserNotifications.framework */; };
 		7C53E0521D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53E0471D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.m */; };
 		7C53E0531D34024800B7DD43 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53E0491D34024800B7DD43 /* SWCellScrollView.m */; };
 		7C53E0541D34024800B7DD43 /* SWLongPressGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53E04B1D34024800B7DD43 /* SWLongPressGestureRecognizer.m */; };
@@ -250,6 +251,7 @@
 		7C183AF01D284B86003159F9 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		7C183AF11D284B86003159F9 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		7C183AF21D284B86003159F9 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		7C4CDAAE1D96F30400B886EC /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		7C53E0461D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
 		7C53E0471D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
 		7C53E0481D34024800B7DD43 /* SWCellScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWCellScrollView.h; sourceTree = "<group>"; };
@@ -292,6 +294,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C4CDAAF1D96F30400B886EC /* UserNotifications.framework in Frameworks */,
 				6B14A10B3B9DBC3A71A7E428 /* libPods-MySteelHub.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -625,6 +628,7 @@
 		D856835EDA49992E1E818FAA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7C4CDAAE1D96F30400B886EC /* UserNotifications.framework */,
 				2C989E1936B874FE611734BF /* libPods-MySteelHub.a */,
 			);
 			name = Frameworks;

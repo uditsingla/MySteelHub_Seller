@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface SignUP : BaseViewController<UITextFieldDelegate>
+@interface SignUP : BaseViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
 {
     
     __weak IBOutlet UIScrollView *_scrollView;
