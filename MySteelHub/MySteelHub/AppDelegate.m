@@ -37,6 +37,7 @@
     
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
     
     
     if(SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(@"10.0")){
