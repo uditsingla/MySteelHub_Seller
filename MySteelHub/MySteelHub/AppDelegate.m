@@ -122,6 +122,9 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+    [model_manager.requirementManager getAllRequirements:nil];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -297,6 +300,8 @@
     
     NSLog(@"Userinfo %@",notification.request.content.userInfo);
     
+    [self handlePushNotification:notification.request.content.userInfo];
+    
     completionHandler(UNNotificationPresentationOptionAlert);
 }
 
@@ -335,12 +340,12 @@
 {
     NSLog(@"received notification%@",userInfo.description);
     
-    NSString *push_msg = [[userInfo objectForKey:@"aps"]objectForKey:@"custom_data"];
+    [self handlePushNotification:userInfo];
     
-    NSString *push_msg1 = [userInfo objectForKey:@"custom_data"];
-    
-    NSLog(@"Payload : %@",push_msg1);
-    
+}
+
+-(void)handlePushNotification:(NSDictionary *)userInfo
+{
     UIApplicationState state = [[UIApplication sharedApplication] applicationState];
     
     
@@ -349,7 +354,6 @@
         if(inAppNotificationView)
             [self showNotificationView:[[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] valueForKey:@"body"]];
         
-        [model_manager.requirementManager getAllRequirements:nil];
     }
     else if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
     {
@@ -367,6 +371,9 @@
             //[container toggleRightSideMenuCompletion:^{}];
         }
     }
+
+    [model_manager.requirementManager getAllRequirements:nil];
+
 }
 
 #pragma mark - InApp Notification show/hide
