@@ -35,12 +35,15 @@
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:baseURL];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    
+    NSLog(@"Url request : %@",strPath);
     
     if(include)
     {
-        [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"username"] forHTTPHeaderField:@"username"];
-        [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"usertoken"] forHTTPHeaderField:@"usertoken"];
+        //[urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"username"] forHTTPHeaderField:@"username"];
+        NSLog(@"User Token : %@",[[NSUserDefaults standardUserDefaults]valueForKey:@"token"]);
+        NSString *strToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+        
+        [urlRequest setValue:strToken forHTTPHeaderField:@"Authorization"];
     }
     
     
@@ -101,7 +104,7 @@
                                           {
                                               
                                               int statusCode = [[responseObject valueForKey:@"status" ]intValue];
-                                              completionBlock(statusCode,responseObject);
+                                              completionBlock(200,responseObject);
                                               NSLog(@"%@ %@", response, responseObject);
                                           }
                                       }];

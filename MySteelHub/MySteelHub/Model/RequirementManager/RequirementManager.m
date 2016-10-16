@@ -122,7 +122,7 @@
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:[[NSUserDefaults standardUserDefaults] valueForKey:@"userID"],@"user_id",nil];
     
     
-    [RequestManager asynchronousRequestWithPath:@"all/requirements" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
+    [RequestManager asynchronousRequestWithPath:@"all/requirements" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
         NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             

@@ -29,10 +29,27 @@
 
 - (void)userLogin:(NSDictionary *)dictParam completion:(void(^)(NSArray *addresses, NSError *error))completionBlock
 {
-    [RequestManager asynchronousRequestWithPath:@"auth/securelogin" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
+    [RequestManager asynchronousRequestWithPath:@"authenticate" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
         
         if (statusCode==200) {
             NSLog(@"Here comes the json %@",json);
+            
+            if([json objectForKey:@"token"])
+            {
+                
+                
+                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"Bearer %@",[json objectForKey:@"token"]] forKey:@"token"];
+                
+                [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"isAutoLogin"];
+                
+                
+                NSMutableArray *arr= [[NSMutableArray alloc]initWithObjects:@"Login Succesfull", nil];
+                
+                completionBlock(arr,nil);
+
+            }
+            
+            return ;
             
             if([json objectForKey:@"user_id"])
             {
@@ -52,6 +69,7 @@
                 [model_manager.requirementManager getSteelBrands:nil];
                 [model_manager.requirementManager getSteelSizes:nil];
                 [model_manager.requirementManager getSteelGrades:nil];
+                
                 completionBlock(arr,nil);
                 
             }
