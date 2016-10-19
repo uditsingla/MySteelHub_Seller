@@ -48,7 +48,13 @@
                 completionBlock(arr,nil);
 
             }
-            
+            else
+            {
+                NSString *strErrorMsg = @"Please verify your account from admin first";
+                NSMutableArray *arr= [[NSMutableArray alloc]init];
+                [arr addObject:strErrorMsg];
+                completionBlock(arr,[NSError new]);
+            }
             return ;
             
             if([json objectForKey:@"user_id"])

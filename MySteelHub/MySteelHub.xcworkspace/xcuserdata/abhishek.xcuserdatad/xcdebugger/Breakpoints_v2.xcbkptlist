@@ -87,8 +87,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
-            landmarkName = "@implementation LoginManager"
-            landmarkType = "3">
+            landmarkName = "-userLogin:completion:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
