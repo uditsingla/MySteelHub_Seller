@@ -35,7 +35,7 @@
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:baseURL];
     [urlRequest setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
     
-    
+    NSLog(@"Url request : %@",strPath);
     
     if(include)
     {
@@ -104,7 +104,7 @@
                                           {
                                               
                                               int statusCode = [[responseObject valueForKey:@"status" ]intValue];
-                                              completionBlock(statusCode,responseObject);
+                                              completionBlock(200,responseObject);
                                               NSLog(@"%@ %@", response, responseObject);
                                           }
                                       }];
