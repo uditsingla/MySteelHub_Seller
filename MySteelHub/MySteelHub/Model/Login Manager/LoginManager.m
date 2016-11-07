@@ -31,18 +31,21 @@
 {
     [RequestManager asynchronousRequestWithPath:@"auth/securelogin" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
         
-        if (statusCode==200) {
+        //if (statusCode==200) {
             NSLog(@"Here comes the json %@",json);
             
-            if([json objectForKey:@"user_id"])
+            if([json objectForKey:@"token"])
             {
+                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"Bearer %@",[json objectForKey:@"token"]] forKey:@"token"];
+
+                
+                
                 model_manager.profileManager.owner.userID = [NSString stringWithFormat:@"%i",[[json objectForKey:@"user_id"] intValue]];
                 
                 [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%i",[[json objectForKey:@"user_id"] intValue]] forKey:@"userID"];
                 
                 [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",[json objectForKey:@"email"]] forKey:@"email"];
                 
-                [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",[json objectForKey:@"token"]] forKey:@"token"];
 
                 [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"isAutoLogin"];
                 
@@ -57,19 +60,25 @@
             }
             else
             {
-                NSString *strErrorMsg = @"Please verify your account from admin first";
+                NSString *strErrorMsg;
+                if([json objectForKey:@"error"])
+                    strErrorMsg = [json objectForKey:@"error"];//@"Please verify your account from admin first";
+                else if([json objectForKey:@"msg"])
+                    strErrorMsg = [json objectForKey:@"msg"];
+                
                 NSMutableArray *arr= [[NSMutableArray alloc]init];
-                [arr addObject:strErrorMsg];
+                if(strErrorMsg.length>0)
+                    [arr addObject:strErrorMsg];
                 completionBlock(arr,[NSError new]);
             }
             
             
-        }
-        else{
-            NSMutableArray *arr=(NSMutableArray*)[json objectForKey:@"msg"];
-            //            NSError *error=[json objectForKey:@"error"];
-            completionBlock(arr,[NSError new]);
-        }
+//        }
+//        else{
+//            NSMutableArray *arr=(NSMutableArray*)[json objectForKey:@"msg"];
+//            //            NSError *error=[json objectForKey:@"error"];
+//            completionBlock(arr,[NSError new]);
+//        }
         
     } ];
 }

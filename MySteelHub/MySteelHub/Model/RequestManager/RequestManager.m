@@ -39,8 +39,11 @@
     
     if(include)
     {
-        [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"username"] forHTTPHeaderField:@"username"];
-        [urlRequest setValue:[[NSUserDefaults standardUserDefaults]valueForKey:@"usertoken"] forHTTPHeaderField:@"usertoken"];
+        NSLog(@"User Token : %@",[[NSUserDefaults standardUserDefaults]valueForKey:@"token"]);
+        NSString *strToken = [[NSUserDefaults standardUserDefaults]valueForKey:@"token"];
+        
+        [urlRequest setValue:strToken forHTTPHeaderField:@"Authorization"];
+
     }
     
     
