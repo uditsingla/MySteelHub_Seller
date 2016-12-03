@@ -155,7 +155,16 @@
                 requirement.taxType = [[array objectAtIndex:i] valueForKey:@"tax_type"];
 
                 
-                requirement.arraySpecifications = [[array objectAtIndex:i] valueForKey:@"quantity"];
+                requirement.arraySpecifications = [[[array objectAtIndex:i] valueForKey:@"quantity"] mutableCopy];
+
+                if([[array objectAtIndex:i] valueForKey:@"initial_unit_price"] && ![[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] isEqual:[NSNull null]])
+                {
+                    if([[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] isKindOfClass:[NSArray class]])
+                    {
+                        requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] mutableCopy];
+                    }
+                }
+
                 
                 requirement.gradeRequired = [NSString stringWithFormat:@"%i",[[[array objectAtIndex:i] valueForKey:@"grade_required"] intValue]];
                 

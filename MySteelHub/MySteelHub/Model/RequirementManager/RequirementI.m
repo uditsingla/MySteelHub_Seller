@@ -10,7 +10,7 @@
 
 @implementation RequirementI
 
-@synthesize requirementID,userID,isChemical,isPhysical,isTestCertificateRequired,length,type,budget,city,state,requiredByDate,gradeRequired,arrayPreferedBrands,arraySpecifications,createdDate,modifiedDate,initialAmount,bargainAmount,isBestPrice,isSellerRead,isSellerReadBargain,isAccepted,isDeleted,isBargainRequired,taxType;
+@synthesize requirementID,userID,isChemical,isPhysical,isTestCertificateRequired,length,type,budget,city,state,requiredByDate,gradeRequired,arrayPreferedBrands,arraySpecifications,createdDate,modifiedDate,initialAmount,bargainAmount,isBestPrice,isSellerRead,isSellerReadBargain,isAccepted,isDeleted,isBargainRequired,taxType,arraySpecificationsResponse;
 
 - (id)init
 {
@@ -36,14 +36,26 @@
         isDeleted = NO;
         isBargainRequired = NO;
         taxType = @"";
+        arraySpecificationsResponse = [NSMutableArray new];
+
     }
     return self;
 }
 
 -(void)postQuotation:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
+    [arraySpecificationsResponse removeAllObjects];
+    
+    for(int i=0 ; i<arraySpecifications.count ; i++)
+    {
+        NSMutableDictionary *dict = [[arraySpecifications objectAtIndex:i] mutableCopy];
+        [dict setValue:@"10000" forKey:@"unit price"];
+        
+        [arraySpecificationsResponse addObject:dict];
+    }
+    
     //create dictParam
-    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.requirementID,@"requirement_id" ,/*[[NSUserDefaults standardUserDefaults] valueForKey:@"userID"],@"seller_id",*/ self.userID,@"buyer_id", self.initialAmount,@"initial_amt", @"sellerQuotation",@"type", nil];
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.requirementID,@"requirement_id" ,/*[[NSUserDefaults standardUserDefaults] valueForKey:@"userID"],@"seller_id",*/ self.userID,@"buyer_id", self.initialAmount,@"initial_amt", @"sellerQuotation",@"type",arraySpecificationsResponse,@"specification", nil];
     
     
     [RequestManager asynchronousRequestWithPath:@"updateConversationStatus" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
@@ -69,6 +81,23 @@
 {
     //create dictParam
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.requirementID,@"requirement_id" ,/*[[NSUserDefaults standardUserDefaults] valueForKey:@"userID"],@"seller_id",*/ self.userID,@"buyer_id", self.bargainAmount,@"bargain_amt",[NSNumber numberWithBool:isBestPrice],@"is_best_price", @"sellerAcceptOrNot",@"type",nil];
+    
+    if(!isBestPrice)
+    {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:arraySpecificationsResponse];
+        
+        [arraySpecificationsResponse removeAllObjects];
+        
+        for(int i=0 ; i<tempArray.count ; i++)
+        {
+            NSMutableDictionary *dict = [[tempArray objectAtIndex:i] mutableCopy];
+            [dict setValue:@"8000" forKey:@"new unit price"];
+            
+            [arraySpecificationsResponse addObject:dict];
+        }
+        
+        [dictParams setValue:arraySpecificationsResponse forKey:@"specification"];
+    }
     
     
     [RequestManager asynchronousRequestWithPath:@"updateConversationStatus" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {

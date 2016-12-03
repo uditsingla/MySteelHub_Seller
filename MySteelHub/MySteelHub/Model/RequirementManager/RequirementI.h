@@ -40,6 +40,7 @@
 @property(assign,nonatomic) BOOL isBargainRequired;
 
 
+@property(strong,nonatomic) NSMutableArray *arraySpecificationsResponse;
 
 
 -(void)postQuotation:(void(^)(NSDictionary *json, NSError *error))completionBlock;
