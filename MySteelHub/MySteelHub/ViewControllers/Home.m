@@ -238,7 +238,7 @@
     //    btnRequiredByDate.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
     
     arrayTblDict = [NSMutableArray new];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity", nil];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity",@"",@"unit price", nil];
     [arrayTblDict addObject:dict];
     
     tblViewSizes.dataSource = self;
@@ -374,7 +374,7 @@
 {
     [self disableUIElements];
     arrayTblDict = nil;
-    arrayTblDict = _selectedRequirement.arraySpecifications;
+    arrayTblDict = _selectedRequirement.arraySpecificationsResponse;
     tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
     scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
     [tblViewSizes reloadData];
@@ -483,7 +483,7 @@
 
 -(void)disableUIElements
 {
-    tblViewSizes.userInteractionEnabled = NO;
+    //tblViewSizes.userInteractionEnabled = NO;
     switchPhysical.userInteractionEnabled = NO;
     switchChemical.userInteractionEnabled = NO;
     switchCertReq.userInteractionEnabled = NO;
@@ -768,6 +768,8 @@
             cell.btnAdd.hidden = NO;
             cell.txtFieldDiameter.hidden = YES;
             cell.txtFieldQuantity.hidden = YES;
+            cell.txtFieldInitialUnitPrice.hidden = YES;
+            cell.txtFieldBargainUnitPrice.hidden = YES;
             [cell setRightUtilityButtons:nil WithButtonWidth:0];
             [cell setDelegate:nil];
             
@@ -776,6 +778,8 @@
         {
             cell.txtFieldDiameter.hidden = NO;
             cell.txtFieldQuantity.hidden = NO;
+            cell.txtFieldInitialUnitPrice.hidden = NO;
+
             cell.btnAdd.hidden = YES;
             
             NSArray *arrayRightBtns = [self rightButtons];
@@ -784,6 +788,27 @@
             
             cell.txtFieldDiameter.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"size"];
             cell.txtFieldQuantity.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"quantity"];
+            cell.txtFieldInitialUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"unit price"];
+            
+            cell.txtFieldDiameter.frame = CGRectMake(5, cell.txtFieldDiameter.frame.origin.y, cell.contentView.frame.size.width/3 - 15, cell.txtFieldDiameter.frame.size.height);
+            cell.txtFieldQuantity.frame = CGRectMake(cell.txtFieldDiameter.frame.origin.x + cell.txtFieldDiameter.frame.size.width + 5, cell.txtFieldQuantity.frame.origin.y, cell.contentView.frame.size.width/3 - 15, cell.txtFieldQuantity.frame.size.height);
+            cell.txtFieldInitialUnitPrice.frame = CGRectMake(cell.txtFieldQuantity.frame.origin.x + cell.txtFieldQuantity.frame.size.width + 5, cell.txtFieldInitialUnitPrice.frame.origin.y, cell.contentView.frame.size.width/3 - 15, cell.txtFieldInitialUnitPrice.frame.size.height);
+
+            if([[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"])
+            {
+                cell.txtFieldBargainUnitPrice.hidden = NO;
+                cell.txtFieldBargainUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"];
+
+                cell.txtFieldDiameter.frame = CGRectMake(5, cell.txtFieldDiameter.frame.origin.y, cell.contentView.frame.size.width/4 - 20, cell.txtFieldDiameter.frame.size.height);
+                cell.txtFieldQuantity.frame = CGRectMake(cell.txtFieldDiameter.frame.origin.x + cell.txtFieldDiameter.frame.size.width + 5, cell.txtFieldQuantity.frame.origin.y, cell.contentView.frame.size.width/4 - 20, cell.txtFieldQuantity.frame.size.height);
+                cell.txtFieldInitialUnitPrice.frame = CGRectMake(cell.txtFieldQuantity.frame.origin.x + cell.txtFieldQuantity.frame.size.width + 5, cell.txtFieldInitialUnitPrice.frame.origin.y, cell.contentView.frame.size.width/4 - 20, cell.txtFieldInitialUnitPrice.frame.size.height);
+                cell.txtFieldBargainUnitPrice.frame = CGRectMake(cell.txtFieldInitialUnitPrice.frame.origin.x + cell.txtFieldInitialUnitPrice.frame.size.width + 5, cell.txtFieldBargainUnitPrice.frame.origin.y, cell.contentView.frame.size.width/4 - 20, cell.txtFieldBargainUnitPrice.frame.size.height);
+
+            }
+            else
+            {
+                cell.txtFieldBargainUnitPrice.hidden = YES;
+            }
             
         }
         
@@ -823,7 +848,7 @@
 
 - (IBAction)btnAddAction:(UIButton *)sender {
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity", nil];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity",@"",@"unit price", nil];
     [arrayTblDict addObject:dict];
     
     tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44 + 5;
@@ -962,6 +987,24 @@
         NSIndexPath *indexPath = [tblViewSizes indexPathForRowAtPoint:rootViewPoint];
         
         [[arrayTblDict objectAtIndex:indexPath.row] setValue:textField.text forKey:@"quantity"];
+    }
+    else if(textField.tag==787)
+    {
+        // getting indexpath from selected textfield
+        CGPoint center= textField.center;
+        CGPoint rootViewPoint = [textField.superview convertPoint:center toView:tblViewSizes];
+        NSIndexPath *indexPath = [tblViewSizes indexPathForRowAtPoint:rootViewPoint];
+        
+        [[arrayTblDict objectAtIndex:indexPath.row] setValue:textField.text forKey:@"unit price"];
+    }
+    else if(textField.tag==788)
+    {
+        // getting indexpath from selected textfield
+        CGPoint center= textField.center;
+        CGPoint rootViewPoint = [textField.superview convertPoint:center toView:tblViewSizes];
+        NSIndexPath *indexPath = [tblViewSizes indexPathForRowAtPoint:rootViewPoint];
+        
+        [[arrayTblDict objectAtIndex:indexPath.row] setValue:textField.text forKey:@"new unit price"];
     }
     else if (textField == txtFieldCity)
     {

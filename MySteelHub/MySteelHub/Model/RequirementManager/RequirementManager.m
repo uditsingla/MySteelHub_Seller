@@ -156,12 +156,23 @@
 
                 
                 requirement.arraySpecifications = [[[array objectAtIndex:i] valueForKey:@"quantity"] mutableCopy];
+                
+                requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"quantity"] mutableCopy];
+
 
                 if([[array objectAtIndex:i] valueForKey:@"initial_unit_price"] && ![[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] isEqual:[NSNull null]])
                 {
                     if([[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] isKindOfClass:[NSArray class]])
                     {
                         requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] mutableCopy];
+                    }
+                }
+                
+                if([[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] && ![[[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] isEqual:[NSNull null]])
+                {
+                    if([[[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] isKindOfClass:[NSArray class]])
+                    {
+                        requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] mutableCopy];
                     }
                 }
 
