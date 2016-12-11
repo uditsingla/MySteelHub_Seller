@@ -26,6 +26,12 @@
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flexSpace,doneButton, nil]];
     
     _txtFieldQuantity.inputAccessoryView = keyboardDoneButtonView;
+    
+    _txtFieldInitialUnitPrice.inputAccessoryView = keyboardDoneButtonView;
+
+    _txtFieldBargainUnitPrice.inputAccessoryView = keyboardDoneButtonView;
+    
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

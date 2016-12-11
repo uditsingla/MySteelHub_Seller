@@ -362,7 +362,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x5V-Wu-urZ" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="855.5"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="856"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Specifications" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uST-c4-0Wc">
                                                 <rect key="frame" x="37" y="30" width="136" height="21"/>
@@ -388,41 +388,41 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="323" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="777" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Diameter" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yfj-z1-wOo">
+                                                                <textField opaque="NO" clipsSubviews="YES" tag="777" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Diameter" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="yfj-z1-wOo">
                                                                     <rect key="frame" x="10" y="7" width="100" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                                     <textInputTraits key="textInputTraits"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="P12-dO-A8K" id="JTt-9j-2ay"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="786" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity in Tonne" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-NV-COM">
+                                                                <textField opaque="NO" clipsSubviews="YES" tag="786" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity in Tonne" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-NV-COM">
                                                                     <rect key="frame" x="115" y="7" width="100" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="P12-dO-A8K" id="2vl-ma-hkT"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="787" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bj5-yo-6jf" userLabel="Txt Field Unit Price">
+                                                                <textField opaque="NO" clipsSubviews="YES" tag="787" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Bj5-yo-6jf" userLabel="Txt Field Unit Price">
                                                                     <rect key="frame" x="220" y="7" width="100" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="P12-dO-A8K" id="7ec-Ga-ix1"/>
                                                                     </connections>
                                                                 </textField>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="788" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bargain Price" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Iuj-3s-x4W" userLabel="Txt Field Bargain Price">
+                                                                <textField opaque="NO" clipsSubviews="YES" tag="788" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bargain Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Iuj-3s-x4W" userLabel="Txt Field Bargain Price">
                                                                     <rect key="frame" x="220" y="7" width="100" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                                     <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                                                     <connections>
                                                                         <outlet property="delegate" destination="P12-dO-A8K" id="h1x-Xz-2Zm"/>
@@ -461,7 +461,7 @@
                                                 </prototypes>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQj-cG-ZsR" userLabel="CustomSubViews">
-                                                <rect key="frame" x="22" y="203" width="331" height="485.5"/>
+                                                <rect key="frame" x="22" y="203" width="331" height="486"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Physical" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Upq-LD-SXm">
                                                         <rect key="frame" x="14" y="8" width="88" height="21"/>
@@ -750,6 +750,9 @@
                                                             <constraint firstAttribute="width" constant="40" id="cWY-ou-LeP"/>
                                                         </constraints>
                                                         <color key="tintColor" red="0.18039215689999999" green="0.73333333329999995" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <connections>
+                                                            <action selector="bargainSwitchAction:" destination="P12-dO-A8K" eventType="valueChanged" id="scU-mV-c7W"/>
+                                                        </connections>
                                                     </switch>
                                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="P49-lz-htG">
                                                         <rect key="frame" x="20" y="35" width="325" height="21"/>

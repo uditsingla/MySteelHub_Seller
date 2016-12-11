@@ -44,15 +44,15 @@
 
 -(void)postQuotation:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
-    [arraySpecificationsResponse removeAllObjects];
-    
-    for(int i=0 ; i<arraySpecifications.count ; i++)
-    {
-        NSMutableDictionary *dict = [[arraySpecifications objectAtIndex:i] mutableCopy];
-        [dict setValue:@"10000" forKey:@"unit price"];
-        
-        [arraySpecificationsResponse addObject:dict];
-    }
+//    [arraySpecificationsResponse removeAllObjects];
+//    
+//    for(int i=0 ; i<arraySpecifications.count ; i++)
+//    {
+//        NSMutableDictionary *dict = [[arraySpecifications objectAtIndex:i] mutableCopy];
+//        [dict setValue:@"10000" forKey:@"unit price"];
+//        
+//        [arraySpecificationsResponse addObject:dict];
+//    }
     
     //create dictParam
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.requirementID,@"requirement_id" ,/*[[NSUserDefaults standardUserDefaults] valueForKey:@"userID"],@"seller_id",*/ self.userID,@"buyer_id", self.initialAmount,@"initial_amt", @"sellerQuotation",@"type",arraySpecificationsResponse,@"specification", nil];
@@ -84,17 +84,17 @@
     
     if(!isBestPrice)
     {
-        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:arraySpecificationsResponse];
-        
-        [arraySpecificationsResponse removeAllObjects];
-        
-        for(int i=0 ; i<tempArray.count ; i++)
-        {
-            NSMutableDictionary *dict = [[tempArray objectAtIndex:i] mutableCopy];
-            [dict setValue:@"8000" forKey:@"new unit price"];
-            
-            [arraySpecificationsResponse addObject:dict];
-        }
+//        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:arraySpecificationsResponse];
+//        
+//        [arraySpecificationsResponse removeAllObjects];
+//        
+//        for(int i=0 ; i<tempArray.count ; i++)
+//        {
+//            NSMutableDictionary *dict = [[tempArray objectAtIndex:i] mutableCopy];
+//            [dict setValue:@"8000" forKey:@"new unit price"];
+//            
+//            [arraySpecificationsResponse addObject:dict];
+//        }
         
         [dictParams setValue:arraySpecificationsResponse forKey:@"specification"];
     }
