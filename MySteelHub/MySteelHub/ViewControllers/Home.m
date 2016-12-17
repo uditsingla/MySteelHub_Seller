@@ -238,7 +238,7 @@
     //    btnRequiredByDate.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
     
     arrayTblDict = [NSMutableArray new];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity", nil];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity",@"",@"unit price", nil];
     [arrayTblDict addObject:dict];
     
     tblViewSizes.dataSource = self;
@@ -374,7 +374,7 @@
 {
     [self disableUIElements];
     arrayTblDict = nil;
-    arrayTblDict = _selectedRequirement.arraySpecifications;
+    arrayTblDict = _selectedRequirement.arraySpecificationsResponse;
     tblViewHeightConstraint.constant = (arrayTblDict.count)*44 + 5;
     scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
     [tblViewSizes reloadData];
@@ -483,7 +483,7 @@
 
 -(void)disableUIElements
 {
-    tblViewSizes.userInteractionEnabled = NO;
+    //tblViewSizes.userInteractionEnabled = NO;
     switchPhysical.userInteractionEnabled = NO;
     switchChemical.userInteractionEnabled = NO;
     switchCertReq.userInteractionEnabled = NO;
@@ -500,6 +500,9 @@
     pickerGradeRequiredView.userInteractionEnabled = NO;
     datePickerView.userInteractionEnabled = NO;
     btnPreferedTax.userInteractionEnabled = NO;
+    
+    txtFieldQuotation.userInteractionEnabled = NO;
+    txtFieldBargainAmount.userInteractionEnabled = NO;
 }
 
 
@@ -761,13 +764,20 @@
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        [cell.contentView layoutIfNeeded];
         
+        cell.txtFieldDiameter.userInteractionEnabled = NO;
+        cell.txtFieldQuantity.userInteractionEnabled = NO;
+        cell.txtFieldInitialUnitPrice.userInteractionEnabled = NO;
+        cell.txtFieldBargainUnitPrice.userInteractionEnabled = NO;
         
         if(indexPath.row==arrayTblDict.count)
         {
             cell.btnAdd.hidden = NO;
             cell.txtFieldDiameter.hidden = YES;
             cell.txtFieldQuantity.hidden = YES;
+            cell.txtFieldInitialUnitPrice.hidden = YES;
+            cell.txtFieldBargainUnitPrice.hidden = YES;
             [cell setRightUtilityButtons:nil WithButtonWidth:0];
             [cell setDelegate:nil];
             
@@ -776,15 +786,60 @@
         {
             cell.txtFieldDiameter.hidden = NO;
             cell.txtFieldQuantity.hidden = NO;
+            cell.txtFieldInitialUnitPrice.hidden = NO;
+
             cell.btnAdd.hidden = YES;
             
-            NSArray *arrayRightBtns = [self rightButtons];
-            [cell setRightUtilityButtons:arrayRightBtns WithButtonWidth:70];
-            [cell setDelegate:self];
+//            NSArray *arrayRightBtns = [self rightButtons];
+//            [cell setRightUtilityButtons:arrayRightBtns WithButtonWidth:70];
+//            [cell setDelegate:self];
+            
+            [cell setRightUtilityButtons:nil WithButtonWidth:0];
+            [cell setDelegate:nil];
+
             
             cell.txtFieldDiameter.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"size"];
             cell.txtFieldQuantity.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"quantity"];
+            cell.txtFieldInitialUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"unit price"];
             
+            if(cell.txtFieldInitialUnitPrice.text.length>0)
+                cell.txtFieldInitialUnitPrice.userInteractionEnabled = NO;
+            else
+                cell.txtFieldInitialUnitPrice.userInteractionEnabled = YES;
+            
+
+            if([[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"])
+            {
+                cell.txtFieldBargainUnitPrice.hidden = NO;
+                cell.txtFieldBargainUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"];
+                
+                if(cell.txtFieldBargainUnitPrice.text.length>0)
+                    cell.txtFieldBargainUnitPrice.userInteractionEnabled = NO;
+                else
+                    cell.txtFieldBargainUnitPrice.userInteractionEnabled = YES;
+
+
+                cell.txtFieldDiameter.frame = CGRectMake(5, cell.txtFieldDiameter.frame.origin.y, self.view.frame.size.width/4 - 20, cell.txtFieldDiameter.frame.size.height);
+                cell.txtFieldQuantity.frame = CGRectMake(cell.txtFieldDiameter.frame.origin.x + cell.txtFieldDiameter.frame.size.width + 5, cell.txtFieldQuantity.frame.origin.y, self.view.frame.size.width/4 - 20, cell.txtFieldQuantity.frame.size.height);
+                cell.txtFieldInitialUnitPrice.frame = CGRectMake(cell.txtFieldQuantity.frame.origin.x + cell.txtFieldQuantity.frame.size.width + 5, cell.txtFieldInitialUnitPrice.frame.origin.y, self.view.frame.size.width/4 - 20, cell.txtFieldInitialUnitPrice.frame.size.height);
+                cell.txtFieldBargainUnitPrice.frame = CGRectMake(cell.txtFieldInitialUnitPrice.frame.origin.x + cell.txtFieldInitialUnitPrice.frame.size.width + 5, cell.txtFieldBargainUnitPrice.frame.origin.y, self.view.frame.size.width/4 - 20, cell.txtFieldBargainUnitPrice.frame.size.height);
+
+            }
+            else
+            {
+                cell.txtFieldBargainUnitPrice.hidden = YES;
+                
+                cell.txtFieldDiameter.frame = CGRectMake(5, cell.txtFieldDiameter.frame.origin.y, self.view.frame.size.width/3 - 25, cell.txtFieldDiameter.frame.size.height);
+                cell.txtFieldQuantity.frame = CGRectMake(cell.txtFieldDiameter.frame.origin.x + cell.txtFieldDiameter.frame.size.width + 5, cell.txtFieldQuantity.frame.origin.y, self.view.frame.size.width/3 - 25, cell.txtFieldQuantity.frame.size.height);
+                cell.txtFieldInitialUnitPrice.frame = CGRectMake(cell.txtFieldQuantity.frame.origin.x + cell.txtFieldQuantity.frame.size.width + 5, cell.txtFieldInitialUnitPrice.frame.origin.y, self.view.frame.size.width/3 - 25, cell.txtFieldInitialUnitPrice.frame.size.height);
+            }
+            
+            if(btnSubmit.isHidden)
+            {
+                cell.txtFieldInitialUnitPrice.userInteractionEnabled = NO;
+                cell.txtFieldBargainUnitPrice.userInteractionEnabled = NO;
+            }
+
         }
         
         if(_selectedRequirement)
@@ -823,7 +878,7 @@
 
 - (IBAction)btnAddAction:(UIButton *)sender {
     
-    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity", nil];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity",@"",@"unit price", nil];
     [arrayTblDict addObject:dict];
     
     tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44 + 5;
@@ -901,6 +956,29 @@
         [locationManager startUpdatingLocation]; //Will update location immediately
     }
 }
+
+-(void)calculateQuotationAmount
+{
+    double amount = 0;
+    
+    for (int i=0; i<arrayTblDict.count; i++) {
+        amount += [[[arrayTblDict objectAtIndex:i] valueForKey:@"unit price"] doubleValue] * [[[arrayTblDict objectAtIndex:i] valueForKey:@"quantity"] doubleValue];
+    }
+    
+    txtFieldQuotation.text = [NSString stringWithFormat:@"%.0f",amount];
+}
+
+-(void)calculateBargainAmount
+{
+    double amount = 0;
+    
+    for (int i=0; i<arrayTblDict.count; i++) {
+        amount += [[[arrayTblDict objectAtIndex:i] valueForKey:@"new unit price"] doubleValue] * [[[arrayTblDict objectAtIndex:i] valueForKey:@"quantity"] doubleValue];
+    }
+    
+    txtFieldBargainAmount.text = [NSString stringWithFormat:@"%.0f",amount];
+}
+
 -(IBAction)btnClicked:(id)sender
 {
     [RequestManager asynchronousRequestWithPath:@"" requestType:RequestTypePOST params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
@@ -945,6 +1023,41 @@
     
 }
 
+- (IBAction)bargainSwitchAction:(id)sender {
+    if(switchBargain.isOn)
+    {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_selectedRequirement.arraySpecificationsResponse];
+        
+        [_selectedRequirement.arraySpecificationsResponse removeAllObjects];
+        
+        for(int k=0 ; k<tempArray.count ; k++)
+        {
+            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+            [dict setValue:@"" forKey:@"new unit price"];
+            
+            [_selectedRequirement.arraySpecificationsResponse addObject:dict];
+        }
+        [tblViewSizes reloadData];
+        
+    }
+    else
+    {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_selectedRequirement.arraySpecificationsResponse];
+        
+        [_selectedRequirement.arraySpecificationsResponse removeAllObjects];
+        
+        for(int k=0 ; k<tempArray.count ; k++)
+        {
+            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+            [dict removeObjectForKey:@"new unit price"];
+            
+            [_selectedRequirement.arraySpecificationsResponse addObject:dict];
+        }
+        [tblViewSizes reloadData];
+    }
+}
+
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
@@ -962,6 +1075,29 @@
         NSIndexPath *indexPath = [tblViewSizes indexPathForRowAtPoint:rootViewPoint];
         
         [[arrayTblDict objectAtIndex:indexPath.row] setValue:textField.text forKey:@"quantity"];
+    }
+    else if(textField.tag==787)
+    {
+        // getting indexpath from selected textfield
+        CGPoint center= textField.center;
+        CGPoint rootViewPoint = [textField.superview convertPoint:center toView:tblViewSizes];
+        NSIndexPath *indexPath = [tblViewSizes indexPathForRowAtPoint:rootViewPoint];
+        
+        [[arrayTblDict objectAtIndex:indexPath.row] setValue:textField.text forKey:@"unit price"];
+        if(textField.text.length>0)
+            [self calculateQuotationAmount];
+    }
+    else if(textField.tag==788)
+    {
+        // getting indexpath from selected textfield
+        CGPoint center= textField.center;
+        CGPoint rootViewPoint = [textField.superview convertPoint:center toView:tblViewSizes];
+        NSIndexPath *indexPath = [tblViewSizes indexPathForRowAtPoint:rootViewPoint];
+        
+        [[arrayTblDict objectAtIndex:indexPath.row] setValue:textField.text forKey:@"new unit price"];
+        
+        if(textField.text.length>0)
+            [self calculateBargainAmount];
     }
     else if (textField == txtFieldCity)
     {
@@ -1162,7 +1298,17 @@
     
     if(viewBargain.hidden)
     {
-        if(txtFieldQuotation.text.length > 0)
+        bool isQuotationValid = true;
+        
+        for (int i=0; i<arrayTblDict.count; i++) {
+            if([[[arrayTblDict objectAtIndex:i] valueForKey:@"unit price"] length] == 0)
+            {
+                isQuotationValid = false;
+                break;
+            }
+        }
+        
+        if(isQuotationValid)
         {
             
             [SVProgressHUD show];
@@ -1174,19 +1320,30 @@
                     btnSubmit.hidden = YES;
                     txtFieldQuotation.userInteractionEnabled = NO;
                     [self showAlert:@"Quotation posted successfully"];
+                    [tblViewSizes reloadData];
                 }
             }];
         }
         else
-            [self showAlert:@"Please enter quotation amount"];
+            [self showAlert:@"Please enter quotation amount for each size"];
 
     }
     
     else if(switchBargain.isOn)
     {
-        if([[txtFieldBargainAmount.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]] length]==0)
+        bool isQuotationValid = true;
+        
+        for (int i=0; i<arrayTblDict.count; i++) {
+            if([[[arrayTblDict objectAtIndex:i] valueForKey:@"new unit price"] length] == 0)
+            {
+                isQuotationValid = false;
+                break;
+            }
+        }
+        
+        if(!isQuotationValid)
         {
-            [self showAlert:@"Please enter bargain amount"];
+            [self showAlert:@"Please enter bargain amount for each size"];
         }
         
         else
@@ -1201,6 +1358,8 @@
                 {
                     btnSubmit.hidden = YES;
                     //[self.navigationController popViewControllerAnimated:YES];
+                    [self showAlert:@"Quotation updated successfully"];
+                    [tblViewSizes reloadData];
                 }
                 else
                 {
@@ -1220,6 +1379,8 @@
             {
                 btnSubmit.hidden = YES;
                 //[self.navigationController popViewControllerAnimated:YES];
+                [self showAlert:@"Quotation updated successfully"];
+                [tblViewSizes reloadData];
             }
             else
             {

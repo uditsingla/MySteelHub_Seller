@@ -153,9 +153,87 @@
                 requirement.requiredByDate = [NSString stringWithFormat:@"%@",[[array objectAtIndex:i] valueForKey:@"required_by_date"]];
                 
                 requirement.taxType = [[array objectAtIndex:i] valueForKey:@"tax_type"];
+                
+                requirement.isBargainRequired = [[[array objectAtIndex:i] valueForKey:@"req_for_bargain"] boolValue];
 
                 
-                requirement.arraySpecifications = [[array objectAtIndex:i] valueForKey:@"quantity"];
+                requirement.arraySpecifications = [[[array objectAtIndex:i] valueForKey:@"quantity"] mutableCopy];
+                
+                requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"quantity"] mutableCopy];
+
+
+                if([[array objectAtIndex:i] valueForKey:@"initial_unit_price"] && ![[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] isEqual:[NSNull null]])
+                {
+                    if([[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] isKindOfClass:[NSArray class]])
+                    {
+                        requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] mutableCopy];
+                    }
+                    else
+                    {
+                        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:requirement.arraySpecificationsResponse];
+                        
+                        [requirement.arraySpecificationsResponse removeAllObjects];
+                        
+                        for(int k=0 ; k<tempArray.count ; k++)
+                        {
+                            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+                            [dict setValue:@"" forKey:@"unit price"];
+                            
+                            [requirement.arraySpecificationsResponse addObject:dict];
+                        }
+                    }
+                }
+                else
+                {
+                    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:requirement.arraySpecificationsResponse];
+                    
+                    [requirement.arraySpecificationsResponse removeAllObjects];
+                    
+                    for(int k=0 ; k<tempArray.count ; k++)
+                    {
+                        NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+                        [dict setValue:@"" forKey:@"unit price"];
+                        
+                        [requirement.arraySpecificationsResponse addObject:dict];
+                    }
+                }
+                
+                if([[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] && ![[[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] isEqual:[NSNull null]])
+                {
+                    if([[[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] isKindOfClass:[NSArray class]])
+                    {
+                        requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"bargain_unit_price"] mutableCopy];
+                    }
+                    else if(requirement.isBargainRequired)
+                    {
+                        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:requirement.arraySpecificationsResponse];
+                        
+                        [requirement.arraySpecificationsResponse removeAllObjects];
+                        
+                        for(int k=0 ; k<tempArray.count ; k++)
+                        {
+                            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+                            [dict setValue:@"" forKey:@"new unit price"];
+                            
+                            [requirement.arraySpecificationsResponse addObject:dict];
+                        }
+                    }
+                }
+                else if(requirement.isBargainRequired)
+                {
+                    NSMutableArray *tempArray = [NSMutableArray arrayWithArray:requirement.arraySpecificationsResponse];
+                    
+                    [requirement.arraySpecificationsResponse removeAllObjects];
+                    
+                    for(int k=0 ; k<tempArray.count ; k++)
+                    {
+                        NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+                        [dict setValue:@"" forKey:@"new unit price"];
+                        
+                        [requirement.arraySpecificationsResponse addObject:dict];
+                    }
+                }
+
                 
                 requirement.gradeRequired = [NSString stringWithFormat:@"%i",[[[array objectAtIndex:i] valueForKey:@"grade_required"] intValue]];
                 

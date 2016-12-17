@@ -12,6 +12,9 @@
 @interface HomeCell : SWTableViewCell
 @property (weak, nonatomic) IBOutlet UITextField *txtFieldDiameter;
 @property (weak, nonatomic) IBOutlet UITextField *txtFieldQuantity;
+@property (weak, nonatomic) IBOutlet UITextField *txtFieldInitialUnitPrice;
+@property (weak, nonatomic) IBOutlet UITextField *txtFieldBargainUnitPrice;
+
 @property (weak, nonatomic) IBOutlet UIButton *btnAdd;
 
 @end
