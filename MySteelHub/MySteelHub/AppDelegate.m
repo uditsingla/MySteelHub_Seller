@@ -125,6 +125,8 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
     [model_manager.requirementManager getAllRequirements:nil];
+    
+    [model_manager.requirementManager getSteelBrands:nil];
 
 }
 
