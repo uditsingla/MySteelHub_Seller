@@ -91,6 +91,9 @@
     __weak IBOutlet UIView *contentView;
     __weak IBOutlet NSLayoutConstraint *tblViewHeightConstraint;
     __weak IBOutlet NSLayoutConstraint *scrollContentViewHeightConstraint;
+    
+    __weak IBOutlet UIButton *btnBrands;
+    
 }
 
 - (IBAction)preferedBrandsBtnAction:(UIButton *)sender;
@@ -98,6 +101,7 @@
 - (IBAction)submitBtnAction:(UIButton *)sender;
 - (IBAction)requiredByDateBtnAction:(UIButton *)sender;
 - (IBAction)preferedTaxBtnAction:(UIButton *)sender;
+- (IBAction)clkButtonBrands:(id)sender;
 
 
 @end
@@ -496,7 +500,7 @@
     txtFieldBudget.userInteractionEnabled = NO;
     btnRequiredByDate.userInteractionEnabled = NO;
     pickerToolBarView.userInteractionEnabled = NO;
-    pickerPreferredBrandsView.userInteractionEnabled = NO;
+//    pickerPreferredBrandsView.userInteractionEnabled = NO;
     pickerGradeRequiredView.userInteractionEnabled = NO;
     datePickerView.userInteractionEnabled = NO;
     btnPreferedTax.userInteractionEnabled = NO;
@@ -696,16 +700,17 @@
 
 -(void)tableDoneButtonPressed
 {
-    pickerGradeRequiredView.hidden = YES;
+    
+//    pickerGradeRequiredView.hidden = YES;
     pickerPreferredBrandsView.hidden = YES;
     
     
-    if(arraySelectedPreferredBrands.count>0)
-    {
-        
-        [btnPreferedBrands setTitle:[NSString stringWithFormat:@"Prefered Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]] forState:UIControlStateNormal];
-        
-    }
+//    if(arraySelectedPreferredBrands.count>0)
+//    {
+//        
+//        [btnPreferedBrands setTitle:[NSString stringWithFormat:@"Prefered Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]] forState:UIControlStateNormal];
+//        
+//    }
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(20,0, 0, 0);
     _scrollView.contentInset = contentInsets;
@@ -938,6 +943,8 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - Custom Methods
+
+
 -(void)getUserLocation
 {
     locationManager = [[CLLocationManager alloc] init];
@@ -1057,6 +1064,14 @@
     }
 }
 
+- (IBAction)clkButtonBrands:(id)sender
+{
+    pickerPreferredBrandsView.hidden = NO;
+    
+
+}
+
+#pragma mark - TextField Delegates
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -1412,6 +1427,8 @@
     [pickerView selectRow:0 inComponent:0 animated:NO];
     
 }
+
+
 
 -(void)showAlert:(NSString *)errorMsg
 {

@@ -15,6 +15,11 @@
     UIView *pickerViewState;
     NSMutableArray *arrayStates;
     NSString *selectedState;
+    
+    NSMutableArray *arraySelectedPreferredBrands;
+    NSMutableArray *arrayPreferredBrands;
+
+
 
 }
 
@@ -48,6 +53,25 @@
     [self.view addSubview:pickerViewState];
     pickerViewState.hidden = YES;
     
+    
+    // initiaize picker view
+    
+    if(model_manager.requirementManager.arraySteelBrands.count>0)
+        arrayPreferredBrands = [NSMutableArray arrayWithArray:model_manager.requirementManager.arraySteelBrands];
+    else
+        arrayPreferredBrands = [NSMutableArray new];
+    
+    arraySelectedPreferredBrands = [NSMutableArray new];
+
+
+    pickerPreferredBrandsView = [[UIView alloc]initWithFrame:CGRectMake(0,self.view.frame.size.height-216, self.view.frame.size.width,216)];
+    [pickerPreferredBrandsView setBackgroundColor:[UIColor whiteColor]];
+    [self createTableViewWithTag:222 inView:pickerPreferredBrandsView];
+    [self.view addSubview:pickerPreferredBrandsView];
+    pickerPreferredBrandsView.hidden = YES;
+    
+    
+    
     arrayStates = [NSMutableArray arrayWithArray:model_manager.requirementManager.arrayStates];
     
     [model_manager.requirementManager getStates:^(NSDictionary *json, NSError *error) {
@@ -70,7 +94,7 @@
     _txtFieldPassword = [self customtxtfield:_txtFieldPassword withrightIcon:[UIImage imageNamed:@"passwordW.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
     _txtFieldConfirmPass = [self customtxtfield:_txtFieldConfirmPass withrightIcon:[UIImage imageNamed:@"passwordW.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
     
-    txtFieldBrand = [self customtxtfield:txtFieldBrand withrightIcon:[UIImage imageNamed:@"brand.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    _txtFieldBrand = [self customtxtfield:_txtFieldBrand withrightIcon:[UIImage imageNamed:@"brand.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
     
     _txtFieldContact = [self customtxtfield:_txtFieldContact withrightIcon:[UIImage imageNamed:@"phone.png"] borderLeft:NO borderRight:YES borderBottom:YES borderTop:NO];
     
@@ -181,7 +205,8 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     
-    if(textField == _txtFieldState)
+    
+    if(textField == _txtFieldState || textField == _txtFieldBrand)
     {
         [textField resignFirstResponder];
     }
@@ -203,10 +228,19 @@
         
         [pickerView selectRow:0 inComponent:0 animated:NO];
         
+        
+    }
+    
+    else if(textField == _txtFieldBrand)
+    {
+        [_txtFieldBrand resignFirstResponder];
+        pickerPreferredBrandsView.hidden = NO;
     }
     else
     {
         pickerViewState.hidden = YES;
+        pickerPreferredBrandsView.hidden = YES;
+
     }
     
     return YES;
@@ -291,6 +325,11 @@
         [self showError:errorType];
         return;
     }
+    if ([_txtFieldBrand.text isEqual:@""]) {
+        errorType=@"brand";
+        [self showError:errorType];
+        return;
+    }
     
     [SVProgressHUD show];
     
@@ -301,7 +340,7 @@
     NSString *strLat = [NSString stringWithFormat:@"%f",appdelegate.currentLocation.coordinate.latitude];
     NSString *strLong = [NSString stringWithFormat:@"%f",appdelegate.currentLocation.coordinate.longitude];
     
-    NSDictionary *dictSignupParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldPassword.text,@"password",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",_txtFieldExpected.text,@"quantity",strLat,@"latitude",strLong,@"longitude",@"ios",@"device_type",[[NSUserDefaults standardUserDefaults] valueForKey:@"DeviceToken"],@"device_token",nil];
+    NSDictionary *dictSignupParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldPassword.text,@"password",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",_txtFieldExpected.text,@"quantity",strLat,@"latitude",strLong,@"longitude",@"ios",@"device_type",arraySelectedPreferredBrands,@"brand",[[NSUserDefaults standardUserDefaults] valueForKey:@"DeviceToken"],@"device_token",nil];
     
     
     [model_manager.loginManager userSignUp:dictSignupParams completion:^(NSArray *addresses, NSError *error){
@@ -399,6 +438,33 @@
     [parentview addSubview:pickerToolbar];
 }
 
+-(void)createTableViewWithTag:(int)tag inView:(UIView*)parentview
+{
+    UITableView *tblView=[[UITableView alloc]init];
+    tblView.frame=CGRectMake(0,44,self.view.frame.size.width, 216-44);
+    [tblView setDataSource: self];
+    [tblView setDelegate: self];
+    tblView.tag = tag;
+    tblView.backgroundColor = [UIColor whiteColor];
+    
+    
+    [parentview addSubview:tblView];
+    
+    
+    UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+    pickerToolbar.barStyle = UIBarStyleBlackOpaque;
+    [pickerToolbar sizeToFit];
+    
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(tableDoneButtonPressed)];
+    
+    
+    [pickerToolbar setItems:@[flexSpace, doneBtn] animated:YES];
+    
+    [parentview addSubview:pickerToolbar];
+}
+
 #pragma mark - UIPickerView delgates
 
 // Number of components.
@@ -449,6 +515,95 @@
     
 }
 
+
+#pragma mark - Uitableview Delegates
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+        static NSString *_simpleTableIdentifier = @"CellIdentifier";
+        
+        UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:_simpleTableIdentifier];
+        
+        // Configure the cell...
+        if(cell==nil)
+        {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_simpleTableIdentifier];
+            
+        }
+        
+        cell.textLabel.text = [[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"];
+        
+        
+        if ([arraySelectedPreferredBrands containsObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]])
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        }
+        else
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            
+        }
+        
+        cell.backgroundColor = [UIColor clearColor];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    
+}
+
+    
+    - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+    {
+            return arrayPreferredBrands.count;
+        
+    }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if(tableView.tag==222)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        //the below code will allow multiple selection
+        if ([arraySelectedPreferredBrands containsObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]])
+        {
+            [arraySelectedPreferredBrands removeObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]];
+        }
+        else
+        {
+            [arraySelectedPreferredBrands addObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]];
+        }
+        [tableView reloadData];
+    }
+    
+    else
+    {
+        
+    }
+}
+
+#pragma mark - Custom Methods
+-(void)tableDoneButtonPressed
+{
+    pickerPreferredBrandsView.hidden = YES;
+    
+    
+    if(arraySelectedPreferredBrands.count>0)
+    {
+        [_txtFieldBrand setText:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]]];
+    }
+    else
+    {
+        [_txtFieldBrand setText:[NSString stringWithFormat:@""]];
+        [_txtFieldBrand setPlaceholder:@"Brands"];
+    }
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(20,0, 0, 0);
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+    
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

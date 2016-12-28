@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface SignUP : BaseViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource>
+@interface SignUP : BaseViewController<UITextFieldDelegate,UIPickerViewDelegate,UIPickerViewDataSource,UITableViewDelegate,UITableViewDataSource>
 {
     
     __weak IBOutlet UIScrollView *_scrollView;
@@ -30,10 +30,13 @@
     __weak IBOutlet UITextField *_txtFieldPan;
 
 
-    __weak IBOutlet UITextField *txtFieldBrand;
+    __weak IBOutlet UITextField *_txtFieldBrand;
     __weak IBOutlet UITextField *_txtFieldExpected;
-
     
+    
+    UIView *pickerPreferredBrandsView;
+
+
 }
 
 @end
