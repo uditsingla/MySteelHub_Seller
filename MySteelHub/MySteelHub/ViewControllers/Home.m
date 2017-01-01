@@ -1329,13 +1329,18 @@
             [SVProgressHUD show];
             _selectedRequirement.initialAmount = txtFieldQuotation.text;
             [_selectedRequirement postQuotation:^(NSDictionary *json, NSError *error) {
-                if(!error)
+                if(json)
                 {
                     [SVProgressHUD dismiss];
                     btnSubmit.hidden = YES;
                     txtFieldQuotation.userInteractionEnabled = NO;
                     [self showAlert:@"Quotation posted successfully"];
                     [tblViewSizes reloadData];
+                }
+                else
+                {
+                    [SVProgressHUD dismiss];
+                    [self showAlert:@"Something went wrong. Please try again"];
                 }
             }];
         }
