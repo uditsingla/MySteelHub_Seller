@@ -10,7 +10,7 @@
 
 @implementation RequirementI
 
-@synthesize requirementID,userID,isChemical,isPhysical,isTestCertificateRequired,length,type,budget,city,state,requiredByDate,gradeRequired,arrayPreferedBrands,arraySpecifications,createdDate,modifiedDate,initialAmount,bargainAmount,isBestPrice,isSellerRead,isSellerReadBargain,isAccepted,isDeleted,isBargainRequired,taxType,arraySpecificationsResponse;
+@synthesize requirementID,userID,isChemical,isPhysical,isTestCertificateRequired,length,type,budget,city,state,requiredByDate,gradeRequired,arrayPreferedBrands,arraySpecifications,createdDate,modifiedDate,initialAmount,bargainAmount,isBestPrice,isSellerRead,isSellerReadBargain,isAccepted,isDeleted,isBargainRequired,taxType,arraySpecificationsResponse,arrayBrands;
 
 - (id)init
 {
@@ -37,7 +37,7 @@
         isBargainRequired = NO;
         taxType = @"";
         arraySpecificationsResponse = [NSMutableArray new];
-
+        arrayBrands = [NSMutableArray new];
     }
     return self;
 }
@@ -55,7 +55,7 @@
 //    }
     
     //create dictParam
-    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.requirementID,@"requirement_id" ,/*[[NSUserDefaults standardUserDefaults] valueForKey:@"userID"],@"seller_id",*/ self.userID,@"buyer_id", self.initialAmount,@"initial_amt", @"sellerQuotation",@"type",arraySpecificationsResponse,@"specification", nil];
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:self.requirementID,@"requirement_id" ,/*[[NSUserDefaults standardUserDefaults] valueForKey:@"userID"],@"seller_id",*/ self.userID,@"buyer_id", self.initialAmount,@"initial_amt", @"sellerQuotation",@"type",arraySpecificationsResponse,@"specification", arrayBrands, @"brands", nil];
     
     
     [RequestManager asynchronousRequestWithPath:@"updateConversationStatus" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {

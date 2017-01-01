@@ -42,6 +42,8 @@
 
 @property(strong,nonatomic) NSMutableArray *arraySpecificationsResponse;
 
+@property(strong,nonatomic) NSMutableArray *arrayBrands;
+
 
 -(void)postQuotation:(void(^)(NSDictionary *json, NSError *error))completionBlock;
 -(void)acceptRejectBargain:(void(^)(NSDictionary *json, NSError *error))completionBlock;

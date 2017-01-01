@@ -239,6 +239,10 @@
                 
                 requirement.arrayPreferedBrands = [[array objectAtIndex:i] valueForKey:@"preffered_brands"];
                 
+                if([[array objectAtIndex:i] valueForKey:@"brands"] && ![[[array objectAtIndex:i] valueForKey:@"brands"] isEqual:[NSNull null]])
+                    requirement.arrayBrands = [[array objectAtIndex:i] valueForKey:@"brands"];
+
+                
                 requirement.initialAmount = [NSString stringWithFormat:@"%@",[[array objectAtIndex:i] valueForKey:@"initial_amt"]];
                 
                 requirement.bargainAmount = [NSString stringWithFormat:@"%@",[[array objectAtIndex:i] valueForKey:@"bargain_amt"]];

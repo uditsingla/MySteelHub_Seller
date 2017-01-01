@@ -462,6 +462,8 @@
         btnSubmit.hidden = YES;
     }
     
+    if(_selectedRequirement.arrayBrands.count>0)
+        [btnBrands setTitle:[NSString stringWithFormat:@"Brands : %@",[_selectedRequirement.arrayBrands componentsJoinedByString:@","]] forState:UIControlStateNormal];
 }
 
 -(void)newUpdateReceived
@@ -705,12 +707,13 @@
     pickerPreferredBrandsView.hidden = YES;
     
     
-//    if(arraySelectedPreferredBrands.count>0)
-//    {
-//        
-//        [btnPreferedBrands setTitle:[NSString stringWithFormat:@"Prefered Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]] forState:UIControlStateNormal];
-//        
-//    }
+    if(arraySelectedPreferredBrands.count>0)
+    {
+        
+        [btnBrands setTitle:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]] forState:UIControlStateNormal];
+        
+    }
+    
     
     UIEdgeInsets contentInsets = UIEdgeInsetsMake(20,0, 0, 0);
     _scrollView.contentInset = contentInsets;
@@ -1313,6 +1316,12 @@
     
     if(viewBargain.hidden)
     {
+        if(arraySelectedPreferredBrands.count==0)
+        {
+            [self showAlert:@"Please select brands for the quotation"];
+            return;
+        }
+        
         bool isQuotationValid = true;
         
         for (int i=0; i<arrayTblDict.count; i++) {
@@ -1328,6 +1337,8 @@
             
             [SVProgressHUD show];
             _selectedRequirement.initialAmount = txtFieldQuotation.text;
+            [_selectedRequirement.arrayBrands removeAllObjects];
+            _selectedRequirement.arrayBrands = arraySelectedPreferredBrands;
             [_selectedRequirement postQuotation:^(NSDictionary *json, NSError *error) {
                 if(json)
                 {
