@@ -10,7 +10,7 @@
 
 @implementation UserI
 
-@synthesize userID,name,email,address,city,state,zip,contactNo;
+@synthesize userID,name,email,address,city,state,zip,contactNo,brands;
 
 - (id)init
 {
@@ -24,6 +24,8 @@
         state = @"";
         zip = @"";
         contactNo = @"";
+        
+        brands = [NSMutableArray new];
     }
     return self;
 }

@@ -13,4 +13,6 @@
 
 @property(strong,nonatomic) UserI *owner;
 
+-(void)getUserProfile:(void(^)(NSDictionary *json, NSError *error))completionBlock;
+
 @end

@@ -19,6 +19,7 @@
 @property(strong,nonatomic) NSString *zip;
 @property(strong,nonatomic) NSString *contactNo;
 
+@property(strong,nonatomic) NSArray *brands;
 
 
 @end

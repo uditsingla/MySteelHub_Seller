@@ -277,10 +277,12 @@
     pickerToolBarView.hidden = YES;
     
     //arrayPreferredBrands = [NSMutableArray arrayWithObjects:@"Birla",@"Binani",@"Jindal",@"Reliance",@"Tata", nil];
-    if(model_manager.requirementManager.arraySteelBrands.count>0)
-        arrayPreferredBrands = [NSMutableArray arrayWithArray:model_manager.requirementManager.arraySteelBrands];
-    else
-        arrayPreferredBrands = [NSMutableArray new];
+    arrayPreferredBrands = [NSMutableArray arrayWithArray:model_manager.profileManager.owner.brands];
+    [arrayPreferredBrands addObject:@"Others"];
+//    if(model_manager.requirementManager.arraySteelBrands.count>0)
+//        arrayPreferredBrands = [NSMutableArray arrayWithArray:model_manager.requirementManager.arraySteelBrands];
+//    else
+//        arrayPreferredBrands = [NSMutableArray new];
     
     
     arraySelectedPreferredBrands = [NSMutableArray new];
@@ -325,9 +327,9 @@
     [model_manager.requirementManager getSteelBrands:^(NSDictionary *json, NSError *error) {
         if(model_manager.requirementManager.arraySteelBrands.count>0)
         {
-            arrayPreferredBrands = [NSMutableArray arrayWithArray:model_manager.requirementManager.arraySteelBrands];
-            UITableView *tblView = [pickerPreferredBrandsView viewWithTag:222];
-            [tblView reloadData];
+//            arrayPreferredBrands = [NSMutableArray arrayWithArray:model_manager.requirementManager.arraySteelBrands];
+//            UITableView *tblView = [pickerPreferredBrandsView viewWithTag:222];
+//            [tblView reloadData];
             
         }
     }];
@@ -746,10 +748,10 @@
             
         }
         
-        cell.textLabel.text = [[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"];
+        cell.textLabel.text = [arrayPreferredBrands objectAtIndex:indexPath.row];
         
         
-        if ([arraySelectedPreferredBrands containsObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]])
+        if ([arraySelectedPreferredBrands containsObject:[arrayPreferredBrands objectAtIndex:indexPath.row]])
         {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         }
@@ -867,13 +869,13 @@
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
         
         //the below code will allow multiple selection
-        if ([arraySelectedPreferredBrands containsObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]])
+        if ([arraySelectedPreferredBrands containsObject:[arrayPreferredBrands objectAtIndex:indexPath.row] ])
         {
-            [arraySelectedPreferredBrands removeObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]];
+            [arraySelectedPreferredBrands removeObject:[arrayPreferredBrands objectAtIndex:indexPath.row]];
         }
         else
         {
-            [arraySelectedPreferredBrands addObject:[[arrayPreferredBrands objectAtIndex:indexPath.row] valueForKey:@"brand_name"]];
+            [arraySelectedPreferredBrands addObject:[arrayPreferredBrands objectAtIndex:indexPath.row]];
         }
         [tableView reloadData];
     }

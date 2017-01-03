@@ -29,14 +29,14 @@
     // Do any additional setup after loading the view.
     
     arrMenuItems = [NSArray arrayWithObjects:@"Home",
-                    //@"New Requirement",
+                    @"My Profile",
                     @"History",
                     @"Change Password",
                     @"Contact Us",
                     [NSString stringWithFormat:@"Logout"],nil];
     
     arrMenuItemsImages = [NSArray arrayWithObjects:@"home.png",
-                          //@"newrequirment.png",
+                          @"contact.png",
                           @"history.png",
                           @"password.png",
                           @"contact.png",
@@ -143,7 +143,9 @@
         navigationController.viewControllers = controllers;
         
     }
-    else if ([keyName caseInsensitiveCompare:@"New Requirement"] == NSOrderedSame){
+    else if ([keyName caseInsensitiveCompare:@"My Profile"] == NSOrderedSame){
+        
+        [model_manager.profileManager getUserProfile:nil];
         
 //        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
 //        
