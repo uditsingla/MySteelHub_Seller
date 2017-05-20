@@ -10,7 +10,7 @@
 
 @implementation UserI
 
-@synthesize userID,name,email,address,city,state,zip,contactNo,brands;
+@synthesize userID,name,email,address,city,state,zip,contactNo,companyName,customerType,expectedQuantity,latitude,longitude,pan,role,tin,brands;
 
 - (id)init
 {
@@ -24,7 +24,15 @@
         state = @"";
         zip = @"";
         contactNo = @"";
-        
+        companyName = @"";
+        customerType = [NSMutableArray new];
+        expectedQuantity = @"";
+        latitude = 0;
+        longitude = 0;
+        pan = @"";
+        role = @"";
+        tin = @"";
+
         brands = [NSMutableArray new];
     }
     return self;

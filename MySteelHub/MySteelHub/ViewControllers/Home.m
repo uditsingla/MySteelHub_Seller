@@ -133,16 +133,16 @@
     
     //switch controlls reframe
     switchPhysical.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchPhysical.onTintColor = kBlueColor
+    switchPhysical.onTintColor = kBlueColor;
     
     switchChemical.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchChemical.onTintColor = kBlueColor
+    switchChemical.onTintColor = kBlueColor;
     
     switchCertReq.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchCertReq.onTintColor = kBlueColor
+    switchCertReq.onTintColor = kBlueColor;
     
     switchBargain.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchBargain.onTintColor = kBlueColor
+    switchBargain.onTintColor = kBlueColor;
     
     viewQuotation.hidden = NO;
     viewBargain.hidden = YES;
