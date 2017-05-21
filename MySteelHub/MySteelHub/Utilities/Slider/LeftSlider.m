@@ -8,6 +8,7 @@
 
 #import "LeftSlider.h"
 #import "LeftSliderCell.h"
+#import "SignUP.h"
 
 //#import "Appointments.h"
 //#import "History.h"
@@ -29,14 +30,12 @@
     // Do any additional setup after loading the view.
     
     arrMenuItems = [NSArray arrayWithObjects:@"Home",
-                    @"My Profile",
                     @"History",
                     @"Change Password",
                     @"Contact Us",
                     [NSString stringWithFormat:@"Logout"],nil];
     
     arrMenuItemsImages = [NSArray arrayWithObjects:@"home.png",
-                          @"contact.png",
                           @"history.png",
                           @"password.png",
                           @"contact.png",
@@ -46,8 +45,16 @@
     
     //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"CellIdentifier"];
     
-    self.view.backgroundColor = [UIColor colorWithRed:8/255.0 green:188/255.0 blue:211/255.0 alpha:1];
+    self.view.backgroundColor = [UIColor whiteColor];
+
     
+    [model_manager.profileManager getUserProfile:^(NSDictionary *json, NSError *error) {
+        if(json)
+        {
+            [self.tableView reloadData];
+        }
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -88,7 +95,7 @@
     
     //Menu lable
     //    cell.lblMenuItem.backgroundColor = GreenColor;
-    cell.lblMenuItem.textColor = [UIColor whiteColor];
+    cell.lblMenuItem.textColor = [UIColor colorWithRed:64/255.0 green:64/255.0 blue:64/255.0 alpha:1];
     cell.lblMenuItem.text = [arrMenuItems objectAtIndex:indexPath.row] ;
     cell.lblMenuItem.font = [UIFont fontWithName:@"Raleway-regular" size:15];
     
@@ -97,11 +104,54 @@
     
     //NSString *imgBundlePath=[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:[]];
     cell.imgMenuItem.image = [UIImage imageNamed:[arrMenuItemsImages objectAtIndex:indexPath.row]];
+    cell.imgMenuItem.contentMode = UIViewContentModeScaleAspectFit;
+
     
     cell.backgroundColor = [UIColor clearColor];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
+}
+
+- (nullable UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
+    /* Create custom view to display section header... */
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+    [label setFont:[UIFont boldSystemFontOfSize:12]];
+    /* Section header is in 0th index... */
+    [label setTextColor:[UIColor whiteColor]];
+    [label setText:@"SELLER"];
+    
+    
+    UILabel *labelEmail = [[UILabel alloc] initWithFrame:CGRectMake(10, 25, tableView.frame.size.width, 18)];
+    [labelEmail setFont:[UIFont systemFontOfSize:12]];
+    [labelEmail setText:model_manager.profileManager.owner.email];
+    NSLog(@"%@",labelEmail.text);
+    [labelEmail setTextColor:[UIColor whiteColor]];
+    
+    [view addSubview:label];
+    [view addSubview:labelEmail];
+    [view setBackgroundColor:kBlueColor]; //your background color...
+    
+    UITapGestureRecognizer *gesRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)]; // Declare the Gesture.
+    gesRecognizer.delegate = self;
+    [view addGestureRecognizer:gesRecognizer]; // Add Gesture to your view.
+    
+    return view;
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)gestureRecognizer{
+    NSLog(@"Tapped");
+    SignUP *signUpVc = [kLoginStoryboard instantiateViewControllerWithIdentifier:@"signUp"];
+    signUpVc.isEditProfile = true;
+    [self.navigationController pushViewController:signUpVc animated:YES];
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 50;
 }
 
 
@@ -143,21 +193,14 @@
         navigationController.viewControllers = controllers;
         
     }
-    else if ([keyName caseInsensitiveCompare:@"My Profile"] == NSOrderedSame){
-        
-        [model_manager.profileManager getUserProfile:nil];
-        
-//        UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
-//        
-//        [navigationController pushViewController:[self goToController:@"home"] animated:NO];
-    }
-    
     
     else if ([keyName caseInsensitiveCompare:@"Change Password"] == NSOrderedSame){
         
         UINavigationController *navigationController = self.menuContainerViewController.centerViewController;
         
-        [navigationController pushViewController:[self goToController:@"changepassword"] animated:NO];
+        UIViewController *viewcontroller = [kLoginStoryboard instantiateViewControllerWithIdentifier: @"changepassword"];
+        
+        [navigationController pushViewController:viewcontroller animated:NO];
     }
     
     

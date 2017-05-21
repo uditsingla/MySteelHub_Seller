@@ -128,7 +128,7 @@
     
     [model_manager.requirementManager getSteelBrands:nil];
     
-    [model_manager.profileManager getUserProfile:nil];
+    //[model_manager.profileManager getUserProfile:nil];
 
 }
 

@@ -26,6 +26,9 @@
 @end
 
 @implementation SignUP
+
+@synthesize isEditProfile;
+
 -(void)viewWillAppear:(BOOL)animated{
 }
 -(void)viewWillDisappear:(BOOL)animated{
@@ -40,7 +43,16 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showKeyboard:) name:UIKeyboardDidShowNotification object:nil ];
     
-    [self setTitleLabel:@"COMPLETE YOUR PROFILE"];
+    if(isEditProfile)
+    {
+        [self setTitleLabel:@"EDIT YOUR PROFILE"];
+        [btnSubmit setTitle:@"UPDATE" forState:UIControlStateNormal];
+    }
+    else
+    {
+        [self setTitleLabel:@"COMPLETE YOUR PROFILE"];
+    }
+    
     [self setBackButton];
     
     
@@ -83,6 +95,36 @@
         }
     }];
     
+    
+    if(isEditProfile)
+    {
+        _txtFieldUsername.text = model_manager.profileManager.owner.name;
+        _txtFieldPassword.text = @"12345";
+        _txtFieldPassword.userInteractionEnabled = false;
+        _txtFieldConfirmPass.text = @"12345";
+        _txtFieldConfirmPass.userInteractionEnabled = false;
+        _txtFieldCompanyName.text = model_manager.profileManager.owner.companyName;
+        _txtFieldEmail.text = model_manager.profileManager.owner.email;
+        _txtFieldAddress.text = model_manager.profileManager.owner.address;
+        _txtFieldCity.text = model_manager.profileManager.owner.city;
+        _txtFieldState.text = model_manager.profileManager.owner.state;
+        _txtFieldZipCode.text = model_manager.profileManager.owner.zip;
+        _txtFieldContact.text = model_manager.profileManager.owner.contactNo;
+        _txtFieldTin.text = model_manager.profileManager.owner.tin;
+        _txtFieldPan.text = model_manager.profileManager.owner.pan;
+        _txtFieldExpected.text = model_manager.profileManager.owner.expectedQuantity;
+        arraySelectedPreferredBrands = [NSMutableArray arrayWithArray:model_manager.profileManager.owner.brands];
+        if(arraySelectedPreferredBrands.count>0)
+        {
+            [_txtFieldBrand setText:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]]];
+        }
+        else
+        {
+            [_txtFieldBrand setText:[NSString stringWithFormat:@""]];
+            [_txtFieldBrand setPlaceholder:@"Brands"];
+        }
+        
+    }
     
 }
 -(void)setupTextFields
@@ -340,38 +382,75 @@
     NSString *strLat = [NSString stringWithFormat:@"%f",appdelegate.currentLocation.coordinate.latitude];
     NSString *strLong = [NSString stringWithFormat:@"%f",appdelegate.currentLocation.coordinate.longitude];
     
-    NSDictionary *dictSignupParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldPassword.text,@"password",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",_txtFieldExpected.text,@"quantity",strLat,@"latitude",strLong,@"longitude",@"ios",@"device_type",arraySelectedPreferredBrands,@"brand",[[NSUserDefaults standardUserDefaults] valueForKey:@"DeviceToken"],@"device_token",nil];
     
-    
-    [model_manager.loginManager userSignUp:dictSignupParams completion:^(NSArray *addresses, NSError *error){
-        [SVProgressHUD dismiss];
+    if(isEditProfile)
+    {
+        NSDictionary *dictParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",strLat,@"latitude",strLong,@"longitude",arraySelectedPreferredBrands,@"brand",nil];
         
-        if(addresses)
-        {
-            UIAlertController *alertController = [UIAlertController
-                                                  alertControllerWithTitle:@""
-                                                  message:[addresses objectAtIndex:0]
-                                                  preferredStyle:UIAlertControllerStyleAlert];
-            UIAlertAction *okAction = [UIAlertAction
-                                       actionWithTitle:@"Ok"
-                                       style:UIAlertActionStyleCancel
-                                       handler:^(UIAlertAction *action)
-                                       {
-                                           [self dismissViewControllerAnimated:YES completion:nil];
-                                           [self.navigationController popViewControllerAnimated:YES];
-                                           NSLog(@"OK action");
-                                       }];
+        
+        [model_manager.profileManager updateProfile:dictParams completion:^(NSDictionary *response, NSError *error){
+            [SVProgressHUD dismiss];
             
-            [alertController addAction:okAction];
-            [self presentViewController:alertController animated:YES completion:nil];
-        }
-        //
-        //        NSLog(@"Login Response");
-        //
-        //
-    }];
-    
-    
+            if(response)
+            {
+                UIAlertController *alertController = [UIAlertController
+                                                      alertControllerWithTitle:@""
+                                                      message:[NSString stringWithFormat:@"%@",[response valueForKey:@"msg"]]
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction
+                                           actionWithTitle:@"Ok"
+                                           style:UIAlertActionStyleCancel
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               [self dismissViewControllerAnimated:YES completion:nil];
+                                               [self.navigationController popViewControllerAnimated:YES];
+                                               NSLog(@"OK action");
+                                           }];
+                
+                [alertController addAction:okAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+            //
+            //        NSLog(@"Login Response");
+            //
+            //
+        }];
+        
+    }
+    else
+    {
+        NSDictionary *dictSignupParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldPassword.text,@"password",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",_txtFieldExpected.text,@"quantity",strLat,@"latitude",strLong,@"longitude",@"ios",@"device_type",arraySelectedPreferredBrands,@"brand",[[NSUserDefaults standardUserDefaults] valueForKey:@"DeviceToken"],@"device_token",nil];
+        
+        
+        [model_manager.loginManager userSignUp:dictSignupParams completion:^(NSArray *addresses, NSError *error){
+            [SVProgressHUD dismiss];
+            
+            if(addresses)
+            {
+                UIAlertController *alertController = [UIAlertController
+                                                      alertControllerWithTitle:@""
+                                                      message:[addresses objectAtIndex:0]
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction
+                                           actionWithTitle:@"Ok"
+                                           style:UIAlertActionStyleCancel
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               [self dismissViewControllerAnimated:YES completion:nil];
+                                               [self.navigationController popViewControllerAnimated:YES];
+                                               NSLog(@"OK action");
+                                           }];
+                
+                [alertController addAction:okAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+            //
+            //        NSLog(@"Login Response");
+            //
+            //
+        }];
+        
+    }
     
     //    UIViewController *viewController;
     //    viewController = [kMainStoryboard instantiateInitialViewController];

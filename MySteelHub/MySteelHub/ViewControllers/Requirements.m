@@ -185,7 +185,7 @@
     else if(!requirement.isSellerReadBargain && requirement.isBargainRequired)
         imgViewStatus.backgroundColor = OrangeColor
     else
-        imgViewStatus.backgroundColor = kBlueColor
+        imgViewStatus.backgroundColor = kBlueColor;
 
         
     

@@ -33,10 +33,14 @@
     __weak IBOutlet UITextField *_txtFieldBrand;
     __weak IBOutlet UITextField *_txtFieldExpected;
     
+    __weak IBOutlet UIButton *btnSubmit;
+
+    
     
     UIView *pickerPreferredBrandsView;
 
 
 }
+@property(nonatomic,assign) BOOL isEditProfile;
 
 @end

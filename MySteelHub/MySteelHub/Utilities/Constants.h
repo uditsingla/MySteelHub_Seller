@@ -22,7 +22,7 @@
 #define kPlaceHolderGrey [UIColor colorWithRed:170/255.00 green:170/255.00 blue:170/255.00 alpha:1];
 
 
-#define kBlueColor  [UIColor colorWithRed:34/255.00 green:152/255.00 blue:168/255.00 alpha:1];
+#define kBlueColor  [UIColor colorWithRed:34/255.00 green:152/255.00 blue:168/255.00 alpha:1]
 
 #define LightGreyColor  [UIColor colorWithRed:234/255.00 green:234/255.00 blue:234/255.00 alpha:1];
 

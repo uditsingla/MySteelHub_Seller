@@ -18,8 +18,16 @@
 @property(strong,nonatomic) NSString *state;
 @property(strong,nonatomic) NSString *zip;
 @property(strong,nonatomic) NSString *contactNo;
+@property(strong,nonatomic) NSString *companyName;
+@property(strong,nonatomic) NSMutableArray *customerType;
+@property(strong,nonatomic) NSString *expectedQuantity;
+@property(assign,nonatomic) double latitude;
+@property(assign,nonatomic) double longitude;
+@property(strong,nonatomic) NSString *pan;
+@property(strong,nonatomic) NSString *role;
+@property(strong,nonatomic) NSString *tin;
 
-@property(strong,nonatomic) NSArray *brands;
+@property(strong,nonatomic) NSMutableArray *brands;
 
 
 @end
