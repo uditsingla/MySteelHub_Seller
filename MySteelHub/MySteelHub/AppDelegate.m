@@ -357,7 +357,7 @@
     if(state == UIApplicationStateActive)
     {
         if(inAppNotificationView)
-            [self showNotificationView:[[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] valueForKey:@"body"]];
+            [self showNotificationView:[[userInfo objectForKey:@"aps"] objectForKey:@"alert"]];
         
     }
     else if (state == UIApplicationStateBackground || state == UIApplicationStateInactive)
