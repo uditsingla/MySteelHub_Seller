@@ -275,6 +275,7 @@
     
     else if(textField == _txtFieldBrand)
     {
+        [self.view endEditing:YES];
         [_txtFieldBrand resignFirstResponder];
         pickerPreferredBrandsView.hidden = NO;
     }

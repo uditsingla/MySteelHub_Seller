@@ -97,7 +97,7 @@
     //    cell.lblMenuItem.backgroundColor = GreenColor;
     cell.lblMenuItem.textColor = [UIColor colorWithRed:64/255.0 green:64/255.0 blue:64/255.0 alpha:1];
     cell.lblMenuItem.text = [arrMenuItems objectAtIndex:indexPath.row] ;
-    cell.lblMenuItem.font = [UIFont fontWithName:@"Raleway-regular" size:15];
+    cell.lblMenuItem.font = [UIFont fontWithName:@"Raleway-bold" size:14];
     
     //Menu Image
     //UIImageView *imgMenuItem = (UIImageView*)[cell.contentView viewWithTag:kimgMenuItem];
