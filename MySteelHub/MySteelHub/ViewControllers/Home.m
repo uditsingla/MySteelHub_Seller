@@ -16,6 +16,8 @@
 
 @interface Home ()<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,SWTableViewCellDelegate>
 {
+    
+    
     __weak IBOutlet UISwitch *switchPhysical;
     __weak IBOutlet UISwitch *switchChemical;
     __weak IBOutlet UISwitch *switchCertReq;
@@ -102,6 +104,13 @@
 - (IBAction)requiredByDateBtnAction:(UIButton *)sender;
 - (IBAction)preferedTaxBtnAction:(UIButton *)sender;
 - (IBAction)clkButtonBrands:(id)sender;
+
+
+- (IBAction)clkBrands:(UIGestureRecognizer *)sender;
+
+- (IBAction)clkBargainSwitch:(UISwitch *)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *switchIsBargainRequired;
+
 
 
 @end
@@ -725,8 +734,40 @@
 
 
 #pragma mark table view data sources and delegates
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    if(_selectedRequirement.isBargainRequired)
+        return 4;
+    
+    return 3;
+}
+
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    switch (section) {
+        case 0:
+        {
+            return _selectedRequirement.arraySpecifications.count;
+            break;
+        }
+        case 1:
+            
+            return 1;
+            break;
+        case 2:
+            
+            return 1;
+            break;
+        case 3:
+            
+            return 1;
+            break;
+        default:
+            break;
+    }
     if(tableView.tag==222)
         return arrayPreferredBrands.count;
     return arrayTblDict.count+1;
@@ -1074,6 +1115,11 @@
     pickerPreferredBrandsView.hidden = NO;
     
 
+}
+
+- (IBAction)clkBrands:(UIGestureRecognizer *)sender {
+    
+    NSLog(@"brands clicked")
 }
 
 #pragma mark - TextField Delegates
@@ -1469,6 +1515,13 @@
                              
                          }];
     [alert addAction:ok];
+    
+}
+
+
+- (IBAction)clkBargainSwitch:(UISwitch *)sender {
+    
+    NSLog(@"switch toggel button clicked");
     
 }
 
