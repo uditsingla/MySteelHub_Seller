@@ -299,10 +299,10 @@
             </objects>
             <point key="canvasLocation" x="872" y="-445"/>
         </scene>
-        <!--Home-->
+        <!--View Controller-->
         <scene sceneID="BKG-kj-Vo6">
             <objects>
-                <viewController storyboardIdentifier="home" id="P12-dO-A8K" customClass="Home" sceneMemberID="viewController">
+                <viewController id="P12-dO-A8K" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CBo-DS-qLr"/>
                         <viewControllerLayoutGuide type="bottom" id="dDG-2u-OWJ"/>
@@ -333,85 +333,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="uQz-xI-GwR"/>
                                                 </constraints>
-                                                <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CustomCell" id="pOY-bJ-1Bh" customClass="HomeCell">
-                                                        <rect key="frame" x="0.0" y="28" width="323" height="44"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
-                                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pOY-bJ-1Bh" id="4S7-lc-aME">
-                                                            <rect key="frame" x="0.0" y="0.0" width="323" height="44"/>
-                                                            <autoresizingMask key="autoresizingMask"/>
-                                                            <subviews>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="777" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Diameter" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="yfj-z1-wOo">
-                                                                    <rect key="frame" x="10" y="7" width="100" height="30"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                                                                    <textInputTraits key="textInputTraits"/>
-                                                                    <connections>
-                                                                        <outlet property="delegate" destination="P12-dO-A8K" id="JTt-9j-2ay"/>
-                                                                    </connections>
-                                                                </textField>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="786" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity in Tonne" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-NV-COM">
-                                                                    <rect key="frame" x="115" y="7" width="100" height="30"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
-                                                                    <connections>
-                                                                        <outlet property="delegate" destination="P12-dO-A8K" id="2vl-ma-hkT"/>
-                                                                    </connections>
-                                                                </textField>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="787" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Bj5-yo-6jf" userLabel="Txt Field Unit Price">
-                                                                    <rect key="frame" x="220" y="7" width="100" height="30"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
-                                                                    <connections>
-                                                                        <outlet property="delegate" destination="P12-dO-A8K" id="7ec-Ga-ix1"/>
-                                                                    </connections>
-                                                                </textField>
-                                                                <textField opaque="NO" clipsSubviews="YES" tag="788" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bargain Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Iuj-3s-x4W" userLabel="Txt Field Bargain Price">
-                                                                    <rect key="frame" x="220" y="7" width="100" height="30"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
-                                                                    <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
-                                                                    <connections>
-                                                                        <outlet property="delegate" destination="P12-dO-A8K" id="h1x-Xz-2Zm"/>
-                                                                    </connections>
-                                                                </textField>
-                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V81-pi-dFP">
-                                                                    <rect key="frame" x="8" y="7" width="312" height="30"/>
-                                                                    <color key="backgroundColor" red="0.16434559226036072" green="0.68062376976013184" blue="0.80123674869537354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="30" id="3a6-8F-Ugz"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
-                                                                    <state key="normal" title="Add more">
-                                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                        <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                    </state>
-                                                                    <connections>
-                                                                        <action selector="btnAddAction:" destination="P12-dO-A8K" eventType="touchUpInside" id="ZLx-QT-Wm4"/>
-                                                                    </connections>
-                                                                </button>
-                                                            </subviews>
-                                                            <constraints>
-                                                                <constraint firstItem="V81-pi-dFP" firstAttribute="leading" secondItem="4S7-lc-aME" secondAttribute="leading" constant="8" id="4b4-ID-ugh"/>
-                                                                <constraint firstAttribute="bottom" secondItem="V81-pi-dFP" secondAttribute="bottom" constant="7" id="Hfs-2N-EHD"/>
-                                                                <constraint firstAttribute="trailing" secondItem="V81-pi-dFP" secondAttribute="trailing" constant="3" id="aE6-8O-aEm"/>
-                                                            </constraints>
-                                                        </tableViewCellContentView>
-                                                        <connections>
-                                                            <outlet property="btnAdd" destination="V81-pi-dFP" id="NVA-0H-gLi"/>
-                                                            <outlet property="txtFieldBargainUnitPrice" destination="Iuj-3s-x4W" id="wmR-YD-8ME"/>
-                                                            <outlet property="txtFieldDiameter" destination="yfj-z1-wOo" id="WNh-uz-cFL"/>
-                                                            <outlet property="txtFieldInitialUnitPrice" destination="Bj5-yo-6jf" id="odc-9D-ia1"/>
-                                                            <outlet property="txtFieldQuantity" destination="e2w-NV-COM" id="sbk-hN-URl"/>
-                                                        </connections>
-                                                    </tableViewCell>
-                                                </prototypes>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SQj-cG-ZsR" userLabel="CustomSubViews">
                                                 <rect key="frame" x="22" y="203" width="331" height="486"/>
@@ -1154,79 +1075,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Irj-R0-Ofx">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Irj-R0-Ofx">
                                 <rect key="frame" x="0.0" y="55" width="375" height="559"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeQuantityCell" rowHeight="66" id="dHC-Fn-oQQ" customClass="HomeQuantityCell">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="66"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeCell" id="pOY-bJ-1Bh" userLabel="HomeCell" customClass="HomeCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dHC-Fn-oQQ" id="Rko-MQ-sFc">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pOY-bJ-1Bh" id="4S7-lc-aME">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="786" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jKb-uM-vHh">
-                                                    <rect key="frame" x="209" y="10" width="140" height="29"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                                </textField>
-                                                <textField opaque="NO" clipsSubviews="YES" tag="777" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Size" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EsI-8a-Buj">
-                                                    <rect key="frame" x="35" y="10" width="140" height="29"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ZYQ-GG-vAJ">
+                                                    <rect key="frame" x="10" y="7" width="355" height="30"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" clipsSubviews="YES" tag="777" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Diameter" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="yfj-z1-wOo">
+                                                            <rect key="frame" x="0.0" y="0.0" width="81.5" height="30"/>
+                                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="P12-dO-A8K" id="JTt-9j-2ay"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" tag="786" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity in Tonne" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-NV-COM">
+                                                            <rect key="frame" x="91.5" y="0.0" width="81" height="30"/>
+                                                            <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="P12-dO-A8K" id="2vl-ma-hkT"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" tag="787" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Bj5-yo-6jf" userLabel="Txt Field Unit Price">
+                                                            <rect key="frame" x="182.5" y="0.0" width="81.5" height="30"/>
+                                                            <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="P12-dO-A8K" id="7ec-Ga-ix1"/>
+                                                            </connections>
+                                                        </textField>
+                                                        <textField opaque="NO" clipsSubviews="YES" tag="788" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bargain Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Iuj-3s-x4W" userLabel="Txt Field Bargain Price">
+                                                            <rect key="frame" x="274" y="0.0" width="81" height="30"/>
+                                                            <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
+                                                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                                            <connections>
+                                                                <outlet property="delegate" destination="P12-dO-A8K" id="h1x-Xz-2Zm"/>
+                                                            </connections>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="EsI-8a-Buj" secondAttribute="bottom" constant="26.5" id="7pB-oX-hUE"/>
-                                                <constraint firstItem="jKb-uM-vHh" firstAttribute="top" secondItem="Rko-MQ-sFc" secondAttribute="top" constant="10" id="82e-pr-W0v"/>
-                                                <constraint firstItem="jKb-uM-vHh" firstAttribute="leading" secondItem="EsI-8a-Buj" secondAttribute="trailing" constant="34" id="D2V-uC-yto"/>
-                                                <constraint firstAttribute="trailing" secondItem="jKb-uM-vHh" secondAttribute="trailing" constant="26" id="Eqe-Zy-YdR"/>
-                                                <constraint firstItem="jKb-uM-vHh" firstAttribute="height" secondItem="EsI-8a-Buj" secondAttribute="height" id="MeW-5c-VDN"/>
-                                                <constraint firstItem="EsI-8a-Buj" firstAttribute="top" secondItem="Rko-MQ-sFc" secondAttribute="top" constant="10" id="N5m-0K-Ts5"/>
-                                                <constraint firstAttribute="bottom" secondItem="jKb-uM-vHh" secondAttribute="bottom" constant="26.5" id="gnE-PX-Ijx"/>
-                                                <constraint firstItem="jKb-uM-vHh" firstAttribute="width" secondItem="EsI-8a-Buj" secondAttribute="width" id="h4y-V9-0v2"/>
-                                                <constraint firstItem="EsI-8a-Buj" firstAttribute="leading" secondItem="Rko-MQ-sFc" secondAttribute="leading" constant="35" id="rW9-QX-QPO"/>
+                                                <constraint firstItem="ZYQ-GG-vAJ" firstAttribute="top" secondItem="4S7-lc-aME" secondAttribute="top" constant="7" id="0KX-78-IJf"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZYQ-GG-vAJ" secondAttribute="bottom" constant="6.5" id="X1N-zJ-fzV"/>
+                                                <constraint firstAttribute="trailing" secondItem="ZYQ-GG-vAJ" secondAttribute="trailing" constant="10" id="Z2B-c3-292"/>
+                                                <constraint firstItem="ZYQ-GG-vAJ" firstAttribute="leading" secondItem="4S7-lc-aME" secondAttribute="leading" constant="10" id="zB1-0x-j9L"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="txtQuantity" destination="jKb-uM-vHh" id="VbZ-km-WyK"/>
-                                            <outlet property="txtSize" destination="EsI-8a-Buj" id="heF-O3-Pun"/>
+                                            <outlet property="txtFieldBargainUnitPrice" destination="Iuj-3s-x4W" id="wmR-YD-8ME"/>
+                                            <outlet property="txtFieldDiameter" destination="yfj-z1-wOo" id="WNh-uz-cFL"/>
+                                            <outlet property="txtFieldInitialUnitPrice" destination="Bj5-yo-6jf" id="odc-9D-ia1"/>
+                                            <outlet property="txtFieldQuantity" destination="e2w-NV-COM" id="sbk-hN-URl"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeAddMoreCell" rowHeight="59" id="ElD-gY-UUq" customClass="HomeAddMoreCell">
-                                        <rect key="frame" x="0.0" y="94" width="375" height="59"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ElD-gY-UUq" id="tpv-sD-Bz5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="58.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LL4-qR-wKw">
-                                                    <rect key="frame" x="34" y="14" width="308" height="31"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="31" id="B2U-uZ-Qxj"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="16"/>
-                                                    <state key="normal" title="Add More">
-                                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="LL4-qR-wKw" secondAttribute="trailing" constant="33" id="B9S-bL-EaU"/>
-                                                <constraint firstItem="LL4-qR-wKw" firstAttribute="leading" secondItem="tpv-sD-Bz5" secondAttribute="leading" constant="34" id="ErZ-47-37D"/>
-                                                <constraint firstItem="LL4-qR-wKw" firstAttribute="top" secondItem="tpv-sD-Bz5" secondAttribute="top" constant="14" id="JGd-s1-mBj"/>
-                                                <constraint firstAttribute="bottom" secondItem="LL4-qR-wKw" secondAttribute="bottom" constant="13.5" id="OEK-2K-Xdf"/>
-                                                <constraint firstItem="LL4-qR-wKw" firstAttribute="centerX" secondItem="tpv-sD-Bz5" secondAttribute="centerX" id="bsh-MZ-92w"/>
-                                                <constraint firstItem="LL4-qR-wKw" firstAttribute="centerY" secondItem="tpv-sD-Bz5" secondAttribute="centerY" id="uBh-hn-ysl"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HomeProductDetailCell" rowHeight="398" id="uiI-ap-QgW" customClass="HomeProductDetailCell">
-                                        <rect key="frame" x="0.0" y="153" width="375" height="398"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="398"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uiI-ap-QgW" id="s7w-2Q-8tC">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="397.5"/>
@@ -1447,26 +1364,24 @@
                                             <outlet property="txtDeliveryCity" destination="5yM-KV-yCr" id="9oP-re-gRb"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeQuotationCell" id="lv3-9u-bhR" customClass="HomeQuotationCell">
-                                        <rect key="frame" x="0.0" y="551" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeQuotationCell" rowHeight="80" id="lv3-9u-bhR" customClass="HomeQuotationCell">
+                                        <rect key="frame" x="0.0" y="470" width="375" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lv3-9u-bhR" id="nAq-Kx-KT7">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PuF-gh-2bp">
-                                                    <rect key="frame" x="26" y="6" width="135" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PuF-gh-2bp">
+                                                    <rect key="frame" x="14" y="8" width="346" height="19"/>
+                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="Z65-Fe-HNY" id="ztc-6m-hEO"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Brands" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wt-kp-EKO">
-                                                    <rect key="frame" x="278" y="10" width="49" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wt-kp-EKO">
+                                                    <rect key="frame" x="14" y="42" width="346" height="18"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1476,53 +1391,81 @@
                                                     </connections>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1Wt-kp-EKO" firstAttribute="leading" secondItem="nAq-Kx-KT7" secondAttribute="leading" constant="14" id="BKU-NS-kar"/>
+                                                <constraint firstItem="PuF-gh-2bp" firstAttribute="leading" secondItem="nAq-Kx-KT7" secondAttribute="leading" constant="14" id="LSs-Sm-Ndy"/>
+                                                <constraint firstAttribute="trailing" secondItem="1Wt-kp-EKO" secondAttribute="trailing" constant="15" id="Z48-Q1-5U6"/>
+                                                <constraint firstItem="PuF-gh-2bp" firstAttribute="top" secondItem="nAq-Kx-KT7" secondAttribute="top" constant="8" id="jDh-HO-aiB"/>
+                                                <constraint firstAttribute="bottom" secondItem="1Wt-kp-EKO" secondAttribute="bottom" constant="19.5" id="tYc-S4-XJz"/>
+                                                <constraint firstAttribute="trailing" secondItem="PuF-gh-2bp" secondAttribute="trailing" constant="15" id="ywM-Gt-xjA"/>
+                                                <constraint firstItem="1Wt-kp-EKO" firstAttribute="top" secondItem="PuF-gh-2bp" secondAttribute="bottom" constant="15" id="zMr-4E-6i6"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="lblBrands" destination="1Wt-kp-EKO" id="fY5-7C-FF8"/>
                                             <outlet property="txtQuotation" destination="PuF-gh-2bp" id="hqq-aO-9u0"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeBargainCell" id="fov-cj-PN3" customClass="HomeBargainCell">
-                                        <rect key="frame" x="0.0" y="595" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HomeBargainCell" rowHeight="82" id="fov-cj-PN3" customClass="HomeBargainCell">
+                                        <rect key="frame" x="0.0" y="550" width="375" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fov-cj-PN3" id="4NL-V7-RSV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7R-Ad-pAP">
-                                                    <rect key="frame" x="310" y="6" width="42" height="25"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="tintColor" red="0.18039215689999999" green="0.73333333329999995" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <color key="onTintColor" red="0.1333333333" green="0.59607843140000005" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <connections>
-                                                        <action selector="clkBargainSwitch:" destination="Z65-Fe-HNY" eventType="valueChanged" id="Eg8-ew-WSL"/>
-                                                    </connections>
-                                                </switch>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omA-vI-5aY">
-                                                    <rect key="frame" x="205" y="6" width="97" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <nil key="textColor"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omA-vI-5aY">
+                                                    <rect key="frame" x="14" y="43" width="344" height="20.5"/>
+                                                    <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <outlet property="delegate" destination="Z65-Fe-HNY" id="MdD-8b-Zg3"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Want to bargain further?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3d-Gy-yao">
-                                                    <rect key="frame" x="23" y="11" width="163" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Want to bargain further?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i3d-Gy-yao">
+                                                    <rect key="frame" x="14" y="11" width="267" height="18"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <switch opaque="NO" tag="3" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x7R-Ad-pAP">
+                                                    <rect key="frame" x="309" y="4" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="49" id="jGH-Yw-OOa"/>
+                                                        <constraint firstAttribute="height" constant="31" id="nMz-VG-QYY"/>
+                                                    </constraints>
+                                                    <color key="tintColor" red="0.18039215689999999" green="0.73333333329999995" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="onTintColor" red="0.1333333333" green="0.59607843140000005" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <connections>
+                                                        <action selector="clkBargainSwitch:" destination="Z65-Fe-HNY" eventType="valueChanged" id="mV7-1y-0fu"/>
+                                                    </connections>
+                                                </switch>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="omA-vI-5aY" secondAttribute="trailing" constant="17" id="29F-oc-pEy"/>
+                                                <constraint firstItem="i3d-Gy-yao" firstAttribute="leading" secondItem="4NL-V7-RSV" secondAttribute="leading" constant="14" id="GSh-Fp-M4S"/>
+                                                <constraint firstItem="omA-vI-5aY" firstAttribute="top" secondItem="x7R-Ad-pAP" secondAttribute="bottom" constant="8" id="Izs-I4-bDz"/>
+                                                <constraint firstAttribute="bottom" secondItem="omA-vI-5aY" secondAttribute="bottom" constant="18" id="NMK-os-UDq"/>
+                                                <constraint firstItem="omA-vI-5aY" firstAttribute="top" secondItem="i3d-Gy-yao" secondAttribute="bottom" constant="14" id="WDg-zR-rAw"/>
+                                                <constraint firstItem="omA-vI-5aY" firstAttribute="leading" secondItem="4NL-V7-RSV" secondAttribute="leading" constant="14" id="ag5-U0-jiH"/>
+                                                <constraint firstItem="i3d-Gy-yao" firstAttribute="top" secondItem="4NL-V7-RSV" secondAttribute="top" constant="11" id="bDi-db-AcF"/>
+                                                <constraint firstItem="x7R-Ad-pAP" firstAttribute="leading" secondItem="i3d-Gy-yao" secondAttribute="trailing" constant="28" id="boo-Vt-OZ0"/>
+                                                <constraint firstItem="omA-vI-5aY" firstAttribute="top" secondItem="x7R-Ad-pAP" secondAttribute="bottom" constant="8" id="d5k-k8-ou7"/>
+                                                <constraint firstItem="x7R-Ad-pAP" firstAttribute="top" secondItem="4NL-V7-RSV" secondAttribute="top" constant="4" id="k8B-Vq-ko2"/>
+                                                <constraint firstAttribute="trailing" secondItem="x7R-Ad-pAP" secondAttribute="trailing" constant="17" id="tOR-PL-S20"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="isBargainRequired" destination="x7R-Ad-pAP" id="W4p-qP-GD7"/>
                                             <outlet property="txtBargainAmount" destination="omA-vI-5aY" id="312-dg-Fcj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="Z65-Fe-HNY" id="eRb-1d-kM7"/>
+                                    <outlet property="delegate" destination="Z65-Fe-HNY" id="yWf-2h-LYv"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRQ-Zh-3b1">
                                 <rect key="frame" x="0.0" y="614" width="375" height="52.5"/>
@@ -1538,13 +1481,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Irj-R0-Ofx" firstAttribute="leading" secondItem="Prc-ed-ZvH" secondAttribute="leading" id="8ty-AF-Pzv"/>
                             <constraint firstItem="Zr1-a1-P4q" firstAttribute="top" secondItem="lRQ-Zh-3b1" secondAttribute="bottom" id="HLv-Lq-QB3"/>
+                            <constraint firstItem="lRQ-Zh-3b1" firstAttribute="top" secondItem="Irj-R0-Ofx" secondAttribute="bottom" id="la3-DE-047"/>
                             <constraint firstAttribute="trailing" secondItem="lRQ-Zh-3b1" secondAttribute="trailing" id="n9k-P4-zRU"/>
+                            <constraint firstItem="Irj-R0-Ofx" firstAttribute="top" secondItem="uP1-MQ-vte" secondAttribute="bottom" constant="35" id="nKK-ER-GsH"/>
                             <constraint firstItem="lRQ-Zh-3b1" firstAttribute="leading" secondItem="Prc-ed-ZvH" secondAttribute="leading" id="sGd-Pm-Egf"/>
+                            <constraint firstAttribute="trailing" secondItem="Irj-R0-Ofx" secondAttribute="trailing" id="sZg-hY-rTi"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="switchIsBargainRequired" destination="x7R-Ad-pAP" id="0vD-zN-0Jh"/>
+                        <outlet property="tblView" destination="Irj-R0-Ofx" id="zyA-C1-vTq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjb-tf-pCV" userLabel="First Responder" sceneMemberID="firstResponder"/>

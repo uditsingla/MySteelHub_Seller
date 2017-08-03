@@ -10,5 +10,6 @@
 
 @interface HomeBargainCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UITextField *txtBargainAmount;
+@property (weak, nonatomic) IBOutlet UISwitch *isBargainRequired;
 
 @end
