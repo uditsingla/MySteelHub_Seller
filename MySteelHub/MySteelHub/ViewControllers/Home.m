@@ -55,6 +55,10 @@
     NSMutableArray *arrayTaxes;
     NSString *selectedTax;
     
+    NSString *initialAmount;
+    NSString *bargainAmount;
+    BOOL isBestPrice;
+    
     //UILabel *lbCity,*lbState,*lbAmount,*lbQuotationAmount,*lbBargainAmount;
     
     //for content view border
@@ -102,6 +106,10 @@
     // Do any additional setup after loading the view.
     
     model_manager.requirementManager.requirementDetailDelegate = self;
+    
+    initialAmount = @"";
+    bargainAmount = @"";
+    isBestPrice = false;
 
 
     //switch controlls reframe
@@ -368,6 +376,7 @@
         txtFieldBargainAmount.userInteractionEnabled = NO;
         switchBargain.userInteractionEnabled = NO;
          */
+        bargainAmount = _selectedRequirement.bargainAmount;
         btnSubmit.hidden = YES;
     }
     else if(_selectedRequirement.isBestPrice)
@@ -375,6 +384,7 @@
         txtFieldBargainAmount.userInteractionEnabled = NO;
         switchBargain.userInteractionEnabled = NO;
       */
+        isBestPrice = _selectedRequirement.isBestPrice;
         btnSubmit.hidden = YES;
     }
     
@@ -633,12 +643,14 @@
     pickerPreferredBrandsView.hidden = YES;
     
     
-    if(arraySelectedPreferredBrands.count>0)
+    /*if(arraySelectedPreferredBrands.count>0)
     {
         
         [btnBrands setTitle:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]] forState:UIControlStateNormal];
         
-    }
+    }*/
+    
+    [tblView reloadData];
 }
 
 
@@ -730,7 +742,8 @@
             case 0:
             {
                 HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell"];
-                
+                cell.userInteractionEnabled = YES;
+
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 [cell.contentView layoutIfNeeded];
@@ -862,25 +875,37 @@
             case 2:
             {
                 HomeQuotationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeQuotationCell"];
-                
+                cell.userInteractionEnabled = YES;
+
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 [cell.contentView layoutIfNeeded];
                 
-                cell.txtQuotation.userInteractionEnabled = true;
+                cell.txtQuotation.userInteractionEnabled = false;
                 cell.lblBrands.userInteractionEnabled = true;
 
                 
                 if(_selectedRequirement.initialAmount.intValue>0)
                 {
                     cell.txtQuotation.userInteractionEnabled = false;
+                    cell.lblBrands.userInteractionEnabled = false;
+
                     cell.txtQuotation.text = [NSString stringWithFormat:@"Quotation Amount (Rs) : %@", _selectedRequirement.initialAmount];
-                }                
+                }
+                else
+                {
+                    cell.txtQuotation.text = [NSString stringWithFormat:@"Quotation Amount (Rs) : %@", initialAmount];
+                }
                 
                 if(_selectedRequirement.arrayBrands.count>0)
                 {
                     cell.lblBrands.text = [NSString stringWithFormat:@"Brands : %@",[_selectedRequirement.arrayBrands componentsJoinedByString:@","]];
                     cell.lblBrands.userInteractionEnabled = false;
+                    cell.txtQuotation.userInteractionEnabled = false;
+                }
+                else
+                {
+                    cell.lblBrands.text = [NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@","]];
                 }
                 
                 return cell;
@@ -890,20 +915,21 @@
             case 3:
             {
                 HomeBargainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeBargainCell"];
-                
+                cell.userInteractionEnabled = YES;
+
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 [cell.contentView layoutIfNeeded];
 
                 cell.isBargainRequired.userInteractionEnabled = true;
-                cell.txtBargainAmount.userInteractionEnabled = true;
+                cell.txtBargainAmount.userInteractionEnabled = false;
                 
                 if(_selectedRequirement.bargainAmount.intValue>0)
                 {
                     cell.isBargainRequired.userInteractionEnabled = false;
                     cell.txtBargainAmount.userInteractionEnabled = false;
                     cell.txtBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount (Rs) : %@", _selectedRequirement.bargainAmount];
-
+                    cell.isBargainRequired.on = !_selectedRequirement.isBestPrice;
                     btnSubmit.hidden = YES;
                 }
                 else if(_selectedRequirement.isBestPrice || _selectedRequirement.isAccepted)
@@ -911,9 +937,26 @@
                     cell.isBargainRequired.userInteractionEnabled = false;
                     cell.txtBargainAmount.userInteractionEnabled = false;
                     
+                    cell.isBargainRequired.on = !_selectedRequirement.isBestPrice;
+
+                    
                     btnSubmit.hidden = YES;
                 }
+                else
+                {
+                    cell.txtBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount (Rs) : %@", bargainAmount];
+                    cell.isBargainRequired.on = !isBestPrice;
+
+                }
                 
+                if(cell.isBargainRequired.on)
+                {
+                    cell.txtBargainAmount.hidden = false;
+                }
+                else
+                {
+                    cell.txtBargainAmount.hidden = true;
+                }
 
                 return cell;
                 
@@ -1043,9 +1086,9 @@
     for (int i=0; i<arrayTblDict.count; i++) {
         amount += [[[arrayTblDict objectAtIndex:i] valueForKey:@"unit price"] doubleValue] * [[[arrayTblDict objectAtIndex:i] valueForKey:@"quantity"] doubleValue];
     }
-    /*
-    txtFieldQuotation.text = [NSString stringWithFormat:@"%.0f",amount];
-     */
+    
+    initialAmount = [NSString stringWithFormat:@"%.0f",amount];
+    [tblView reloadData];
 }
 
 -(void)calculateBargainAmount
@@ -1056,7 +1099,8 @@
         amount += [[[arrayTblDict objectAtIndex:i] valueForKey:@"new unit price"] doubleValue] * [[[arrayTblDict objectAtIndex:i] valueForKey:@"quantity"] doubleValue];
     }
     
-//    txtFieldBargainAmount.text = [NSString stringWithFormat:@"%.0f",amount];
+    bargainAmount = [NSString stringWithFormat:@"%.0f",amount];
+    [tblView reloadData];
 }
 
 -(IBAction)btnClicked:(id)sender
@@ -1103,51 +1147,18 @@
     
 }
 
-- (IBAction)bargainSwitchAction:(id)sender
-{
-    /*
-    if(switchBargain.isOn)
-    {
-        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_selectedRequirement.arraySpecificationsResponse];
-        
-        [_selectedRequirement.arraySpecificationsResponse removeAllObjects];
-        
-        for(int k=0 ; k<tempArray.count ; k++)
-        {
-            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
-            [dict setValue:@"" forKey:@"new unit price"];
-            
-            [_selectedRequirement.arraySpecificationsResponse addObject:dict];
-        }
-        [tblView reloadData];
-        
-    }
-    else
-    {
-        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_selectedRequirement.arraySpecificationsResponse];
-        
-        [_selectedRequirement.arraySpecificationsResponse removeAllObjects];
-        
-        for(int k=0 ; k<tempArray.count ; k++)
-        {
-            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
-            [dict removeObjectForKey:@"new unit price"];
-            
-            [_selectedRequirement.arraySpecificationsResponse addObject:dict];
-        }
-        [tblView reloadData];
-    }
-     */
-}
 
 - (IBAction)clkButtonBrands:(id)sender
 {
     pickerPreferredBrandsView.hidden = NO;
 }
 
-- (IBAction)clkBrands:(UIGestureRecognizer *)sender {
+- (IBAction)clkBrands:(UITapGestureRecognizer *)sender {
     
     NSLog(@"brands clicked");
+    
+    pickerPreferredBrandsView.hidden = NO;
+
 }
 
 #pragma mark - TextField Delegates
@@ -1333,8 +1344,8 @@
 }
 
 - (IBAction)submitBtnAction:(UIButton *)sender {
-    /*
-    if(viewBargain.hidden)
+    
+    if(!_selectedRequirement.isBargainRequired)
     {
         if(arraySelectedPreferredBrands.count==0)
         {
@@ -1357,7 +1368,7 @@
             
             [SVProgressHUD show];
      
-            _selectedRequirement.initialAmount = txtFieldQuotation.text;
+            _selectedRequirement.initialAmount = initialAmount;
      
             [_selectedRequirement.arrayBrands removeAllObjects];
             _selectedRequirement.arrayBrands = arraySelectedPreferredBrands;
@@ -1367,7 +1378,7 @@
                     [SVProgressHUD dismiss];
                     btnSubmit.hidden = YES;
      
-                    txtFieldQuotation.userInteractionEnabled = NO;
+                    //txtFieldQuotation.userInteractionEnabled = NO;
      
                     [self showAlert:@"Quotation posted successfully"];
                     [tblView reloadData];
@@ -1376,6 +1387,7 @@
                 {
                     [SVProgressHUD dismiss];
                     [self showAlert:@"Something went wrong. Please try again"];
+                    _selectedRequirement.initialAmount = @"";
                 }
             }];
         }
@@ -1384,7 +1396,7 @@
 
     }
     
-    else if(switchBargain.isOn)
+    else if(!isBestPrice)
     {
         bool isQuotationValid = true;
         
@@ -1406,8 +1418,8 @@
             [SVProgressHUD show];
             
      
-            _selectedRequirement.bargainAmount = txtFieldBargainAmount.text;
-            _selectedRequirement.isBestPrice = !switchBargain.isOn;
+            _selectedRequirement.bargainAmount = bargainAmount;
+            _selectedRequirement.isBestPrice = isBestPrice;
      
             
             [_selectedRequirement acceptRejectBargain:^(NSDictionary *json, NSError *error) {
@@ -1422,6 +1434,9 @@
                 else
                 {
                     [self showAlert:@"Some error occured. Please try again"];
+                    _selectedRequirement.bargainAmount = @"";
+                    _selectedRequirement.isBestPrice = false;
+
                 }
             }];
         }
@@ -1431,7 +1446,7 @@
     {
         [SVProgressHUD show];
         
-        //_selectedRequirement.isBestPrice = !switchBargain.isOn;
+        _selectedRequirement.isBestPrice = isBestPrice;
         [_selectedRequirement acceptRejectBargain:^(NSDictionary *json, NSError *error) {
             [SVProgressHUD dismiss];
             if(json)
@@ -1444,11 +1459,12 @@
             else
             {
                 [self showAlert:@"Some error occured. Please try again"];
+                _selectedRequirement.isBestPrice = false;
             }
         }];
 
     }
-     */
+    
 }
 
 - (IBAction)requiredByDateBtnAction:(UIButton *)sender {
@@ -1498,6 +1514,43 @@
 - (IBAction)clkBargainSwitch:(UISwitch *)sender {
     
     NSLog(@"switch toggel button clicked");
+    
+    isBestPrice = !sender.isOn;
+    
+    if(sender.isOn)
+    {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_selectedRequirement.arraySpecificationsResponse];
+        
+        [_selectedRequirement.arraySpecificationsResponse removeAllObjects];
+        
+        for(int k=0 ; k<tempArray.count ; k++)
+        {
+            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+            [dict setValue:@"" forKey:@"new unit price"];
+            
+            [_selectedRequirement.arraySpecificationsResponse addObject:dict];
+        }
+        bargainAmount = @"";
+        [tblView reloadData];
+        
+    }
+    else
+    {
+        NSMutableArray *tempArray = [NSMutableArray arrayWithArray:_selectedRequirement.arraySpecificationsResponse];
+        
+        [_selectedRequirement.arraySpecificationsResponse removeAllObjects];
+        
+        for(int k=0 ; k<tempArray.count ; k++)
+        {
+            NSMutableDictionary *dict = [[tempArray objectAtIndex:k] mutableCopy];
+            [dict removeObjectForKey:@"new unit price"];
+            
+            [_selectedRequirement.arraySpecificationsResponse addObject:dict];
+        }
+        bargainAmount = @"";
+        [tblView reloadData];
+    }
+    
     
 }
 

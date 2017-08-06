@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="P12-dO-A8K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="P12-dO-A8K">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1094,18 +1094,12 @@
                                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits"/>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="P12-dO-A8K" id="JTt-9j-2ay"/>
-                                                            </connections>
                                                         </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="786" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Quantity in Tonne" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="e2w-NV-COM">
                                                             <rect key="frame" x="91.5" y="0.0" width="81" height="30"/>
                                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
-                                                            <connections>
-                                                                <outlet property="delegate" destination="P12-dO-A8K" id="2vl-ma-hkT"/>
-                                                            </connections>
                                                         </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="787" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Unit Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Bj5-yo-6jf" userLabel="Txt Field Unit Price">
                                                             <rect key="frame" x="182.5" y="0.0" width="81.5" height="30"/>
@@ -1113,7 +1107,7 @@
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                                             <connections>
-                                                                <outlet property="delegate" destination="P12-dO-A8K" id="7ec-Ga-ix1"/>
+                                                                <outlet property="delegate" destination="Z65-Fe-HNY" id="AQ7-Kl-yb7"/>
                                                             </connections>
                                                         </textField>
                                                         <textField opaque="NO" clipsSubviews="YES" tag="788" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bargain Price" textAlignment="natural" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Iuj-3s-x4W" userLabel="Txt Field Bargain Price">
@@ -1122,7 +1116,7 @@
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
                                                             <connections>
-                                                                <outlet property="delegate" destination="P12-dO-A8K" id="h1x-Xz-2Zm"/>
+                                                                <outlet property="delegate" destination="Z65-Fe-HNY" id="b72-Ft-e6O"/>
                                                             </connections>
                                                         </textField>
                                                     </subviews>
@@ -1380,14 +1374,14 @@
                                                         <outlet property="delegate" destination="Z65-Fe-HNY" id="ztc-6m-hEO"/>
                                                     </connections>
                                                 </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wt-kp-EKO">
+                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brands" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wt-kp-EKO">
                                                     <rect key="frame" x="14" y="42" width="346" height="18"/>
                                                     <gestureRecognizers/>
                                                     <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                                     <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="k9W-U1-lsw" appends="YES" id="02M-v6-Gbd"/>
+                                                        <outletCollection property="gestureRecognizers" destination="oO6-7C-mVH" appends="YES" id="DZu-sM-ty0"/>
                                                     </connections>
                                                 </label>
                                             </subviews>
@@ -1410,7 +1404,7 @@
                                         <rect key="frame" x="0.0" y="550" width="375" height="82"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fov-cj-PN3" id="4NL-V7-RSV">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="81.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="omA-vI-5aY">
@@ -1477,6 +1471,9 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitBtnAction:" destination="Z65-Fe-HNY" eventType="touchUpInside" id="9xT-Sq-mBh"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1495,11 +1492,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zjb-tf-pCV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <gestureRecognizer id="k9W-U1-lsw">
+                <tapGestureRecognizer id="oO6-7C-mVH">
                     <connections>
-                        <action selector="clkBrands:" destination="Z65-Fe-HNY" id="eGz-fu-H2b"/>
+                        <action selector="clkBrands:" destination="Z65-Fe-HNY" id="LV5-qW-bF7"/>
                     </connections>
-                </gestureRecognizer>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1679.5" y="-446.5"/>
         </scene>
