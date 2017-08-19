@@ -364,12 +364,12 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/RequirementManager/RequirementManager.m"
-                  timestampString = "514050609.918261"
+                  timestampString = "524847633.869668"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "289"
                   endingLineNumber = "289"
-                  offsetFromSymbolStart = "67">
+                  offsetFromSymbolStart = "84">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -379,12 +379,12 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/RequirementManager/RequirementManager.m"
-                  timestampString = "514050609.921463"
+                  timestampString = "524847633.872557"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "290"
                   endingLineNumber = "290"
-                  offsetFromSymbolStart = "58">
+                  offsetFromSymbolStart = "56">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -701,7 +701,8 @@
 				TargetAttributes = {
 					46F62CA21C908FDC00A61B47 = {
 						CreatedOnToolsVersion = 7.2;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = LC334ADL8X;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1040,7 +1041,7 @@
 				CODE_SIGN_ENTITLEMENTS = MySteelHub/MySteelHub.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LC334ADL8X;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MysteelHub/MysteelHub-Prefix.pch";
 				INFOPLIST_FILE = MySteelHub/Info.plist;
@@ -1061,7 +1062,7 @@
 				CODE_SIGN_ENTITLEMENTS = MySteelHub/MySteelHub.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = LC334ADL8X;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MysteelHub/MysteelHub-Prefix.pch";
 				INFOPLIST_FILE = MySteelHub/Info.plist;
