@@ -157,17 +157,17 @@
     lblCity.text=[requirement.city capitalizedString];
 
     
-    UILabel *lblQuantity=(UILabel*)[view viewWithTag:222];
+    UILabel *lblState=(UILabel*)[view viewWithTag:222];
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"(name == %@)", [requirement.state capitalizedString]];
     NSArray *filteredArray = [model_manager.requirementManager.arrayStates filteredArrayUsingPredicate:predicate];
     
     if(filteredArray.count>0) {
         NSLog(@"selected state....%@",[[filteredArray firstObject] valueForKey:@"code"]);
-        lblQuantity.text = [[filteredArray firstObject] valueForKey:@"code"];
+        lblState.text = [[filteredArray firstObject] valueForKey:@"code"];
         
     }
     else
-        lblQuantity.text=[requirement.state capitalizedString];
+        lblState.text=[requirement.state capitalizedString];
     
     UILabel *lblDate=(UILabel*)[view viewWithTag:333];
     lblDate.text=[requirement.requiredByDate capitalizedString];
@@ -175,9 +175,67 @@
     UILabel *lblAmount=(UILabel*)[view viewWithTag:444];
     lblAmount.text=[requirement.budget capitalizedString];
     
+    UIImageView *imgStatusImage = (UIImageView*)[view viewWithTag:555];
+    imgStatusImage.backgroundColor = [UIColor clearColor];
+    
     UIImageView *imgViewStatus=(UIImageView*)[view viewWithTag:777];
     imgViewStatus.backgroundColor = [UIColor clearColor];
     
+    
+    
+    //----test start
+    lblCity.font = fontRaleway13;
+    lblState.font = fontRaleway13;
+    lblDate.font = fontRaleway13;
+    lblAmount.font = fontRaleway13;
+    
+    imgStatusImage.hidden = true;
+    
+    if(requirement.isAccepted)
+    {
+        imgViewStatus.backgroundColor = GreenColor;
+        imgViewStatus.hidden = false;
+        
+        imgStatusImage.image = [UIImage imageNamed:@"checkDouble.png"];
+    }
+    else if(!requirement.isSellerRead)
+    {
+        imgViewStatus.backgroundColor = RedColor;
+        
+        lblCity.font = fontRalewayBold12;
+        lblState.font = fontRalewayBold12;
+        lblDate.font = fontRalewayBold12;
+        lblAmount.font = fontRalewayBold12;
+    }
+    
+    else if(!requirement.isSellerReadBargain && requirement.isSellerReadBargain)
+    {
+        imgViewStatus.backgroundColor = OrangeColor;
+        imgViewStatus.hidden = false;
+        imgStatusImage.image = [UIImage imageNamed:@"checkSingle.png"];
+        
+    }
+    else if(requirement.isSellerReadBargain)
+    {
+        imgViewStatus.backgroundColor = PurpleColor
+        imgViewStatus.hidden = false;
+        imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
+        
+        lblCity.font = fontRalewayBold12;
+        lblState.font = fontRalewayBold12;
+        lblDate.font = fontRalewayBold12;
+        lblAmount.font = fontRalewayBold12;
+        
+    }
+    else
+    {
+        imgViewStatus.backgroundColor = kBlueColor;
+    }
+    
+    
+    
+    //---------test done
+    /*
     if(requirement.isAccepted)
         imgViewStatus.backgroundColor = GreenColor
     else if(!requirement.isSellerRead)
@@ -186,7 +244,7 @@
         imgViewStatus.backgroundColor = OrangeColor
     else
         imgViewStatus.backgroundColor = kBlueColor;
-
+*/
         
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;

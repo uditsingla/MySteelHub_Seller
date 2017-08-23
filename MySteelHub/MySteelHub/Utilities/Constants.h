@@ -36,6 +36,21 @@
 
 #define BlackBackground  [UIColor colorWithRed:39/255.00 green:39/255.00 blue:39/255.00 alpha:1];
 
+#define PurpleColor  [UIColor colorWithRed:128/255.00 green:0/255.00 blue:128/255.00 alpha:1];
+
 #define Other  [UIColor colorWithRed:34/255.00 green:36/255.00 blue:85/255.00 alpha:1];
+
+
+#define fontRaleway12 [UIFont fontWithName:@"Raleway-Regular" size:12]
+#define fontRaleway13 [UIFont fontWithName:@"Raleway-Regular" size:13]
+#define fontRaleway14 ((UIFont *)[UIFont fontWithName:@"Raleway-Regular" size:14])
+#define fontRaleway16 ((UIFont *)[UIFont fontWithName:@"Raleway-Regular" size:16])
+
+
+#define fontRalewayBold12 [UIFont fontWithName:@"Raleway-SemiBold" size:12]
+#define fontRalewayBold13 [UIFont fontWithName:@"Raleway-SemiBold" size:13]
+#define fontRalewayBold14 ((UIFont *)[UIFont fontWithName:@"Raleway-SemiBold" size:14])
+#define fontRalewayBold16 ((UIFont *)[UIFont fontWithName:@"Raleway-SemiBold" size:16])
+
 
 #endif /* Constants_h */
