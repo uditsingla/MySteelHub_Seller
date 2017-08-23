@@ -158,11 +158,13 @@
     [RequestManager asynchronousRequestWithPath:@"auth/logout" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
         NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
-            completionBlock(json,nil);
             [[NSUserDefaults standardUserDefaults] setValue:nil forKey:@"userID"];
             [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"isAutoLogin"];
             
             [model_manager.requirementManager resetData];
+            
+            completionBlock(json,nil);
+
         }
         else{
             completionBlock(nil,nil);
