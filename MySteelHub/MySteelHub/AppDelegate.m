@@ -307,13 +307,14 @@
     
     [self handlePushNotification:notification.request.content.userInfo];
     
-    completionHandler(UNNotificationPresentationOptionAlert);
+    //completionHandler(UNNotificationPresentationOptionAlert);
 }
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void(^)())completionHandler{
     
     NSLog(@"Userinfo %@",response.notification.request.content.userInfo);
     
+    [self handlePushNotification:response.notification.request.content.userInfo];
 }
 
 

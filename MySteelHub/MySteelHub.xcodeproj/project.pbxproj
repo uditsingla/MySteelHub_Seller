@@ -106,6 +106,12 @@
 		7C183AF51D284B86003159F9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7C183AEE1D284B86003159F9 /* SVProgressHUD.bundle */; };
 		7C183AF61D284B86003159F9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C183AF01D284B86003159F9 /* SVProgressHUD.m */; };
 		7C183AF71D284B86003159F9 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C183AF21D284B86003159F9 /* SVRadialGradientLayer.m */; };
+		7C19F3441F507D1800A4F853 /* checkDouble.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C19F33E1F507D1800A4F853 /* checkDouble.png */; };
+		7C19F3451F507D1800A4F853 /* checkDouble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C19F33F1F507D1800A4F853 /* checkDouble@2x.png */; };
+		7C19F3461F507D1800A4F853 /* checkSingle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C19F3401F507D1800A4F853 /* checkSingle.png */; };
+		7C19F3471F507D1800A4F853 /* checkSingle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C19F3411F507D1800A4F853 /* checkSingle@2x.png */; };
+		7C19F3481F507D1800A4F853 /* notificationBell.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C19F3421F507D1800A4F853 /* notificationBell.png */; };
+		7C19F3491F507D1800A4F853 /* notificationBell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C19F3431F507D1800A4F853 /* notificationBell@2x.png */; };
 		7C4CDAAF1D96F30400B886EC /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C4CDAAE1D96F30400B886EC /* UserNotifications.framework */; };
 		7C53E0521D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53E0471D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.m */; };
 		7C53E0531D34024800B7DD43 /* SWCellScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C53E0491D34024800B7DD43 /* SWCellScrollView.m */; };
@@ -265,6 +271,12 @@
 		7C183AF01D284B86003159F9 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		7C183AF11D284B86003159F9 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		7C183AF21D284B86003159F9 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		7C19F33E1F507D1800A4F853 /* checkDouble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkDouble.png; sourceTree = "<group>"; };
+		7C19F33F1F507D1800A4F853 /* checkDouble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkDouble@2x.png"; sourceTree = "<group>"; };
+		7C19F3401F507D1800A4F853 /* checkSingle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkSingle.png; sourceTree = "<group>"; };
+		7C19F3411F507D1800A4F853 /* checkSingle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkSingle@2x.png"; sourceTree = "<group>"; };
+		7C19F3421F507D1800A4F853 /* notificationBell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notificationBell.png; sourceTree = "<group>"; };
+		7C19F3431F507D1800A4F853 /* notificationBell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notificationBell@2x.png"; sourceTree = "<group>"; };
 		7C4CDAAE1D96F30400B886EC /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		7C53E0461D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+SWUtilityButtons.h"; sourceTree = "<group>"; };
 		7C53E0471D34024800B7DD43 /* NSMutableArray+SWUtilityButtons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SWUtilityButtons.m"; sourceTree = "<group>"; };
@@ -640,6 +652,12 @@
 		7CECA2521D4005EC005B3227 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7C19F33E1F507D1800A4F853 /* checkDouble.png */,
+				7C19F33F1F507D1800A4F853 /* checkDouble@2x.png */,
+				7C19F3401F507D1800A4F853 /* checkSingle.png */,
+				7C19F3411F507D1800A4F853 /* checkSingle@2x.png */,
+				7C19F3421F507D1800A4F853 /* notificationBell.png */,
+				7C19F3431F507D1800A4F853 /* notificationBell@2x.png */,
 				46EF53AA1D45ECAE0052AB86 /* newrequirment@2x.png */,
 				46EF53AB1D45ECAE0052AB86 /* newrequirment@3x.png */,
 				7CECA2531D4005EC005B3227 /* contact@2x.png */,
@@ -737,9 +755,11 @@
 				7C183AF51D284B86003159F9 /* SVProgressHUD.bundle in Resources */,
 				4699429C1D3BFBFD00378968 /* Raleway-ExtraBoldItalic.ttf in Resources */,
 				1885054D1CDDE45100086EC8 /* date@2x.png in Resources */,
+				7C19F3441F507D1800A4F853 /* checkDouble.png in Resources */,
 				188505471CDDE45100086EC8 /* brand@2x.png in Resources */,
 				188505691CDDE45100086EC8 /* zip@2x.png in Resources */,
 				188505551CDDE45100086EC8 /* password@2x.png in Resources */,
+				7C19F3471F507D1800A4F853 /* checkSingle@2x.png in Resources */,
 				188505561CDDE45100086EC8 /* password@3x.png in Resources */,
 				4699429B1D3BFBFD00378968 /* Raleway-ExtraBold.ttf in Resources */,
 				7CECA2641D4005EC005B3227 /* home@3x.png in Resources */,
@@ -769,6 +789,7 @@
 				188505581CDDE45100086EC8 /* passwordOn@3x.png in Resources */,
 				188505661CDDE45100086EC8 /* user@3x.png in Resources */,
 				1885054C1CDDE45100086EC8 /* company@3x.png in Resources */,
+				7C19F3481F507D1800A4F853 /* notificationBell.png in Resources */,
 				188505541CDDE45100086EC8 /* mm@3x.png in Resources */,
 				188505571CDDE45100086EC8 /* passwordOn@2x.png in Resources */,
 				4699429E1D3BFBFD00378968 /* Raleway-ExtraLightItalic.ttf in Resources */,
@@ -777,6 +798,7 @@
 				188505511CDDE45100086EC8 /* mail@2x.png in Resources */,
 				469942A21D3BFBFD00378968 /* Raleway-Medium.ttf in Resources */,
 				469942971D3BFBFD00378968 /* Raleway-Black.ttf in Resources */,
+				7C19F3451F507D1800A4F853 /* checkDouble@2x.png in Resources */,
 				188505781CDDFE4B00086EC8 /* settings@3x.png in Resources */,
 				7CECA2681D4005EC005B3227 /* logout@3x.png in Resources */,
 				469942A41D3BFBFD00378968 /* Raleway-Regular.ttf in Resources */,
@@ -800,11 +822,13 @@
 				46F62CB91C908FDC00A61B47 /* LaunchScreen.storyboard in Resources */,
 				188505481CDDE45100086EC8 /* brand@3x.png in Resources */,
 				46F62CB61C908FDC00A61B47 /* Assets.xcassets in Resources */,
+				7C19F3461F507D1800A4F853 /* checkSingle.png in Resources */,
 				1885056A1CDDE45100086EC8 /* zip@3x.png in Resources */,
 				46EF53A91D45D9C30052AB86 /* background@3x.png in Resources */,
 				469942A11D3BFBFD00378968 /* Raleway-LightItalic.ttf in Resources */,
 				188505461CDDE45100086EC8 /* back@3x.png in Resources */,
 				1885055F1CDDE45100086EC8 /* reply@2x.png in Resources */,
+				7C19F3491F507D1800A4F853 /* notificationBell@2x.png in Resources */,
 				188505631CDDE45100086EC8 /* uncheck@2x.png in Resources */,
 				188505521CDDE45100086EC8 /* mail@3x.png in Resources */,
 				1885055E1CDDE45100086EC8 /* pin@3x.png in Resources */,

@@ -184,17 +184,17 @@
     
     
     //----test start
-    lblCity.font = fontRaleway13;
-    lblState.font = fontRaleway13;
-    lblDate.font = fontRaleway13;
-    lblAmount.font = fontRaleway13;
+    lblCity.font = fontRaleway12;
+    lblState.font = fontRaleway12;
+    lblDate.font = fontRaleway12;
+    lblAmount.font = fontRaleway12;
     
     imgStatusImage.hidden = true;
     
     if(requirement.isAccepted)
     {
         imgViewStatus.backgroundColor = GreenColor;
-        imgViewStatus.hidden = false;
+        imgStatusImage.hidden = false;
         
         imgStatusImage.image = [UIImage imageNamed:@"checkDouble.png"];
     }
@@ -208,17 +208,17 @@
         lblAmount.font = fontRalewayBold12;
     }
     
-    else if(!requirement.isSellerReadBargain && requirement.isSellerReadBargain)
+    else if(!requirement.isSellerReadBargain && requirement.isBargainRequired)
     {
         imgViewStatus.backgroundColor = OrangeColor;
-        imgViewStatus.hidden = false;
+        imgStatusImage.hidden = false;
         imgStatusImage.image = [UIImage imageNamed:@"checkSingle.png"];
         
     }
     else if(requirement.isSellerReadBargain)
     {
         imgViewStatus.backgroundColor = PurpleColor
-        imgViewStatus.hidden = false;
+        imgStatusImage.hidden = false;
         imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
         
         lblCity.font = fontRalewayBold12;

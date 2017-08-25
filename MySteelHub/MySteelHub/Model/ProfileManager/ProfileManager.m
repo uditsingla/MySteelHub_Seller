@@ -52,7 +52,7 @@
                 owner.pan = [NSString stringWithFormat:@"%@",[dictData valueForKey:@"pan"]];
                 owner.role = [dictData valueForKey:@"role"];
                 owner.state = [dictData valueForKey:@"state"];
-                owner.tin = [NSString stringWithFormat:@"%.0f",[[dictData valueForKey:@"tin"] doubleValue]];
+                owner.tin = [NSString stringWithFormat:@"%@",[dictData valueForKey:@"tin"]];
                 owner.zip = [NSString stringWithFormat:@"%.0f",[[dictData valueForKey:@"zip"] doubleValue]];
             }
             

@@ -804,7 +804,7 @@
                     cell.txtFieldQuantity.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"quantity"];
                     cell.txtFieldInitialUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"unit price"];
                     
-                    if(cell.txtFieldInitialUnitPrice.text.length>0)
+                    if(cell.txtFieldInitialUnitPrice.text.length>0 && btnSubmit.isHidden)
                         cell.txtFieldInitialUnitPrice.userInteractionEnabled = NO;
                     else
                         cell.txtFieldInitialUnitPrice.userInteractionEnabled = YES;
@@ -815,7 +815,7 @@
                         cell.txtFieldBargainUnitPrice.hidden = NO;
                         cell.txtFieldBargainUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"];
                         
-                        if(cell.txtFieldBargainUnitPrice.text.length>0)
+                        if(cell.txtFieldBargainUnitPrice.text.length>0 && btnSubmit.isHidden)
                             cell.txtFieldBargainUnitPrice.userInteractionEnabled = NO;
                         else
                             cell.txtFieldBargainUnitPrice.userInteractionEnabled = YES;
