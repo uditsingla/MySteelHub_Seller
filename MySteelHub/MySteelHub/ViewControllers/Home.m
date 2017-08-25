@@ -21,6 +21,8 @@
 #import "HomeProductDetailCell.h"
 
 
+#define submitBtnHeightConstant 52
+
 @interface Home ()<UITableViewDelegate,UITableViewDataSource,UIPickerViewDelegate,UIPickerViewDataSource,SWTableViewCellDelegate>
 {
     
@@ -65,24 +67,24 @@
     //UILabel *lbl;
     
     
+    __weak IBOutlet NSLayoutConstraint *constraintSubmitHeight;
     
-    __weak IBOutlet UITextField *txtFieldQuantity;
-    
-    __weak IBOutlet UIView *contentView;
-    __weak IBOutlet NSLayoutConstraint *tblViewHeightConstraint;
-    __weak IBOutlet NSLayoutConstraint *scrollContentViewHeightConstraint;
-    
-    __weak IBOutlet UIButton *btnBrands;
+//    __weak IBOutlet UITextField *txtFieldQuantity;
+//    
+//    __weak IBOutlet UIView *contentView;
+//    __weak IBOutlet NSLayoutConstraint *tblViewHeightConstraint;
+//    __weak IBOutlet NSLayoutConstraint *scrollContentViewHeightConstraint;
+//    
+//    __weak IBOutlet UIButton *btnBrands;
     
 }
 
-- (IBAction)preferedBrandsBtnAction:(UIButton *)sender;
-- (IBAction)gradeRequiredBtnAction:(UIButton *)sender;
+//- (IBAction)preferedBrandsBtnAction:(UIButton *)sender;
+//- (IBAction)gradeRequiredBtnAction:(UIButton *)sender;
 - (IBAction)submitBtnAction:(UIButton *)sender;
-- (IBAction)requiredByDateBtnAction:(UIButton *)sender;
-- (IBAction)preferedTaxBtnAction:(UIButton *)sender;
-- (IBAction)clkButtonBrands:(id)sender;
-
+//- (IBAction)requiredByDateBtnAction:(UIButton *)sender;
+//- (IBAction)preferedTaxBtnAction:(UIButton *)sender;
+//- (IBAction)clkButtonBrands:(id)sender;
 
 
 - (IBAction)clkBrands:(UIGestureRecognizer *)sender;
@@ -131,6 +133,8 @@
     */
     
     btnSubmit.hidden = NO;
+    
+    constraintSubmitHeight.constant = submitBtnHeightConstant;
     
     if(_selectedRequirement.isBargainRequired)
     {
@@ -339,6 +343,9 @@
     
     tblView.estimatedRowHeight = 200.0;
     tblView.rowHeight = UITableViewAutomaticDimension;
+    
+    tblView.tableFooterView = [UIView new];
+
     [tblView layoutIfNeeded];
     [tblView setNeedsLayout];
     
@@ -361,11 +368,14 @@
     if(_selectedRequirement.initialAmount.intValue>0)
     {
         btnSubmit.hidden = YES;
+        constraintSubmitHeight.constant = 0;
     }
     
     if(_selectedRequirement.isBargainRequired)
     {
         btnSubmit.hidden = NO;
+        constraintSubmitHeight.constant = submitBtnHeightConstant;
+
     }
     
     if(_selectedRequirement.bargainAmount.intValue>0)
@@ -378,6 +388,10 @@
          */
         bargainAmount = _selectedRequirement.bargainAmount;
         btnSubmit.hidden = YES;
+        
+        constraintSubmitHeight.constant = 0;
+
+        
     }
     else if(_selectedRequirement.isBestPrice)
     {/*
@@ -386,6 +400,9 @@
       */
         isBestPrice = _selectedRequirement.isBestPrice;
         btnSubmit.hidden = YES;
+        
+        constraintSubmitHeight.constant = 0;
+
     }
     
     
@@ -396,6 +413,9 @@
         switchBargain.userInteractionEnabled = NO;
          */
         btnSubmit.hidden = YES;
+        
+        constraintSubmitHeight.constant = 0;
+
     }
     
 
@@ -477,15 +497,15 @@
 
 -(void)createTableViewWithTag:(int)tag inView:(UIView*)parentview
 {
-    UITableView *tblView=[[UITableView alloc]init];
-    tblView.frame=CGRectMake(0,44,self.view.frame.size.width, 216-44);
-    [tblView setDataSource: self];
-    [tblView setDelegate: self];
-    tblView.tag = tag;
-    tblView.backgroundColor = [UIColor whiteColor];
+    UITableView *tblNewView=[[UITableView alloc]init];
+    tblNewView.frame=CGRectMake(0,44,self.view.frame.size.width, 216-44);
+    [tblNewView setDataSource: self];
+    [tblNewView setDelegate: self];
+    tblNewView.tag = tag;
+    tblNewView.backgroundColor = [UIColor whiteColor];
     
     
-    [parentview addSubview:tblView];
+    [parentview addSubview:tblNewView];
     
     
     UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
@@ -851,7 +871,7 @@
                 cell.sgmtControlLenghtRequired.selectedSegmentIndex = [_selectedRequirement.length intValue];
                 cell.sgmtControlTypeRequired.selectedSegmentIndex = [_selectedRequirement.type intValue];
                 
-                cell.lblPreferedBrands.text = [NSString stringWithFormat:@"Prefered Brands : %@",[_selectedRequirement.arrayPreferedBrands componentsJoinedByString:@","]];
+                cell.lblPreferedBrands.text = [NSString stringWithFormat:@"Prefered Brands : %@",[_selectedRequirement.arrayPreferedBrands componentsJoinedByString:@", "]];
                 
                 cell.lblGraderequired.text = [NSString stringWithFormat:@"Grade Required : %@",_selectedRequirement.gradeRequired];
                 
@@ -899,13 +919,13 @@
                 
                 if(_selectedRequirement.arrayBrands.count>0)
                 {
-                    cell.lblBrands.text = [NSString stringWithFormat:@"Brands : %@",[_selectedRequirement.arrayBrands componentsJoinedByString:@","]];
+                    cell.lblBrands.text = [NSString stringWithFormat:@"Brands : %@",[_selectedRequirement.arrayBrands componentsJoinedByString:@", "]];
                     cell.lblBrands.userInteractionEnabled = false;
                     cell.txtQuotation.userInteractionEnabled = false;
                 }
                 else
                 {
-                    cell.lblBrands.text = [NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@","]];
+                    cell.lblBrands.text = [NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]];
                 }
                 
                 return cell;
@@ -931,6 +951,8 @@
                     cell.txtBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount (Rs) : %@", _selectedRequirement.bargainAmount];
                     cell.isBargainRequired.on = !_selectedRequirement.isBestPrice;
                     btnSubmit.hidden = YES;
+                    constraintSubmitHeight.constant = 0;
+
                 }
                 else if(_selectedRequirement.isBestPrice || _selectedRequirement.isAccepted)
                 {
@@ -941,6 +963,8 @@
 
                     
                     btnSubmit.hidden = YES;
+                    constraintSubmitHeight.constant = 0;
+
                 }
                 else
                 {
@@ -1002,9 +1026,10 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity",@"",@"unit price", nil];
     [arrayTblDict addObject:dict];
     
+    /*
     tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44 + 5;
     scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
-
+*/
     [tblView reloadData];
     
 }
@@ -1042,7 +1067,7 @@
                 indexPath = [tblView indexPathForCell:cell];
                 
                 [arrayTblDict removeObjectAtIndex:indexPath.row];
-                tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44;
+                //tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44;
                 [tblView reloadData]; // tell table to refresh now
             }
             break;
@@ -1377,6 +1402,8 @@
                 {
                     [SVProgressHUD dismiss];
                     btnSubmit.hidden = YES;
+                    constraintSubmitHeight.constant = 0;
+
      
                     //txtFieldQuotation.userInteractionEnabled = NO;
      
@@ -1427,6 +1454,8 @@
                 if(json)
                 {
                     btnSubmit.hidden = YES;
+                    constraintSubmitHeight.constant = 0;
+
                     //[self.navigationController popViewControllerAnimated:YES];
                     [self showAlert:@"Quotation updated successfully"];
                     [tblView reloadData];
@@ -1452,6 +1481,8 @@
             if(json)
             {
                 btnSubmit.hidden = YES;
+                constraintSubmitHeight.constant = 0;
+
                 //[self.navigationController popViewControllerAnimated:YES];
                 [self showAlert:@"Quotation updated successfully"];
                 [tblView reloadData];
