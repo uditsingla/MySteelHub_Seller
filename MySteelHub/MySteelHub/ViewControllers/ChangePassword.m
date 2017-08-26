@@ -61,12 +61,33 @@
     
     if ([self validateData]) {
         
-        NSDictionary *dictData = [NSDictionary dictionaryWithObjectsAndKeys:txtOldPassword.text,@"old_password",txtPassword.text,@"new_password",@"123",@"user_id", nil];
+        NSDictionary *dictData = [NSDictionary dictionaryWithObjectsAndKeys:txtOldPassword.text,@"old_password",txtPassword.text,@"new_password", nil];
         
         [model_manager.loginManager changePassword:dictData completion:^(NSDictionary *json, NSError *error) {
-            if (error == nil) {
+            if (json != nil) {
                 
                 NSLog(@"json Response change apasseword : %@",json);
+                UIAlertController * alert=   [UIAlertController
+                                              alertControllerWithTitle:@"Success"
+                                              message:@"Password updated successfully"
+                                              preferredStyle:UIAlertControllerStyleAlert];
+                
+                
+                [self presentViewController:alert animated:YES completion:nil];
+                
+                
+                UIAlertAction* ok = [UIAlertAction
+                                     actionWithTitle:@"OK"
+                                     style:UIAlertActionStyleCancel
+                                     handler:^(UIAlertAction * action)
+                                     {
+                                         [self.navigationController popViewControllerAnimated:true];
+                                         //Do some thing here
+                                         //   [view dismissViewControllerAnimated:YES completion:nil];
+                                         
+                                     }];
+                [alert addAction:ok];
+
                 
             }
             else

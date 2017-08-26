@@ -47,6 +47,8 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
+    self.tableView.tableFooterView = [UIView new];
+
     
     [model_manager.profileManager getUserProfile:^(NSDictionary *json, NSError *error) {
         if(json)
