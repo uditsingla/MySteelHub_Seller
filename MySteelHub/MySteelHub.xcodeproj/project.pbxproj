@@ -101,6 +101,8 @@
 		46F62CB41C908FDC00A61B47 /* MySteelHub.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 46F62CB21C908FDC00A61B47 /* MySteelHub.xcdatamodeld */; };
 		46F62CB61C908FDC00A61B47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46F62CB51C908FDC00A61B47 /* Assets.xcassets */; };
 		46F62CB91C908FDC00A61B47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F62CB71C908FDC00A61B47 /* LaunchScreen.storyboard */; };
+		7C12EB9B1F51A43D0091B44B /* checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C12EB991F51A43D0091B44B /* checkmark.png */; };
+		7C12EB9C1F51A43D0091B44B /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7C12EB9A1F51A43D0091B44B /* checkmark@2x.png */; };
 		7C183AF31D284B86003159F9 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C183AEA1D284B86003159F9 /* SVIndefiniteAnimatedView.m */; };
 		7C183AF41D284B86003159F9 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C183AEC1D284B86003159F9 /* SVProgressAnimatedView.m */; };
 		7C183AF51D284B86003159F9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7C183AEE1D284B86003159F9 /* SVProgressHUD.bundle */; };
@@ -261,6 +263,8 @@
 		46F62D451C9363D100A61B47 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		46F62D531C95472900A61B47 /* MySteelHub-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MySteelHub-Prefix.pch"; sourceTree = "<group>"; };
 		51D0DB3C2CD1803B77DB8E5F /* Pods-MySteelHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MySteelHub.release.xcconfig"; path = "Pods/Target Support Files/Pods-MySteelHub/Pods-MySteelHub.release.xcconfig"; sourceTree = "<group>"; };
+		7C12EB991F51A43D0091B44B /* checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkmark.png; sourceTree = "<group>"; };
+		7C12EB9A1F51A43D0091B44B /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "checkmark@2x.png"; sourceTree = "<group>"; };
 		7C183AE91D284B86003159F9 /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		7C183AEA1D284B86003159F9 /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
 		7C183AEB1D284B86003159F9 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
@@ -652,6 +656,8 @@
 		7CECA2521D4005EC005B3227 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				7C12EB991F51A43D0091B44B /* checkmark.png */,
+				7C12EB9A1F51A43D0091B44B /* checkmark@2x.png */,
 				7C19F33E1F507D1800A4F853 /* checkDouble.png */,
 				7C19F33F1F507D1800A4F853 /* checkDouble@2x.png */,
 				7C19F3401F507D1800A4F853 /* checkSingle.png */,
@@ -822,6 +828,7 @@
 				46F62CB91C908FDC00A61B47 /* LaunchScreen.storyboard in Resources */,
 				188505481CDDE45100086EC8 /* brand@3x.png in Resources */,
 				46F62CB61C908FDC00A61B47 /* Assets.xcassets in Resources */,
+				7C12EB9C1F51A43D0091B44B /* checkmark@2x.png in Resources */,
 				7C19F3461F507D1800A4F853 /* checkSingle.png in Resources */,
 				1885056A1CDDE45100086EC8 /* zip@3x.png in Resources */,
 				46EF53A91D45D9C30052AB86 /* background@3x.png in Resources */,
@@ -839,6 +846,7 @@
 				188505611CDDE45100086EC8 /* star@2x.png in Resources */,
 				1885054A1CDDE45100086EC8 /* check@3x.png in Resources */,
 				188505501CDDE45100086EC8 /* info@3x.png in Resources */,
+				7C12EB9B1F51A43D0091B44B /* checkmark.png in Resources */,
 				469942A01D3BFBFD00378968 /* Raleway-Light.ttf in Resources */,
 				46EF53A81D45D9C30052AB86 /* background@2x.png in Resources */,
 				469942981D3BFBFD00378968 /* Raleway-BlackItalic.ttf in Resources */,
