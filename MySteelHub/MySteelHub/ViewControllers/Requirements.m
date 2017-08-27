@@ -209,13 +209,15 @@
     }
     else if(requirement.isSellerRead && requirement.initialAmount.intValue==0)
     {
-        imgViewStatus.backgroundColor = PurpleColor
-        imgStatusImage.hidden = false;
-        imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
+        imgViewStatus.backgroundColor = kBlueColor;
+//        imgStatusImage.hidden = false;
+//        imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
     }
     else if(!requirement.isSellerReadBargain && requirement.isBargainRequired)
     {
         imgViewStatus.backgroundColor = RedColor;
+        imgStatusImage.hidden = false;
+        imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
         
         lblCity.font = fontRalewayBold12;
         lblState.font = fontRalewayBold12;
