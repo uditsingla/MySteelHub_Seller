@@ -173,7 +173,7 @@
     lblDate.text=[requirement.requiredByDate capitalizedString];
     
     UILabel *lblAmount=(UILabel*)[view viewWithTag:444];
-    lblAmount.text=[requirement.budget capitalizedString];
+    lblAmount.text= [NSString stringWithFormat:@"%@.00 Rs",[requirement.budget capitalizedString]];
     
     UIImageView *imgStatusImage = (UIImageView*)[view viewWithTag:555];
     imgStatusImage.backgroundColor = [UIColor clearColor];
@@ -283,6 +283,14 @@
 
     
 }
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 90;
+    
+}
+
 
 - (IBAction)btnNewRequirement:(id)sender {
     

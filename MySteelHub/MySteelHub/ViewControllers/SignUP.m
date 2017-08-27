@@ -411,6 +411,26 @@
                 [alertController addAction:okAction];
                 [self presentViewController:alertController animated:YES completion:nil];
             }
+            else{
+                UIAlertController *alertController = [UIAlertController
+                                                      alertControllerWithTitle:@"Error"
+                                                      message:[NSString stringWithFormat:@"Server error occurred"]
+                                                      preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction
+                                           actionWithTitle:@"Ok"
+                                           style:UIAlertActionStyleCancel
+                                           handler:^(UIAlertAction *action)
+                                           {
+                                               [self dismissViewControllerAnimated:YES completion:nil];
+                                               [self.navigationController popViewControllerAnimated:YES];
+                                               NSLog(@"OK action");
+                                           }];
+                
+                [alertController addAction:okAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+
+            }
+
             //
             //        NSLog(@"Login Response");
             //

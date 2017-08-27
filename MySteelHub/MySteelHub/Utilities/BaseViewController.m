@@ -22,7 +22,7 @@
     
     UIView *topView = [[UIView alloc] init];
     topView.frame = CGRectMake(0, 0, self.view.frame.size.width, 70);
-    topView.backgroundColor = [UIColor colorWithRed:8/255.0 green:188/255.0 blue:211/255.0 alpha:1];
+    topView.backgroundColor = kBlueColor;
     [self.view addSubview:topView];
     
     // Do any additional setup after loading the view.
