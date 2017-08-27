@@ -49,7 +49,7 @@
 
     self.tableView.tableFooterView = [UIView new];
 
-    
+    appdelegate.profileDelegate = self;
     [model_manager.profileManager getUserProfile:^(NSDictionary *json, NSError *error) {
         if(json)
         {
@@ -58,6 +58,12 @@
     }];
 
 }
+
+-(void)profileDataUpdated
+{
+    [self.tableView reloadData];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

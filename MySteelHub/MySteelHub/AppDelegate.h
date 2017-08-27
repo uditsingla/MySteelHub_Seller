@@ -11,6 +11,14 @@
 #import <CoreLocation/CoreLocation.h>
 #import <UserNotifications/UserNotifications.h>
 
+//protocol to notify right menu view controller
+@protocol ProfileDelegate <NSObject>
+
+-(void)profileDataUpdated;
+
+@end
+
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,CLLocationManagerDelegate,UNUserNotificationCenterDelegate>
 
@@ -20,6 +28,8 @@
 }
 
 - (void)initializeInAppNotificationView;
+
+@property(weak,nonatomic) id<ProfileDelegate> profileDelegate;
 
 
 @property (strong, nonatomic) UIWindow *window;

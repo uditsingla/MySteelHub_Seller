@@ -8,6 +8,7 @@
 
 //#import "Template_TableView.h"
 
-@interface LeftSlider : UITableViewController<UIGestureRecognizerDelegate>
+
+@interface LeftSlider : UITableViewController<UIGestureRecognizerDelegate,ProfileDelegate>
 
 @end

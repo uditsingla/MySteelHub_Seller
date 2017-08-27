@@ -20,7 +20,7 @@
 
 @implementation AppDelegate
 
-@synthesize container ,currentLocation;
+@synthesize container ,currentLocation ,profileDelegate;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -379,7 +379,13 @@
     }
 
     [model_manager.requirementManager getAllRequirements:nil];
-    [model_manager.profileManager getUserProfile:nil];
+    
+    [model_manager.profileManager getUserProfile:^(NSDictionary *json, NSError *error) {
+        if(json)
+        {
+            [profileDelegate profileDataUpdated];
+        }
+    }];
 
 }
 
