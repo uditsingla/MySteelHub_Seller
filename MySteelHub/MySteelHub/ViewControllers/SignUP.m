@@ -142,11 +142,18 @@
     
     UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
     [keyboardDoneButtonView sizeToFit];
+    keyboardDoneButtonView.barStyle = UIBarStyleBlackOpaque;
+
+    [keyboardDoneButtonView setBackgroundImage:[UIImage new]
+                            forToolbarPosition:UIToolbarPositionAny
+                                    barMetrics:UIBarMetricsDefault];
+    
+    [keyboardDoneButtonView setBackgroundColor:kBlueColor];
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
                                                                    style:UIBarButtonItemStyleDone target:self
                                                                   action:@selector(doneClicked:)];
-    keyboardDoneButtonView.barStyle = UIBarStyleBlackOpaque;
-    
+    [doneButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], NSForegroundColorAttributeName,
+                                     nil] forState:UIControlStateNormal];
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flexSpace,doneButton, nil]];
@@ -527,11 +534,16 @@
     UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     pickerToolbar.barStyle = UIBarStyleBlackOpaque;
     [pickerToolbar sizeToFit];
+    [pickerToolbar setBackgroundImage:[UIImage new]
+                            forToolbarPosition:UIToolbarPositionAny
+                                    barMetrics:UIBarMetricsDefault];
     
+    [pickerToolbar setBackgroundColor:kBlueColor];
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pickerDoneButtonPressed)];
-    
+    [doneBtn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], NSForegroundColorAttributeName,
+                                     nil] forState:UIControlStateNormal];
     
     [pickerToolbar setItems:@[flexSpace, doneBtn] animated:YES];
     
@@ -554,11 +566,17 @@
     UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
     pickerToolbar.barStyle = UIBarStyleBlackOpaque;
     [pickerToolbar sizeToFit];
+    [pickerToolbar setBackgroundImage:[UIImage new]
+                   forToolbarPosition:UIToolbarPositionAny
+                           barMetrics:UIBarMetricsDefault];
+    
+    [pickerToolbar setBackgroundColor:kBlueColor];
     
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
     UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(tableDoneButtonPressed)];
-    
+    [doneBtn setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], NSForegroundColorAttributeName,
+                                     nil] forState:UIControlStateNormal];
     
     [pickerToolbar setItems:@[flexSpace, doneBtn] animated:YES];
     
