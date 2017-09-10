@@ -56,6 +56,32 @@
     
 }
 
+
+-(void)deleteRequirement:(RequirementI *)requirement completion:(void(^)(NSDictionary *json, NSError *error))completionBlock
+{
+    //create dictParam with requirement object
+    NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:requirement.requirementID,@"requirement_id",@"seller",@"type",nil];
+    
+    [RequestManager asynchronousRequestWithPath:@"deletePost" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
+        NSLog(@"Here comes the json %@",json);
+        if (statusCode==200) {
+            
+            [model_manager.requirementManager.arrayPostedRequirements removeObject:requirement];
+            
+            if(completionBlock)
+                completionBlock(json,nil);
+            
+        }
+        else{
+            if(completionBlock)
+                completionBlock(nil,nil);
+            //show error
+        }
+        
+    } ];
+    
+}
+
 -(void)getPostedRequirements:(void(^)(NSDictionary *json, NSError *error))completionBlock;
 {
     //create dictParam with requirement object

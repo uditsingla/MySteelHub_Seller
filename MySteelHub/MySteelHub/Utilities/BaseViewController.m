@@ -39,6 +39,7 @@
     label.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
     label.text = title;
     label.frame = CGRectMake(0, 20, self.view.frame.size.width, 50);
+    label.text = title.uppercaseString;
     label.textColor=[UIColor whiteColor];
     label.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:label];
