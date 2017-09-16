@@ -192,6 +192,14 @@
     
     
     
+    UILabel *lblOrderStatus = (UILabel*)[view viewWithTag:888];
+
+    lblOrderStatus.numberOfLines = 2;
+    //[lblOrderStatus adjustsFontSizeToFitWidth];
+    [lblOrderStatus setLineBreakMode:NSLineBreakByWordWrapping];
+    
+
+    
     //----test start
     lblCity.font = fontRaleway12;
     lblState.font = fontRaleway12;
@@ -205,7 +213,9 @@
         imgViewStatus.backgroundColor = GreenColor;
         imgStatusImage.hidden = false;
         
-        imgStatusImage.image = [UIImage imageNamed:@"checkmark.png"];
+        imgStatusImage.image = [UIImage imageNamed:@"green_bubble.png"];
+        
+        lblOrderStatus.text = kOrderAccepted;
     }
     else if(!requirement.isSellerRead)
     {
@@ -215,43 +225,76 @@
         lblState.font = fontRalewayBold12;
         lblDate.font = fontRalewayBold12;
         lblAmount.font = fontRalewayBold12;
+        
+        imgStatusImage.hidden = false;
+
+        imgStatusImage.image = [UIImage imageNamed:@"red_bubble.png"];
+        lblOrderStatus.text = kNewMessage;
+
+
     }
-    else if(requirement.isSellerRead && requirement.initialAmount.intValue==0)
+    else if(requirement.isSellerRead && requirement.initialAmount.intValue == 0)
     {
         imgViewStatus.backgroundColor = kBlueColor;
+        imgStatusImage.hidden = false;
+
+        imgStatusImage.image = [UIImage imageNamed:@"blue_bubble.png"];
+        
+        lblOrderStatus.text = kQuoteRequired;
+
 //        imgStatusImage.hidden = false;
 //        imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
     }
     else if(!requirement.isSellerReadBargain && requirement.isBargainRequired)
     {
-        imgViewStatus.backgroundColor = RedColor;
+        imgViewStatus.backgroundColor = OrangeColor;
         imgStatusImage.hidden = false;
-        imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
+        imgStatusImage.image = [UIImage imageNamed:@"orange_purple.png"];
         
         lblCity.font = fontRalewayBold12;
         lblState.font = fontRalewayBold12;
         lblDate.font = fontRalewayBold12;
         lblAmount.font = fontRalewayBold12;
         
-    }
-    else if(requirement.isSellerReadBargain && requirement.bargainAmount.intValue==0)
-    {
-        imgViewStatus.backgroundColor = PurpleColor
-        imgStatusImage.hidden = false;
-        imgStatusImage.image = [UIImage imageNamed:@"notificationBell.png"];
+        lblOrderStatus.text = kBargainDemanded;
+
         
     }
-    else if(requirement.initialAmount.intValue>0 && !requirement.isBargainRequired)
+    else if(requirement.isSellerReadBargain && requirement.isBestPrice)
     {
-        imgViewStatus.backgroundColor = OrangeColor;
+        imgViewStatus.backgroundColor = kSkyBlueColor;
         imgStatusImage.hidden = false;
-        imgStatusImage.image = [UIImage imageNamed:@"checkSingle.png"];
+        imgStatusImage.image = [UIImage imageNamed:@"sky_bubble.png"];
+        lblOrderStatus.text = kBargainDone;
+        
     }
-    else if(requirement.bargainAmount.intValue>0 || requirement.isBestPrice)
+    
+    else if(requirement.isSellerReadBargain && requirement.bargainAmount.intValue == 0)
+    {
+        imgViewStatus.backgroundColor = PurpleColor
+        
+        imgStatusImage.hidden = false;
+        imgStatusImage.image = [UIImage imageNamed:@"purple_bubble.png"];
+        lblOrderStatus.text = kBargainPending;
+        
+    }
+    else if(requirement.initialAmount.intValue > 0 && !requirement.isBargainRequired)
     {
         imgViewStatus.backgroundColor = OrangeColor;
+        
+        imgStatusImage.hidden = true;
+        //imgStatusImage.image = [UIImage imageNamed:@"orange_purple.png"];
+        
+        
+    }
+    else if(requirement.bargainAmount.intValue >0 || requirement.isBestPrice)
+    {
+        imgViewStatus.backgroundColor = kSkyBlueColor;
         imgStatusImage.hidden = false;
-        imgStatusImage.image = [UIImage imageNamed:@"checkDouble.png"];
+        imgStatusImage.image = [UIImage imageNamed:@"sky_bubble.png"];
+        lblOrderStatus.text = kBargainDone;
+
+        
     }
     else
     {
@@ -346,7 +389,6 @@
             NSLog(@"not deleted");
         }
     }];
-    
 }
 /*
  #pragma mark - Navigation

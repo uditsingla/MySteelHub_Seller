@@ -833,7 +833,7 @@
                         cell.txtFieldInitialUnitPrice.userInteractionEnabled = YES;
                     
                     
-                    if([[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"])
+                    if(![[[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"]  isEqual: @""])
                     {
                         cell.txtFieldBargainUnitPrice.hidden = NO;
                         cell.txtFieldBargainUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"];

@@ -40,6 +40,7 @@
 
 #define Other  [UIColor colorWithRed:34/255.00 green:36/255.00 blue:85/255.00 alpha:1];
 
+#define kSkyBlueColor  [UIColor colorWithRed:39/255.00 green:170/255.00 blue:186/255.00 alpha:1];
 
 #define fontRaleway12 [UIFont fontWithName:@"Raleway-Regular" size:12]
 #define fontRaleway13 [UIFont fontWithName:@"Raleway-Regular" size:13]
@@ -51,6 +52,16 @@
 #define fontRalewayBold13 [UIFont fontWithName:@"Raleway-SemiBold" size:13]
 #define fontRalewayBold14 ((UIFont *)[UIFont fontWithName:@"Raleway-SemiBold" size:14])
 #define fontRalewayBold16 ((UIFont *)[UIFont fontWithName:@"Raleway-SemiBold" size:16])
+
+#define kBargainReplied @"Bargain Replied"
+#define kBargainDemanded @"Bargain Required"
+#define kOrderAccepted @"Order Inprogress"
+#define kQuoteRequired @"Quote Required"
+#define kNewMessage @"New Message"
+#define kBargainPending @"Bargain Pending"
+#define kBargainDone @"Bargain Done"
+
+
 
 
 #endif /* Constants_h */
