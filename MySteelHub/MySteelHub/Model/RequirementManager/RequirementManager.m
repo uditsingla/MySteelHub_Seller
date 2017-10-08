@@ -89,7 +89,7 @@
     
     
     [RequestManager asynchronousRequestWithPath:@"posted/requirements" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             [arrayPostedRequirements removeAllObjects];
@@ -149,7 +149,7 @@
     
     
     [RequestManager asynchronousRequestWithPath:@"all/requirements" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             [arrayPostedRequirements removeAllObjects];
@@ -313,7 +313,7 @@
 -(void)getSteelBrands:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"brands" requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             [arraySteelBrands removeAllObjects];
@@ -338,7 +338,7 @@
 -(void)getSteelSizes:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"steelsizes" requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+       // NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             [arraySteelSizes removeAllObjects];
@@ -363,7 +363,7 @@
 -(void)getSteelGrades:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"grades" requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             [arraySteelGrades removeAllObjects];
@@ -388,7 +388,7 @@
 -(void)getStates:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"states" requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             [arrayStates removeAllObjects];

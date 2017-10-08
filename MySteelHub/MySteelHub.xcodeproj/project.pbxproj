@@ -959,6 +959,7 @@
 			);
 			name = Login.storyboard;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		46F62CAF1C908FDC00A61B47 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;

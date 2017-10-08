@@ -29,11 +29,8 @@
 
 @synthesize isEditProfile;
 
--(void)viewWillAppear:(BOOL)animated{
-}
--(void)viewWillDisappear:(BOOL)animated{
-    
-}
+
+#pragma mark - Default Functions
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -127,65 +124,15 @@
     }
     
 }
--(void)setupTextFields
-{
-    _txtFieldUsername = [self customtxtfield:_txtFieldUsername withrightIcon:[UIImage imageNamed:@"user.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:YES];
-    
-    _txtFieldEmail = [self customtxtfield:_txtFieldEmail withrightIcon:[UIImage imageNamed:@"mail.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    
-    _txtFieldPassword = [self customtxtfield:_txtFieldPassword withrightIcon:[UIImage imageNamed:@"passwordW.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    _txtFieldConfirmPass = [self customtxtfield:_txtFieldConfirmPass withrightIcon:[UIImage imageNamed:@"passwordW.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    
-    _txtFieldBrand = [self customtxtfield:_txtFieldBrand withrightIcon:[UIImage imageNamed:@"brand.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    
-    _txtFieldContact = [self customtxtfield:_txtFieldContact withrightIcon:[UIImage imageNamed:@"phone.png"] borderLeft:NO borderRight:YES borderBottom:YES borderTop:NO];
-    
-    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
-    [keyboardDoneButtonView sizeToFit];
-    keyboardDoneButtonView.barStyle = UIBarStyleBlackOpaque;
 
-    [keyboardDoneButtonView setBackgroundImage:[UIImage new]
-                            forToolbarPosition:UIToolbarPositionAny
-                                    barMetrics:UIBarMetricsDefault];
-    
-    [keyboardDoneButtonView setBackgroundColor:kBlueColor];
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
-                                                                   style:UIBarButtonItemStyleDone target:self
-                                                                  action:@selector(doneClicked:)];
-    [doneButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], NSForegroundColorAttributeName,
-                                     nil] forState:UIControlStateNormal];
-    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
-    
-    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flexSpace,doneButton, nil]];
-    _txtFieldContact.inputAccessoryView = keyboardDoneButtonView;
-    
-    _txtFieldAddress = [self customtxtfield:_txtFieldAddress withrightIcon:[UIImage imageNamed:@"pin.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    _txtFieldCity = [self customtxtfield:_txtFieldCity withrightIcon:[UIImage imageNamed:@"pin.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    _txtFieldState = [self customtxtfield:_txtFieldState withrightIcon:[UIImage imageNamed:@"pin.png"] borderLeft:NO borderRight:YES borderBottom:YES borderTop:NO];
-    
-    _txtFieldPan = [self customtxtfield:_txtFieldPan withrightIcon:[UIImage imageNamed:@"wallet.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    _txtFieldZipCode = [self customtxtfield:_txtFieldZipCode withrightIcon:[UIImage imageNamed:@"zip.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    
-    _txtFieldZipCode.inputAccessoryView = keyboardDoneButtonView;
 
-    _txtFieldTin = [self customtxtfield:_txtFieldTin withrightIcon:[UIImage imageNamed:@"wallet.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    _txtFieldExpected = [self customtxtfield:_txtFieldExpected withrightIcon:[UIImage imageNamed:@"user.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    _txtFieldCompanyName = [self customtxtfield:_txtFieldCompanyName withrightIcon:[UIImage imageNamed:@"company.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
-    
-    
-}
--(void)Back
-{
-    
-    [self.navigationController popViewControllerAnimated:YES];
-    
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
 
-- (void)doneClicked:(id)sender
-{
-    NSLog(@"Done Clicked.");
-    [self.view endEditing:YES];
-}
+#pragma mark - Keyboard Notifications
+
 
 -(void)showKeyboard:(NSNotification*)notification
 {
@@ -208,6 +155,9 @@
     
     
 }
+
+
+#pragma mark - UItextField delgates
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -294,6 +244,147 @@
     }
     
     return YES;
+}
+
+
+- (BOOL)textField:(UITextField *)textField
+shouldChangeCharactersInRange:(NSRange)range
+            replacementString:(NSString *)string {
+    
+    NSString *resultText = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    
+     if (textField == _txtFieldUsername)
+    {
+        if(textField.text.length <= 20)
+            return [self setContentInTextField:string textType:@"Characheters"];
+        else
+            return resultText.length <= 20;
+    }
+    else if(textField == _txtFieldCompanyName)
+    {
+        return resultText.length <= 25;
+    }
+    else if(textField == _txtFieldEmail)
+    {
+        return resultText.length <= 30;
+    }
+    else if(textField == _txtFieldAddress)
+    {
+        return resultText.length <= 30;
+    }
+    else if (textField == _txtFieldCity)
+    {
+        if(textField.text.length <= 14)
+            return [self setContentInTextField:string textType:@"Characheters"];
+        else
+            return resultText.length <= 14;
+    }
+    
+    else if (textField == _txtFieldZipCode)
+    {
+        return resultText.length <= 6;
+    }
+    else if (textField == _txtFieldContact)
+    {
+        return resultText.length <= 10;
+    }
+    else if(textField == _txtFieldTin)
+    {
+        return resultText.length <= 15;
+    }
+    else if (textField == _txtFieldPan)
+    {
+        return resultText.length <= 10;
+    }
+    else if (textField == _txtFieldExpected)
+    {
+        if(textField.text.length <= 2)
+            return [self setContentInTextField:string textType:@"Numerics"];
+        else
+            return resultText.length <= 2;
+    }
+    
+    
+    return true;
+}
+
+-(BOOL)setContentInTextField:(NSString*)textFieldInputString textType:(NSString*)strType
+{
+    NSString *strChars = @" ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    NSString *strNumerics = @"0123456789";
+    NSCharacterSet *cs;
+    
+    if([strType  isEqual: @"Characheters"])
+    {
+        cs = [[NSCharacterSet characterSetWithCharactersInString:strChars] invertedSet];
+    }
+    else if ([strType  isEqual: @"Numerics"])
+    {
+        cs = [[NSCharacterSet characterSetWithCharactersInString:strNumerics] invertedSet];
+    }
+    
+    NSString *filtered = [[textFieldInputString componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
+    
+    return [textFieldInputString isEqualToString:filtered];
+}
+
+#pragma mark - Custom Functions
+-(void)setupTextFields
+{
+    _txtFieldUsername = [self customtxtfield:_txtFieldUsername withrightIcon:[UIImage imageNamed:@"user.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:YES];
+    
+    _txtFieldEmail = [self customtxtfield:_txtFieldEmail withrightIcon:[UIImage imageNamed:@"mail.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    
+    _txtFieldPassword = [self customtxtfield:_txtFieldPassword withrightIcon:[UIImage imageNamed:@"passwordW.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    _txtFieldConfirmPass = [self customtxtfield:_txtFieldConfirmPass withrightIcon:[UIImage imageNamed:@"passwordW.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    
+    _txtFieldBrand = [self customtxtfield:_txtFieldBrand withrightIcon:[UIImage imageNamed:@"brand.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    
+    _txtFieldContact = [self customtxtfield:_txtFieldContact withrightIcon:[UIImage imageNamed:@"phone.png"] borderLeft:NO borderRight:YES borderBottom:YES borderTop:NO];
+    
+    UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
+    [keyboardDoneButtonView sizeToFit];
+    keyboardDoneButtonView.barStyle = UIBarStyleBlackOpaque;
+    
+    [keyboardDoneButtonView setBackgroundImage:[UIImage new]
+                            forToolbarPosition:UIToolbarPositionAny
+                                    barMetrics:UIBarMetricsDefault];
+    
+    [keyboardDoneButtonView setBackgroundColor:kBlueColor];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done"
+                                                                   style:UIBarButtonItemStyleDone target:self
+                                                                  action:@selector(doneClicked:)];
+    [doneButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], NSForegroundColorAttributeName,
+                                        nil] forState:UIControlStateNormal];
+    UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    
+    [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flexSpace,doneButton, nil]];
+    _txtFieldContact.inputAccessoryView = keyboardDoneButtonView;
+    
+    _txtFieldAddress = [self customtxtfield:_txtFieldAddress withrightIcon:[UIImage imageNamed:@"pin.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    _txtFieldCity = [self customtxtfield:_txtFieldCity withrightIcon:[UIImage imageNamed:@"pin.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    _txtFieldState = [self customtxtfield:_txtFieldState withrightIcon:[UIImage imageNamed:@"pin.png"] borderLeft:NO borderRight:YES borderBottom:YES borderTop:NO];
+    
+    _txtFieldPan = [self customtxtfield:_txtFieldPan withrightIcon:[UIImage imageNamed:@"wallet.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    _txtFieldZipCode = [self customtxtfield:_txtFieldZipCode withrightIcon:[UIImage imageNamed:@"zip.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    
+    _txtFieldZipCode.inputAccessoryView = keyboardDoneButtonView;
+    
+    _txtFieldTin = [self customtxtfield:_txtFieldTin withrightIcon:[UIImage imageNamed:@"wallet.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    _txtFieldExpected = [self customtxtfield:_txtFieldExpected withrightIcon:[UIImage imageNamed:@"user.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    _txtFieldCompanyName = [self customtxtfield:_txtFieldCompanyName withrightIcon:[UIImage imageNamed:@"company.png"] borderLeft:YES borderRight:YES borderBottom:YES borderTop:NO];
+    
+    
+}
+-(void)Back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)doneClicked:(id)sender
+{
+    NSLog(@"Done Clicked.");
+    [self.view endEditing:YES];
 }
 
 
@@ -393,7 +484,7 @@
     
     if(isEditProfile)
     {
-        NSDictionary *dictParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldEmail.text,@"email",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",strLat,@"latitude",strLong,@"longitude",arraySelectedPreferredBrands,@"brand",nil];
+        NSDictionary *dictParams=[[NSDictionary alloc]initWithObjectsAndKeys:_txtFieldExpected.text,@"exp_quantity",_txtFieldEmail.text,@"email",_txtFieldUsername.text,@"name",_txtFieldContact.text,@"contact",_txtFieldAddress.text,@"address",_txtFieldState.text,@"state",_txtFieldCity.text,@"city",_txtFieldZipCode.text,@"zip",_txtFieldTin.text,@"tin",_txtFieldCompanyName.text,@"company_name",_txtFieldPan.text,@"pan",@"seller",@"role",strLat,@"latitude",strLong,@"longitude",arraySelectedPreferredBrands,@"brand",nil];
         
         
         [model_manager.profileManager updateProfile:dictParams completion:^(NSDictionary *response, NSError *error){
@@ -583,6 +674,28 @@
     [parentview addSubview:pickerToolbar];
 }
 
+-(void)tableDoneButtonPressed
+{
+    pickerPreferredBrandsView.hidden = YES;
+    
+    
+    if(arraySelectedPreferredBrands.count>0)
+    {
+        [_txtFieldBrand setText:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]]];
+    }
+    else
+    {
+        [_txtFieldBrand setText:[NSString stringWithFormat:@""]];
+        [_txtFieldBrand setPlaceholder:@"Brands"];
+    }
+    
+    UIEdgeInsets contentInsets = UIEdgeInsetsMake(20,0, 0, 0);
+    _scrollView.contentInset = contentInsets;
+    _scrollView.scrollIndicatorInsets = contentInsets;
+    
+    
+}
+
 #pragma mark - UIPickerView delgates
 
 // Number of components.
@@ -700,33 +813,9 @@
     }
 }
 
-#pragma mark - Custom Methods
--(void)tableDoneButtonPressed
-{
-    pickerPreferredBrandsView.hidden = YES;
-    
-    
-    if(arraySelectedPreferredBrands.count>0)
-    {
-        [_txtFieldBrand setText:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]]];
-    }
-    else
-    {
-        [_txtFieldBrand setText:[NSString stringWithFormat:@""]];
-        [_txtFieldBrand setPlaceholder:@"Brands"];
-    }
-    
-    UIEdgeInsets contentInsets = UIEdgeInsetsMake(20,0, 0, 0);
-    _scrollView.contentInset = contentInsets;
-    _scrollView.scrollIndicatorInsets = contentInsets;
-    
-    
-}
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
+
 
 
 /*

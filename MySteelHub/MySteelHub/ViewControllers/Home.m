@@ -69,13 +69,13 @@
     
     __weak IBOutlet NSLayoutConstraint *constraintSubmitHeight;
     
-//    __weak IBOutlet UITextField *txtFieldQuantity;
-//    
-//    __weak IBOutlet UIView *contentView;
-//    __weak IBOutlet NSLayoutConstraint *tblViewHeightConstraint;
-//    __weak IBOutlet NSLayoutConstraint *scrollContentViewHeightConstraint;
-//    
-//    __weak IBOutlet UIButton *btnBrands;
+    //    __weak IBOutlet UITextField *txtFieldQuantity;
+    //
+    //    __weak IBOutlet UIView *contentView;
+    //    __weak IBOutlet NSLayoutConstraint *tblViewHeightConstraint;
+    //    __weak IBOutlet NSLayoutConstraint *scrollContentViewHeightConstraint;
+    //
+    //    __weak IBOutlet UIButton *btnBrands;
     
 }
 
@@ -112,25 +112,25 @@
     initialAmount = @"";
     bargainAmount = @"";
     isBestPrice = false;
-
-
+    
+    
     //switch controlls reframe
     /*
-    switchPhysical.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchPhysical.onTintColor = kBlueColor;
-    
-    switchChemical.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchChemical.onTintColor = kBlueColor;
-    
-    switchCertReq.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchCertReq.onTintColor = kBlueColor;
-    
-    switchBargain.transform = CGAffineTransformMakeScale(0.8, 0.8);
-    switchBargain.onTintColor = kBlueColor;
-    
-    viewQuotation.hidden = NO;
-    viewBargain.hidden = YES;
-    */
+     switchPhysical.transform = CGAffineTransformMakeScale(0.8, 0.8);
+     switchPhysical.onTintColor = kBlueColor;
+     
+     switchChemical.transform = CGAffineTransformMakeScale(0.8, 0.8);
+     switchChemical.onTintColor = kBlueColor;
+     
+     switchCertReq.transform = CGAffineTransformMakeScale(0.8, 0.8);
+     switchCertReq.onTintColor = kBlueColor;
+     
+     switchBargain.transform = CGAffineTransformMakeScale(0.8, 0.8);
+     switchBargain.onTintColor = kBlueColor;
+     
+     viewQuotation.hidden = NO;
+     viewBargain.hidden = YES;
+     */
     
     btnSubmit.hidden = NO;
     
@@ -139,8 +139,8 @@
     if(_selectedRequirement.isBargainRequired)
     {
         /*
-        viewBargain.hidden = NO;
-        */
+         viewBargain.hidden = NO;
+         */
         btnSubmit.hidden = NO;
     }
     
@@ -163,55 +163,55 @@
     
     //Custom UI for TextFilds
     /*
-    [self customtxtfield:txtFieldCity withrightIcon:nil borderLeft:false borderRight:false borderBottom:false borderTop:false];
-    
-    [self customtxtfield:txtFieldState withrightIcon:nil borderLeft:false borderRight:false borderBottom:false borderTop:false];
-    
-    [self customtxtfield:txtFieldBudget withrightIcon:nil borderLeft:false borderRight:false borderBottom:false borderTop:false];
-   
-    
-    //New Implemetation
-    UIFont *font = [UIFont fontWithName:@"Raleway-Regular" size:15];
-    
-    lbCity = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 110, 15)];
-    lbCity.textColor =  kPlaceHolderGrey;
-    lbCity.font = font;
-    lbCity.text = @"   Delivery City ";
-    [txtFieldCity setLeftView:lbCity];
-    [txtFieldCity setLeftViewMode:UITextFieldViewModeAlways];
-    
-    lbState = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 58, 15)];
-    lbState.textColor =  kPlaceHolderGrey;
-    lbState.font = font;
-    lbState.text = @"   State ";
-    [txtFieldState setLeftView:lbState];
-    [txtFieldState setLeftViewMode:UITextFieldViewModeAlways];
-    
-    lbAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 15)];
-    lbAmount.textColor =  kPlaceHolderGrey;
-    lbAmount.font = font;
-    lbAmount.text = @"   Budget Amount (Rs) ";
-    [txtFieldBudget setLeftView:lbAmount];
-    [txtFieldBudget setLeftViewMode:UITextFieldViewModeAlways];
-    
-    
-    
-    lbQuotationAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 165, 15)];
-    lbQuotationAmount.textColor =  kPlaceHolderGrey;
-    lbQuotationAmount.font = font;
-    lbQuotationAmount.text = @"Quotation Amount (Rs) ";
-    [txtFieldQuotation setLeftView:lbQuotationAmount];
-    [txtFieldQuotation setLeftViewMode:UITextFieldViewModeAlways];
-    
-    lbBargainAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 155, 15)];
-    lbBargainAmount.textColor =  kPlaceHolderGrey;
-    lbBargainAmount.font = font;
-    lbBargainAmount.text = @"Bargain Amount (Rs) ";
-    [txtFieldBargainAmount setLeftView:lbBargainAmount];
-    [txtFieldBargainAmount setLeftViewMode:UITextFieldViewModeAlways];
+     [self customtxtfield:txtFieldCity withrightIcon:nil borderLeft:false borderRight:false borderBottom:false borderTop:false];
+     
+     [self customtxtfield:txtFieldState withrightIcon:nil borderLeft:false borderRight:false borderBottom:false borderTop:false];
+     
+     [self customtxtfield:txtFieldBudget withrightIcon:nil borderLeft:false borderRight:false borderBottom:false borderTop:false];
+     
+     
+     //New Implemetation
+     UIFont *font = [UIFont fontWithName:@"Raleway-Regular" size:15];
+     
+     lbCity = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 110, 15)];
+     lbCity.textColor =  kPlaceHolderGrey;
+     lbCity.font = font;
+     lbCity.text = @"   Delivery City ";
+     [txtFieldCity setLeftView:lbCity];
+     [txtFieldCity setLeftViewMode:UITextFieldViewModeAlways];
+     
+     lbState = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 58, 15)];
+     lbState.textColor =  kPlaceHolderGrey;
+     lbState.font = font;
+     lbState.text = @"   State ";
+     [txtFieldState setLeftView:lbState];
+     [txtFieldState setLeftViewMode:UITextFieldViewModeAlways];
+     
+     lbAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 160, 15)];
+     lbAmount.textColor =  kPlaceHolderGrey;
+     lbAmount.font = font;
+     lbAmount.text = @"   Budget Amount (Rs) ";
+     [txtFieldBudget setLeftView:lbAmount];
+     [txtFieldBudget setLeftViewMode:UITextFieldViewModeAlways];
+     
+     
+     
+     lbQuotationAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 165, 15)];
+     lbQuotationAmount.textColor =  kPlaceHolderGrey;
+     lbQuotationAmount.font = font;
+     lbQuotationAmount.text = @"Quotation Amount (Rs) ";
+     [txtFieldQuotation setLeftView:lbQuotationAmount];
+     [txtFieldQuotation setLeftViewMode:UITextFieldViewModeAlways];
+     
+     lbBargainAmount = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 155, 15)];
+     lbBargainAmount.textColor =  kPlaceHolderGrey;
+     lbBargainAmount.font = font;
+     lbBargainAmount.text = @"Bargain Amount (Rs) ";
+     [txtFieldBargainAmount setLeftView:lbBargainAmount];
+     [txtFieldBargainAmount setLeftViewMode:UITextFieldViewModeAlways];
      */
     
-
+    
     
     //    btnGradeRequired.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
     //    btnPreferedBrands.titleLabel.font = [UIFont fontWithName:@"Raleway-Regular" size:15];
@@ -221,7 +221,7 @@
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:@"",@"size",@"",@"quantity",@"",@"unit price", nil];
     [arrayTblDict addObject:dict];
     
-
+    
     
     
     
@@ -238,7 +238,7 @@
     [self.view addSubview:pickerToolBarView];
     pickerToolBarView.hidden = YES;
     
-
+    
     arrayPreferredBrands = [NSMutableArray arrayWithArray:model_manager.profileManager.owner.brands];
     [arrayPreferredBrands addObject:@"Others"];
     
@@ -309,8 +309,8 @@
     UIToolbar *keyboardDoneButtonView = [[UIToolbar alloc] init];
     keyboardDoneButtonView.barStyle = UIBarStyleBlackOpaque;
     [keyboardDoneButtonView setBackgroundImage:[UIImage new]
-                   forToolbarPosition:UIToolbarPositionAny
-                           barMetrics:UIBarMetricsDefault];
+                            forToolbarPosition:UIToolbarPositionAny
+                                    barMetrics:UIBarMetricsDefault];
     
     [keyboardDoneButtonView setBackgroundColor:kBlueColor];
     [keyboardDoneButtonView sizeToFit];
@@ -318,21 +318,21 @@
                                                                    style:UIBarButtonItemStyleDone target:self
                                                                   action:@selector(doneClicked:)];
     [doneButton setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys: [UIColor whiteColor], NSForegroundColorAttributeName,
-                                     nil] forState:UIControlStateNormal];
+                                        nil] forState:UIControlStateNormal];
     
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
     
     [keyboardDoneButtonView setItems:[NSArray arrayWithObjects:flexSpace,doneButton, nil]];
     
     /*
-    txtFieldBudget.inputAccessoryView = keyboardDoneButtonView;
-    
-    txtFieldQuantity.inputAccessoryView = keyboardDoneButtonView;
-    
-    txtFieldQuotation.inputAccessoryView = keyboardDoneButtonView;
-    
-    txtFieldBargainAmount.inputAccessoryView = keyboardDoneButtonView;
-    */
+     txtFieldBudget.inputAccessoryView = keyboardDoneButtonView;
+     
+     txtFieldQuantity.inputAccessoryView = keyboardDoneButtonView;
+     
+     txtFieldQuotation.inputAccessoryView = keyboardDoneButtonView;
+     
+     txtFieldBargainAmount.inputAccessoryView = keyboardDoneButtonView;
+     */
     
     if(_selectedRequirement)
     {
@@ -342,7 +342,7 @@
 
 -(void)updateRequirementDetails
 {
-   // [self disableUIElements];
+    // [self disableUIElements];
     arrayTblDict = nil;
     arrayTblDict = _selectedRequirement.arraySpecificationsResponse;
     
@@ -353,7 +353,7 @@
     tblView.rowHeight = UITableViewAutomaticDimension;
     
     tblView.tableFooterView = [UIView new];
-
+    
     [tblView layoutIfNeeded];
     [tblView setNeedsLayout];
     
@@ -372,7 +372,7 @@
         }];
     }
     
-
+    
     if(_selectedRequirement.initialAmount.intValue>0)
     {
         btnSubmit.hidden = YES;
@@ -383,50 +383,50 @@
     {
         btnSubmit.hidden = NO;
         constraintSubmitHeight.constant = submitBtnHeightConstant;
-
+        
     }
     
     if(_selectedRequirement.bargainAmount.intValue>0)
     {
         /*
-        lbBargainAmount.text = @"Bargain Amount (Rs) :";
-        txtFieldBargainAmount.text = [NSString stringWithFormat:@"%@", _selectedRequirement.bargainAmount];
-        txtFieldBargainAmount.userInteractionEnabled = NO;
-        switchBargain.userInteractionEnabled = NO;
+         lbBargainAmount.text = @"Bargain Amount (Rs) :";
+         txtFieldBargainAmount.text = [NSString stringWithFormat:@"%@", _selectedRequirement.bargainAmount];
+         txtFieldBargainAmount.userInteractionEnabled = NO;
+         switchBargain.userInteractionEnabled = NO;
          */
         bargainAmount = _selectedRequirement.bargainAmount;
         btnSubmit.hidden = YES;
         
         constraintSubmitHeight.constant = 0;
-
+        
         
     }
     else if(_selectedRequirement.isBestPrice)
     {/*
-        txtFieldBargainAmount.userInteractionEnabled = NO;
-        switchBargain.userInteractionEnabled = NO;
+      txtFieldBargainAmount.userInteractionEnabled = NO;
+      switchBargain.userInteractionEnabled = NO;
       */
         isBestPrice = _selectedRequirement.isBestPrice;
         btnSubmit.hidden = YES;
         
         constraintSubmitHeight.constant = 0;
-
+        
     }
     
     
     if(_selectedRequirement.isAccepted)
     {
         /*
-        txtFieldBargainAmount.userInteractionEnabled = NO;
-        switchBargain.userInteractionEnabled = NO;
+         txtFieldBargainAmount.userInteractionEnabled = NO;
+         switchBargain.userInteractionEnabled = NO;
          */
         btnSubmit.hidden = YES;
         
         constraintSubmitHeight.constant = 0;
-
+        
     }
     
-
+    
 }
 
 -(void)newUpdateReceived
@@ -450,30 +450,30 @@
 }
 
 /*
--(void)disableUIElements
-{
-    //tblView.userInteractionEnabled = NO;
-    switchPhysical.userInteractionEnabled = NO;
-    switchChemical.userInteractionEnabled = NO;
-    switchCertReq.userInteractionEnabled = NO;
-    sgmtControlLenghtRequired.userInteractionEnabled = NO;
-    sgmtControlTypeRequired.userInteractionEnabled = NO;
-    btnPreferedBrands.userInteractionEnabled = NO;
-    btnGradeRequired.userInteractionEnabled = NO;
-    txtFieldCity.userInteractionEnabled = NO;
-    txtFieldState.userInteractionEnabled = NO;
-    txtFieldBudget.userInteractionEnabled = NO;
-    btnRequiredByDate.userInteractionEnabled = NO;
-    pickerToolBarView.userInteractionEnabled = NO;
-//    pickerPreferredBrandsView.userInteractionEnabled = NO;
-    pickerGradeRequiredView.userInteractionEnabled = NO;
-    datePickerView.userInteractionEnabled = NO;
-    btnPreferedTax.userInteractionEnabled = NO;
-    
-    txtFieldQuotation.userInteractionEnabled = NO;
-    txtFieldBargainAmount.userInteractionEnabled = NO;
-}
-*/
+ -(void)disableUIElements
+ {
+ //tblView.userInteractionEnabled = NO;
+ switchPhysical.userInteractionEnabled = NO;
+ switchChemical.userInteractionEnabled = NO;
+ switchCertReq.userInteractionEnabled = NO;
+ sgmtControlLenghtRequired.userInteractionEnabled = NO;
+ sgmtControlTypeRequired.userInteractionEnabled = NO;
+ btnPreferedBrands.userInteractionEnabled = NO;
+ btnGradeRequired.userInteractionEnabled = NO;
+ txtFieldCity.userInteractionEnabled = NO;
+ txtFieldState.userInteractionEnabled = NO;
+ txtFieldBudget.userInteractionEnabled = NO;
+ btnRequiredByDate.userInteractionEnabled = NO;
+ pickerToolBarView.userInteractionEnabled = NO;
+ //    pickerPreferredBrandsView.userInteractionEnabled = NO;
+ pickerGradeRequiredView.userInteractionEnabled = NO;
+ datePickerView.userInteractionEnabled = NO;
+ btnPreferedTax.userInteractionEnabled = NO;
+ 
+ txtFieldQuotation.userInteractionEnabled = NO;
+ txtFieldBargainAmount.userInteractionEnabled = NO;
+ }
+ */
 
 -(void)createPickerWithTag:(int)tag inView:(UIView*)parentview
 {
@@ -493,8 +493,8 @@
     pickerToolbar.barStyle = UIBarStyleBlackOpaque;
     [pickerToolbar sizeToFit];
     [pickerToolbar setBackgroundImage:[UIImage new]
-                            forToolbarPosition:UIToolbarPositionAny
-                                    barMetrics:UIBarMetricsDefault];
+                   forToolbarPosition:UIToolbarPositionAny
+                           barMetrics:UIBarMetricsDefault];
     
     [pickerToolbar setBackgroundColor:kBlueColor];
     UIBarButtonItem *flexSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
@@ -583,7 +583,7 @@
     df = nil;
     
     /*
-    [btnRequiredByDate setTitle:[NSString stringWithFormat:@"Required by Date : %@",selectedDate] forState:UIControlStateNormal];
+     [btnRequiredByDate setTitle:[NSString stringWithFormat:@"Required by Date : %@",selectedDate] forState:UIControlStateNormal];
      */
 }
 
@@ -664,7 +664,7 @@
     if(selectedGradeRequired.length>0)
     {
         /*
-        [btnGradeRequired setTitle:[NSString stringWithFormat:@"Grade Required : %@",selectedGradeRequired] forState:UIControlStateNormal];
+         [btnGradeRequired setTitle:[NSString stringWithFormat:@"Grade Required : %@",selectedGradeRequired] forState:UIControlStateNormal];
          */
         //selectedGradeRequired = @"";
     }
@@ -673,7 +673,7 @@
     if(selectedTax.length>0)
     {
         /*
-        [btnPreferedTax setTitle:[NSString stringWithFormat:@"Prefered Tax : %@",selectedTax] forState:UIControlStateNormal];
+         [btnPreferedTax setTitle:[NSString stringWithFormat:@"Prefered Tax : %@",selectedTax] forState:UIControlStateNormal];
          */
         //selectedTax = @"";
     }
@@ -682,16 +682,16 @@
 -(void)tableDoneButtonPressed
 {
     
-//    pickerGradeRequiredView.hidden = YES;
+    //    pickerGradeRequiredView.hidden = YES;
     pickerPreferredBrandsView.hidden = YES;
     
     
     /*if(arraySelectedPreferredBrands.count>0)
-    {
-        
-        [btnBrands setTitle:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]] forState:UIControlStateNormal];
-        
-    }*/
+     {
+     
+     [btnBrands setTitle:[NSString stringWithFormat:@"Brands : %@",[arraySelectedPreferredBrands componentsJoinedByString:@", "]] forState:UIControlStateNormal];
+     
+     }*/
     
     [tblView reloadData];
 }
@@ -786,7 +786,7 @@
             {
                 HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeCell"];
                 cell.userInteractionEnabled = YES;
-
+                
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 [cell.contentView layoutIfNeeded];
@@ -796,7 +796,7 @@
                 cell.txtFieldInitialUnitPrice.userInteractionEnabled = NO;
                 cell.txtFieldBargainUnitPrice.userInteractionEnabled = NO;
                 
-                if(indexPath.row==arrayTblDict.count)
+                if(indexPath.row == arrayTblDict.count)
                 {
                     cell.btnAdd.hidden = NO;
                     cell.txtFieldDiameter.hidden = YES;
@@ -833,7 +833,7 @@
                         cell.txtFieldInitialUnitPrice.userInteractionEnabled = YES;
                     
                     
-                    if(![[[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"]  isEqual: @""])
+                    if(![[[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"]  isEqual: @""] &&  ([[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"] != nil))
                     {
                         cell.txtFieldBargainUnitPrice.hidden = NO;
                         cell.txtFieldBargainUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"];
@@ -907,10 +907,10 @@
                 cell.txtBudget.text = [NSString stringWithFormat:@"Budget : %@",_selectedRequirement.budget];
                 
                 cell.lblPreferedTax.text = [NSString stringWithFormat:@"Prefered Tax : %@",_selectedRequirement.taxType.capitalizedString];
-               
-
+                
+                
                 return cell;
-
+                
                 
                 break;
             }
@@ -919,20 +919,20 @@
             {
                 HomeQuotationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeQuotationCell"];
                 cell.userInteractionEnabled = YES;
-
+                
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 [cell.contentView layoutIfNeeded];
                 
                 cell.txtQuotation.userInteractionEnabled = false;
                 cell.lblBrands.userInteractionEnabled = true;
-
+                
                 
                 if(_selectedRequirement.initialAmount.intValue>0)
                 {
                     cell.txtQuotation.userInteractionEnabled = false;
                     cell.lblBrands.userInteractionEnabled = false;
-
+                    
                     cell.txtQuotation.text = [NSString stringWithFormat:@"Quotation Amount (Rs) : %@", _selectedRequirement.initialAmount];
                 }
                 else
@@ -959,11 +959,11 @@
             {
                 HomeBargainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HomeBargainCell"];
                 cell.userInteractionEnabled = YES;
-
+                
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 [cell.contentView layoutIfNeeded];
-
+                
                 cell.isBargainRequired.userInteractionEnabled = true;
                 cell.txtBargainAmount.userInteractionEnabled = false;
                 
@@ -975,7 +975,7 @@
                     cell.isBargainRequired.on = !_selectedRequirement.isBestPrice;
                     btnSubmit.hidden = YES;
                     constraintSubmitHeight.constant = 0;
-
+                    
                 }
                 else if(_selectedRequirement.isBestPrice || _selectedRequirement.isAccepted)
                 {
@@ -983,17 +983,17 @@
                     cell.txtBargainAmount.userInteractionEnabled = false;
                     
                     cell.isBargainRequired.on = !_selectedRequirement.isBestPrice;
-
+                    
                     
                     btnSubmit.hidden = YES;
                     constraintSubmitHeight.constant = 0;
-
+                    
                 }
                 else
                 {
                     cell.txtBargainAmount.text = [NSString stringWithFormat:@"Bargain Amount (Rs) : %@", bargainAmount];
                     cell.isBargainRequired.on = !isBestPrice;
-
+                    
                 }
                 
                 if(cell.isBargainRequired.on)
@@ -1004,7 +1004,7 @@
                 {
                     cell.txtBargainAmount.hidden = true;
                 }
-
+                
                 return cell;
                 
                 break;
@@ -1050,9 +1050,9 @@
     [arrayTblDict addObject:dict];
     
     /*
-    tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44 + 5;
-    scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
-*/
+     tblViewHeightConstraint.constant = (arrayTblDict.count+1)*44 + 5;
+     scrollContentViewHeightConstraint.constant = scrollContentViewHeightConstraint.constant + tblViewHeightConstraint.constant - 150;
+     */
     [tblView reloadData];
     
 }
@@ -1175,7 +1175,7 @@
 //    else{
 //        btnChemical.selected=NO;
 //    }
-//    
+//
 //}
 //- (IBAction)btnCertReq:(id)sender {
 //    if (btnCertReq.selected==NO) {
@@ -1184,7 +1184,7 @@
 //    else{
 //        btnCertReq.selected=NO;
 //    }
-//    
+//
 //}
 
 
@@ -1206,7 +1206,7 @@
     NSLog(@"brands clicked");
     
     pickerPreferredBrandsView.hidden = NO;
-
+    
 }
 
 #pragma mark - TextField Delegates
@@ -1253,38 +1253,38 @@
             [self calculateBargainAmount];
     }
     /*
-    else if (textField == txtFieldCity)
-    {
-        if(txtFieldCity.text.length == 0)
-            lbCity.text = @"   Delivery City ";
-        
-    }
-    else if (textField == txtFieldState)
-    {
-        if(txtFieldState.text.length == 0)
-            lbState.text = @"   State ";
-        
-    }
-    else if (textField == txtFieldBudget)
-    {
-        if(txtFieldBudget.text.length == 0)
-            lbAmount.text = @"   Budget Amount (Rs) ";
-        
-    }
-    
-    else if (textField == txtFieldQuotation)
-    {
-        if(txtFieldQuotation.text.length == 0)
-            lbQuotationAmount.text = @"Quotation Amount (Rs) ";
-            
-    }
-    
-    else if (textField == txtFieldBargainAmount)
-    {
-        if(txtFieldBargainAmount.text.length == 0)
-            lbBargainAmount.text = @"Bargain Amount (Rs) ";
-        
-    }
+     else if (textField == txtFieldCity)
+     {
+     if(txtFieldCity.text.length == 0)
+     lbCity.text = @"   Delivery City ";
+     
+     }
+     else if (textField == txtFieldState)
+     {
+     if(txtFieldState.text.length == 0)
+     lbState.text = @"   State ";
+     
+     }
+     else if (textField == txtFieldBudget)
+     {
+     if(txtFieldBudget.text.length == 0)
+     lbAmount.text = @"   Budget Amount (Rs) ";
+     
+     }
+     
+     else if (textField == txtFieldQuotation)
+     {
+     if(txtFieldQuotation.text.length == 0)
+     lbQuotationAmount.text = @"Quotation Amount (Rs) ";
+     
+     }
+     
+     else if (textField == txtFieldBargainAmount)
+     {
+     if(txtFieldBargainAmount.text.length == 0)
+     lbBargainAmount.text = @"Bargain Amount (Rs) ";
+     
+     }
      */
 }
 
@@ -1312,34 +1312,49 @@
         [textField resignFirstResponder];
     }
     /*
-    else if (textField == txtFieldCity)
-    {
-        lbCity.text = @"   Delivery City :";
-        
-    }
-    else if (textField == txtFieldState)
-    {
-        lbState.text = @"   State :";
-        
-    }
-    else if (textField == txtFieldBudget)
-    {
-        lbAmount.text = @"   Budget Amount (Rs) :";
-        
-    }
-    
-    else if (textField == txtFieldQuotation)
-    {
-            lbQuotationAmount.text = @"Quotation Amount (Rs) :";
-        
-    }
-    
-    else if (textField == txtFieldBargainAmount)
-    {
-            lbBargainAmount.text = @"Bargain Amount (Rs) :";
-        
-    }
+     else if (textField == txtFieldCity)
+     {
+     lbCity.text = @"   Delivery City :";
+     
+     }
+     else if (textField == txtFieldState)
+     {
+     lbState.text = @"   State :";
+     
+     }
+     else if (textField == txtFieldBudget)
+     {
+     lbAmount.text = @"   Budget Amount (Rs) :";
+     
+     }
+     
+     else if (textField == txtFieldQuotation)
+     {
+     lbQuotationAmount.text = @"Quotation Amount (Rs) :";
+     
+     }
+     
+     else if (textField == txtFieldBargainAmount)
+     {
+     lbBargainAmount.text = @"Bargain Amount (Rs) :";
+     
+     }
      */
+}
+
+
+- (BOOL)textField:(UITextField *)textField
+shouldChangeCharactersInRange:(NSRange)range
+replacementString:(NSString *)string {
+    
+    NSString *resultText = [textField.text stringByReplacingCharactersInRange:range
+                                                                   withString:string];
+    
+    if((textField.tag  ==787) || (textField.tag  ==788))
+    {
+        return resultText.length <= 3;
+    }
+    return true;
 }
 
 
@@ -1415,9 +1430,9 @@
         {
             
             [SVProgressHUD show];
-     
+            
             _selectedRequirement.initialAmount = initialAmount;
-     
+            
             [_selectedRequirement.arrayBrands removeAllObjects];
             _selectedRequirement.arrayBrands = arraySelectedPreferredBrands;
             [_selectedRequirement postQuotation:^(NSDictionary *json, NSError *error) {
@@ -1426,10 +1441,10 @@
                     [SVProgressHUD dismiss];
                     btnSubmit.hidden = YES;
                     constraintSubmitHeight.constant = 0;
-
-     
+                    
+                    
                     //txtFieldQuotation.userInteractionEnabled = NO;
-     
+                    
                     [self showAlert:@"Quotation posted successfully"];
                     [tblView reloadData];
                 }
@@ -1443,7 +1458,7 @@
         }
         else
             [self showAlert:@"Please enter quotation amount for each size"];
-
+        
     }
     
     else if(!isBestPrice)
@@ -1467,10 +1482,10 @@
         {
             [SVProgressHUD show];
             
-     
+            
             _selectedRequirement.bargainAmount = bargainAmount;
             _selectedRequirement.isBestPrice = isBestPrice;
-     
+            
             
             [_selectedRequirement acceptRejectBargain:^(NSDictionary *json, NSError *error) {
                 [SVProgressHUD dismiss];
@@ -1478,7 +1493,7 @@
                 {
                     btnSubmit.hidden = YES;
                     constraintSubmitHeight.constant = 0;
-
+                    
                     //[self.navigationController popViewControllerAnimated:YES];
                     [self showAlert:@"Quotation updated successfully"];
                     [tblView reloadData];
@@ -1488,7 +1503,7 @@
                     [self showAlert:@"Some error occured. Please try again"];
                     _selectedRequirement.bargainAmount = @"";
                     _selectedRequirement.isBestPrice = false;
-
+                    
                 }
             }];
         }
@@ -1505,7 +1520,7 @@
             {
                 btnSubmit.hidden = YES;
                 constraintSubmitHeight.constant = 0;
-
+                
                 //[self.navigationController popViewControllerAnimated:YES];
                 [self showAlert:@"Quotation updated successfully"];
                 [tblView reloadData];
@@ -1516,7 +1531,7 @@
                 _selectedRequirement.isBestPrice = false;
             }
         }];
-
+        
     }
     
 }
@@ -1610,3 +1625,4 @@
 
 
 @end
+
