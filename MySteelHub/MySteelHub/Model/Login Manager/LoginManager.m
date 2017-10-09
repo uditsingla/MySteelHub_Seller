@@ -32,7 +32,7 @@
     [RequestManager asynchronousRequestWithPath:@"authenticate" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
         
         //if (statusCode==200) {
-            NSLog(@"Here comes the json %@",json);
+            //NSLog(@"Here comes the json %@",json);
             
             if([json objectForKey:@"token"])
             {
@@ -99,7 +99,7 @@
 - (void)userSignUp:(NSDictionary *)dictParam completion:(void(^)(NSArray *addresses, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"auth/register" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:NO onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             NSMutableArray *arr=(NSMutableArray*)[json objectForKey:@"msg"];
             completionBlock(arr,nil);

@@ -24,7 +24,7 @@
 -(void)getUserProfile:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"getProfile" requestType:RequestTypeGET params:nil timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             if([json valueForKey:@"data"])
@@ -72,7 +72,7 @@
 - (void)updateProfile:(NSDictionary *)dictParam completion:(void(^)(NSDictionary *response, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"update/profile" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             completionBlock(json,nil);
             

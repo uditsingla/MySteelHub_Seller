@@ -32,7 +32,7 @@
 
     
     [RequestManager asynchronousRequestWithPath:@"buyer/post" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             if([[[json valueForKey:@"data"] firstObject] valueForKey:@"requirement_id"])
@@ -63,7 +63,7 @@
     NSMutableDictionary *dictParams = [[NSMutableDictionary alloc] initWithObjectsAndKeys:requirement.requirementID,@"requirement_id",@"seller",@"type",nil];
     
     [RequestManager asynchronousRequestWithPath:@"deletePost" requestType:RequestTypePOST params:dictParams timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        //NSLog(@"Here comes the json %@",json);
         if (statusCode==200) {
             
             [model_manager.requirementManager.arrayPostedRequirements removeObject:requirement];
