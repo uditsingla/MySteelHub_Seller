@@ -832,9 +832,9 @@
                     else
                         cell.txtFieldInitialUnitPrice.userInteractionEnabled = YES;
                     
-                    //NSLog(@"keyyyy : %@",[[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"]);
+                    NSLog(@"keyyyy : %@",[[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"]);
                     
-                    if((!([[[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"]  isEqual: @""]) &&  ([[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"] != nil)) || ((_selectedRequirement.isBargainRequired) && (!_selectedRequirement.isBestPrice)))
+                    if((!([[[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"]  isEqual: @""]) &&  ([[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"] != nil)) || ((_selectedRequirement.isBargainRequired) && (!_selectedRequirement.isBestPrice) && !isBestPrice))
                     {
                         cell.txtFieldBargainUnitPrice.hidden = NO;
                         cell.txtFieldBargainUnitPrice.text = [[arrayTblDict objectAtIndex:indexPath.row] valueForKey:@"new unit price"];
