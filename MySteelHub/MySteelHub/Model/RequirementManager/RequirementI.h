@@ -29,7 +29,9 @@
 @property(strong,nonatomic) NSMutableArray *arraySpecifications;
 @property(strong,nonatomic) NSString *gradeRequired;
 @property(strong,nonatomic) NSMutableArray *arrayPreferedBrands;
-
+@property(strong,nonatomic) NSMutableArray *arrayCustomerType;
+    
+    
 @property(strong,nonatomic) NSString *initialAmount;
 @property(strong,nonatomic) NSString *bargainAmount;
 @property(assign,nonatomic) BOOL isBestPrice;

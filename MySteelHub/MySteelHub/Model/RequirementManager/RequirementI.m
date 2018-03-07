@@ -10,7 +10,7 @@
 
 @implementation RequirementI
 
-@synthesize requirementID,userID,isChemical,isPhysical,isTestCertificateRequired,length,type,budget,city,state,requiredByDate,gradeRequired,arrayPreferedBrands,arraySpecifications,createdDate,modifiedDate,initialAmount,bargainAmount,isBestPrice,isSellerRead,isSellerReadBargain,isAccepted,isDeleted,isBargainRequired,taxType,arraySpecificationsResponse,arrayBrands;
+@synthesize requirementID,userID,isChemical,isPhysical,isTestCertificateRequired,length,type,budget,city,state,requiredByDate,gradeRequired,arrayPreferedBrands,arraySpecifications,createdDate,modifiedDate,initialAmount,bargainAmount,isBestPrice,isSellerRead,isSellerReadBargain,isAccepted,isDeleted,isBargainRequired,taxType,arraySpecificationsResponse,arrayBrands,arrayCustomerType;
 
 - (id)init
 {
@@ -38,6 +38,7 @@
         taxType = @"";
         arraySpecificationsResponse = [NSMutableArray new];
         arrayBrands = [NSMutableArray new];
+        arrayCustomerType = [NSMutableArray new];
     }
     return self;
 }

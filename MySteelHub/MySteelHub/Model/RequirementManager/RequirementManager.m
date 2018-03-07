@@ -186,6 +186,11 @@
                 requirement.arraySpecifications = [[[array objectAtIndex:i] valueForKey:@"quantity"] mutableCopy];
                 
                 requirement.arraySpecificationsResponse = [[[array objectAtIndex:i] valueForKey:@"quantity"] mutableCopy];
+                
+                if(![[[array objectAtIndex:i] valueForKey:@"customer_type"] isEqual:[NSNull null]])
+                {
+                    requirement.arrayCustomerType = [[[array objectAtIndex:i] valueForKey:@"customer_type"] mutableCopy];
+                }
 
 
                 if([[array objectAtIndex:i] valueForKey:@"initial_unit_price"] && ![[[array objectAtIndex:i] valueForKey:@"initial_unit_price"] isEqual:[NSNull null]])

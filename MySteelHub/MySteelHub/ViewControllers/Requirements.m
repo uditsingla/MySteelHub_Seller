@@ -198,13 +198,21 @@
     //[lblOrderStatus adjustsFontSizeToFitWidth];
     [lblOrderStatus setLineBreakMode:NSLineBreakByWordWrapping];
     
-
+    UILabel *lblCustomerType = (UILabel*)[view viewWithTag:999];
+    
+    if(requirement.arrayCustomerType.count > 0)
+    {
+        lblCustomerType.text = [NSString stringWithFormat:@"Buyer Type : %@",[requirement.arrayCustomerType componentsJoinedByString:@", "]];
+    }
+    else
+    lblCustomerType.text = [NSString stringWithFormat:@"Buyer Type : N.A"];
     
     //----test start
     lblCity.font = fontRaleway12;
     lblState.font = fontRaleway12;
     lblDate.font = fontRaleway12;
     lblAmount.font = fontRaleway12;
+    lblCustomerType.font = fontRaleway12;
     
     imgStatusImage.hidden = true;
     
@@ -333,13 +341,12 @@
     homeVC.selectedRequirement = [model_manager.requirementManager.arrayPostedRequirements objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:homeVC animated:YES];
 
-    
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 90;
+    return 110;
     
 }
 

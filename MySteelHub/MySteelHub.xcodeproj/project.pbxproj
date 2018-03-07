@@ -1074,10 +1074,12 @@
 				CODE_SIGN_ENTITLEMENTS = MySteelHub/MySteelHub.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LC334ADL8X;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MysteelHub/MysteelHub-Prefix.pch";
 				INFOPLIST_FILE = MySteelHub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.steelhub.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1095,10 +1097,12 @@
 				CODE_SIGN_ENTITLEMENTS = MySteelHub/MySteelHub.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Harsh Bansal (NP37VP9V3U)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = LC334ADL8X;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MysteelHub/MysteelHub-Prefix.pch";
 				INFOPLIST_FILE = MySteelHub/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.steelhub.seller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
