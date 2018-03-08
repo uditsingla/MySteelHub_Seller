@@ -44,10 +44,14 @@
     {
         [self setTitleLabel:@"EDIT YOUR PROFILE"];
         [btnSubmit setTitle:@"UPDATE" forState:UIControlStateNormal];
+        _txtFieldEmail.userInteractionEnabled = false;
+
     }
     else
     {
         [self setTitleLabel:@"COMPLETE YOUR PROFILE"];
+        _txtFieldEmail.userInteractionEnabled = true;
+
     }
     
     [self setBackButton];
