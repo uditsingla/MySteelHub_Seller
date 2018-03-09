@@ -135,8 +135,10 @@
 -(void)changePassword:(NSDictionary *)dictParam completion:(void(^)(NSDictionary *json, NSError *error))completionBlock
 {
     [RequestManager asynchronousRequestWithPath:@"auth/changepassword" requestType:RequestTypePOST params:dictParam timeOut:60 includeHeaders:YES onCompletion:^(long statusCode, NSDictionary *json) {
-        NSLog(@"Here comes the json %@",json);
+        NSLog(@"Here comes the json for change password %@",json);
         if (statusCode==200) {
+            
+            [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"Bearer %@",[json objectForKey:@"token"]] forKey:@"token"];
             completionBlock(json,nil);
             
         }

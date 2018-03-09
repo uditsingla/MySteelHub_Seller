@@ -50,7 +50,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySteelHub/Model/Login Manager/LoginManager.m"
-            timestampString = "529251324.057178"
+            timestampString = "542308597.767048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -140,7 +140,7 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/RequirementManager/RequirementI.m"
-                  timestampString = "542135075.017019"
+                  timestampString = "542308597.923939"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "62"
@@ -155,7 +155,7 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/RequirementManager/RequirementI.m"
-                  timestampString = "542135075.019781"
+                  timestampString = "542308597.926021"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "63"
@@ -220,7 +220,7 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/RequirementManager/RequirementManager.m"
-                  timestampString = "542135075.0337909"
+                  timestampString = "542308597.940299"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "91"
@@ -235,7 +235,7 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/RequirementManager/RequirementManager.m"
-                  timestampString = "542135075.0358731"
+                  timestampString = "542308597.942403"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "93"
@@ -284,7 +284,7 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/ProfileManager/ProfileManager.m"
-                  timestampString = "542135075.044705"
+                  timestampString = "542308597.952071"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "74"
@@ -299,7 +299,7 @@
                   moduleName = "MySteelHub"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/abhishek/Desktop/SH/SteelHub-S/MySteelHub/MySteelHub/MySteelHub/Model/ProfileManager/ProfileManager.m"
-                  timestampString = "542135075.04677"
+                  timestampString = "542308597.9541939"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "76"
@@ -348,7 +348,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySteelHub/Model/Login Manager/LoginManager.m"
-            timestampString = "529251324.057771"
+            timestampString = "542308597.7675771"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "121"
@@ -412,7 +412,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MySteelHub/ViewControllers/SignUP.m"
-            timestampString = "529153234.366714"
+            timestampString = "542308597.7678241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "475"
@@ -514,6 +514,38 @@
             startingLineNumber = "107"
             endingLineNumber = "107"
             landmarkName = "-viewDidLoad"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySteelHub/ViewControllers/Login.m"
+            timestampString = "542308597.76855"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-loginUser:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySteelHub/Model/Login Manager/LoginManager.m"
+            timestampString = "542308597.768652"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "-changePassword:completion:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

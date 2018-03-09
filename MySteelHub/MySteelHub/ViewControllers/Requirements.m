@@ -290,8 +290,10 @@
     {
         imgViewStatus.backgroundColor = OrangeColor;
         
-        imgStatusImage.hidden = true;
-        //imgStatusImage.image = [UIImage imageNamed:@"orange_purple.png"];
+        imgStatusImage.hidden = false;
+        lblOrderStatus.text = kQuotePosted;
+
+        imgStatusImage.image = [UIImage imageNamed:@"orange_purple.png"];
         
         
     }

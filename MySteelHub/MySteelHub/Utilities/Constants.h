@@ -60,6 +60,7 @@
 #define kNewMessage @"New Message"
 #define kBargainPending @"Bargain Pending"
 #define kBargainDone @"Bargain Done"
+#define kQuotePosted @"Quote Posted"
 
 
 
