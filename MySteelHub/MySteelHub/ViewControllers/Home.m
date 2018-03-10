@@ -1448,6 +1448,13 @@ replacementString:(NSString *)string {
                     
                     [self showAlert:@"Quotation posted successfully"];
                     [tblView reloadData];
+                    
+                    
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        CGPoint offset = CGPointMake(0, 0);
+                        [tblView setContentOffset:offset animated:NO];
+                    });
+                    
                 }
                 else
                 {
