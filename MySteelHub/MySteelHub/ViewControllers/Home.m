@@ -61,6 +61,9 @@
     NSString *bargainAmount;
     BOOL isBestPrice;
     
+    UITextField *actifText;
+
+    
     //UILabel *lbCity,*lbState,*lbAmount,*lbQuotationAmount,*lbBargainAmount;
     
     //for content view border
@@ -145,10 +148,10 @@
     }
     
     
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hideKeyboard:) name:UIKeyboardDidHideNotification object:nil ];
-    
-    
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showKeyboard:) name:UIKeyboardDidShowNotification object:nil ];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hideKeyboard:) name:UIKeyboardDidHideNotification object:nil ];
+//
+//
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(showKeyboard:) name:UIKeyboardDidShowNotification object:nil ];
     
     if(_selectedRequirement)
     {
@@ -339,6 +342,8 @@
         [self updateRequirementDetails];
     }
 }
+
+
 
 -(void)updateRequirementDetails
 {
@@ -1000,10 +1005,14 @@
                 if(cell.isBargainRequired.on)
                 {
                     cell.txtBargainAmount.hidden = false;
+                    cell.txtBargainAmount.userInteractionEnabled = true;
+
                 }
                 else
                 {
                     cell.txtBargainAmount.hidden = true;
+                    cell.txtBargainAmount.userInteractionEnabled = false;
+
                 }
                 
                 return cell;
@@ -1221,6 +1230,8 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
 {
+    actifText = nil;
+
     if(textField.tag==786)
     {
         // getting indexpath from selected textfield
@@ -1312,6 +1323,9 @@
         selectedDiameterTextfield = textField;
         [textField resignFirstResponder];
     }
+    else{
+        actifText = textField;
+    }
     /*
      else if (textField == txtFieldCity)
      {
@@ -1362,21 +1376,21 @@ replacementString:(NSString *)string {
 
 
 #pragma mark Keyboard
--(void)showKeyboard:(NSNotification*)notification
-{
-    NSLog(@"Keyboard shown");
-    
-}
-
--(void)hideKeyboard:(NSNotification*)notification
-{
-    
-}
-
--(void)Closekeyboard:(NSNotification*)notification
-{
-    NSLog(@"Keyboard hidden");
-}
+//-(void)showKeyboard:(NSNotification*)notification
+//{
+//    NSLog(@"Keyboard shown");
+//
+//}
+//
+//-(void)hideKeyboard:(NSNotification*)notification
+//{
+//
+//}
+//
+//-(void)Closekeyboard:(NSNotification*)notification
+//{
+//    NSLog(@"Keyboard hidden");
+//}
 
 
 /*
@@ -1448,7 +1462,6 @@ replacementString:(NSString *)string {
                     
                     [self showAlert:@"Quotation posted successfully"];
                     [tblView reloadData];
-                    
                     
                     dispatch_async(dispatch_get_main_queue(), ^{
                         CGPoint offset = CGPointMake(0, 0);

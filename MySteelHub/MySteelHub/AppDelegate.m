@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "IQKeyboardManager.h"
+
 #define SYSTEM_VERSION_GRATERTHAN_OR_EQUALTO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 
@@ -28,13 +30,18 @@
     
     ///Font name
     
-    for (NSString *fontFamilyName in [UIFont familyNames]) {
-        for (NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]) {
-            NSLog(@"Family: %@    Font: %@", fontFamilyName, fontName);
-        }
-    }
+//    for (NSString *fontFamilyName in [UIFont familyNames]) {
+//        for (NSString *fontName in [UIFont fontNamesForFamilyName:fontFamilyName]) {
+//            NSLog(@"Family: %@    Font: %@", fontFamilyName, fontName);
+//        }
+//    }
     //
     
+    
+    //Enabling keyboard manager(Use this line to enable managing distance between keyboard & textField/textView).
+    [[IQKeyboardManager sharedManager] setEnable:YES];
+    [[IQKeyboardManager sharedManager] setEnableAutoToolbar:YES];
+
     
     [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleDark];
