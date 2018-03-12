@@ -1367,7 +1367,7 @@ replacementString:(NSString *)string {
     
     if((textField.tag  ==787) || (textField.tag  ==788))
     {
-        return resultText.length <= 3;
+        return resultText.length <= 6;
     }
     return true;
 }
